@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# QT User Files
+*.pro.user
+*.pro.user.*
+*.autosave
+
+# QT-Generated Application
+MathleCommand/MathleCommand.app
