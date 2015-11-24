@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "logindialog.h"
+#include "equationgenerator.h"
+#include <QDebug>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,16 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    LoginDialog* login = new LoginDialog;
-
-    if( login->exec() == QDialog::Accepted )
-    {
-
-        //user_selected_dimension = new_sprite->dimension;
-        return;
-    }
-
+   EquationGenerator* equations = new EquationGenerator;
+   equations->generateAddition();
+   equations->generateSubtraction();
 }
+
 
 MainWindow::~MainWindow()
 {
