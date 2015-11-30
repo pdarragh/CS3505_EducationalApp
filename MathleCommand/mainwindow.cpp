@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     Dialog* login = new Dialog;
-    if( login->exec() == QDialog::Accepted )
+    if( login->exec() == QDialog::Accepted)
     {
 
         qDebug() << login->username;
