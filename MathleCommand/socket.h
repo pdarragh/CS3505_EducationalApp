@@ -1,17 +1,17 @@
 #ifndef SOCKET
 #define SOCKET
 
-#include <QtSql>
+#include "mysql.h"
+//#include <QtSql>
 //#include <QtSql/QMYSQLDriver>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlRecord>
+//#include <QSqlDatabase>
+//#include <QSqlQuery>
+//#include <QSqlRecord>
 
 class Socket
 {
 
 public:
-
     //Constructors
     Socket();
 
@@ -19,9 +19,6 @@ public:
     void connect();
     //bool login(QString username, QString password);
     void disconnect();
-
-    //Variables
-    QSqlDatabase db;
 
 };
 

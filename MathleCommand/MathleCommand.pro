@@ -10,6 +10,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MathleCommand
 TEMPLATE = app
+INCLUDEPATH+=/usr/local/mysql/include
+LIBS+=-L/usr/local/mysql/lib -lmysqlclient_r
 
 
 SOURCES += main.cpp\
