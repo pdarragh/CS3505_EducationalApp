@@ -19,7 +19,11 @@ public:
     EquationGenerator* equations;
     void displayTeacherAccount();
     void displayStudentAccount();
+    void displayGameWindow();
     bool teacher;
+
+private slots:
+    void on_answerButton_clicked();
 
 private:
     Ui::MainWindow *ui;

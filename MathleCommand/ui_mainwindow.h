@@ -16,6 +16,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -45,6 +46,9 @@ public:
     QPushButton *pushButton_2;
     QWidget *page_2;
     QWidget *page_3;
+    QPushButton *answerButton;
+    QLabel *equation;
+    QLineEdit *answerBox;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -58,7 +62,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         stackedWidget = new QStackedWidget(centralWidget);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(0, 0, 700, 700));
+        stackedWidget->setGeometry(QRect(10, 0, 700, 700));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         label = new QLabel(page);
@@ -102,6 +106,18 @@ public:
         stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
+        answerButton = new QPushButton(page_3);
+        answerButton->setObjectName(QStringLiteral("answerButton"));
+        answerButton->setGeometry(QRect(370, 490, 115, 41));
+        equation = new QLabel(page_3);
+        equation->setObjectName(QStringLiteral("equation"));
+        equation->setGeometry(QRect(198, 500, 91, 20));
+        QFont font1;
+        font1.setPointSize(20);
+        equation->setFont(font1);
+        answerBox = new QLineEdit(page_3);
+        answerBox->setObjectName(QStringLiteral("answerBox"));
+        answerBox->setGeometry(QRect(290, 490, 71, 31));
         stackedWidget->addWidget(page_3);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -128,6 +144,8 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "Manage Student...", 0));
         label_3->setText(QApplication::translate("MainWindow", "View Class Progress...", 0));
         pushButton_2->setText(QString());
+        answerButton->setText(QApplication::translate("MainWindow", "Answer", 0));
+        equation->setText(QApplication::translate("MainWindow", "TextLabel", 0));
     } // retranslateUi
 
 };

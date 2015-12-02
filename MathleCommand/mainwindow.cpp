@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
    equations = new EquationGenerator;
-   equations->generateEquations(EquationGenerator::Addition);
+   ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
 
    // TODO: Check if user is student or teacher
    teacher = true;
@@ -71,4 +71,20 @@ void MainWindow::displayStudentAccount()
 void MainWindow::displayGameWindow()
 {
     ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_answerButton_clicked()
+{
+    if(ui->answerBox->text() == QString::number(equations->answer))
+    {
+        QPalette pal = ui->answerBox->palette();
+        pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
+        ui->answerBox->setPalette(pal);
+    }
+    else
+    {
+        QPalette pal = ui->answerBox->palette();
+        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
+        ui->answerBox->setPalette(pal);
+    }
 }
