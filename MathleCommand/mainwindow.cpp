@@ -26,8 +26,11 @@ MainWindow::MainWindow(QWidget *parent) :
    // TODO: Check if user is student or teacher
    teacher = true;
 
+   // In future this will be triggered by a button in the student account window
+   displayGameWindow();
+
    // Creates the appropriate account display type for the user
-   if (teacher)
+   /*if (teacher)
    {
        ui->stackedWidget->setCurrentIndex(0);
        displayTeacherAccount();
@@ -36,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
    {
        ui->stackedWidget->setCurrentIndex(1);
        displayStudentAccount();
-   }
+   }*/
 }
 
 MainWindow::~MainWindow()
@@ -65,4 +68,9 @@ void MainWindow::displayStudentAccount()
 {
 
 
+}
+
+void MainWindow::displayGameWindow()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }
