@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "equationgenerator.h"
 #include "dialog.h"
 #include <QDebug>
 
@@ -19,9 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
         //return;
     }
 
-   EquationGenerator* equations = new EquationGenerator;
-   equations->generateAddition();
-   equations->generateSubtraction();
+   equations = new EquationGenerator;
+   equations->generateEquations(EquationGenerator::Addition);
 
    // TODO: Check if user is student or teacher
    teacher = true;
