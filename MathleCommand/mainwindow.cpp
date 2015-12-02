@@ -24,15 +24,17 @@ MainWindow::MainWindow(QWidget *parent) :
    equations->generateSubtraction();
 
    // TODO: Check if user is student or teacher
-   teacher = false;
+   teacher = true;
 
    // Creates the appropriate account display type for the user
    if (teacher)
    {
+       ui->stackedWidget->setCurrentIndex(0);
        displayTeacherAccount();
    }
    else
    {
+       ui->stackedWidget->setCurrentIndex(1);
        displayStudentAccount();
    }
 }
@@ -47,7 +49,7 @@ MainWindow::~MainWindow()
  *
  * Causes the display for a teacher to appear
  */
-displayTeacherAccount()
+void MainWindow::displayTeacherAccount()
 {
 
 }
@@ -59,10 +61,8 @@ displayTeacherAccount()
  * levels and a display of that level's current high score; a large display area for the student's
  * name; a main menu button that opens the game in a new tab; and a button linking to the scoreboard.
  */
-displayStudentAccount()
+void MainWindow::displayStudentAccount()
 {
-   QPushButton main_menu("Main Menu", this);
-   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
 
 
 }
