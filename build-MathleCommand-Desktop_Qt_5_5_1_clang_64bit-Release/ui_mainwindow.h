@@ -16,13 +16,13 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -34,13 +34,15 @@ public:
     QWidget *centralWidget;
     QStackedWidget *stackedWidget;
     QWidget *page;
-    QLabel *label;
+    QLabel *name_label;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QListView *listView;
-    QComboBox *comboBox;
+    QTableView *table_view;
+    QComboBox *combo_box;
     QPushButton *pushButton;
     QLabel *label_2;
+    QLabel *label_3;
+    QPushButton *pushButton_2;
     QWidget *page_2;
     QWidget *page_3;
     QMenuBar *menuBar;
@@ -59,13 +61,13 @@ public:
         stackedWidget->setGeometry(QRect(0, 0, 700, 700));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        label = new QLabel(page);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(40, 10, 591, 41));
+        name_label = new QLabel(page);
+        name_label->setObjectName(QStringLiteral("name_label"));
+        name_label->setGeometry(QRect(40, 10, 591, 41));
         QFont font;
         font.setPointSize(23);
-        label->setFont(font);
-        label->setAlignment(Qt::AlignCenter);
+        name_label->setFont(font);
+        name_label->setAlignment(Qt::AlignCenter);
         scrollArea = new QScrollArea(page);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setGeometry(QRect(90, 60, 481, 451));
@@ -73,13 +75,13 @@ public:
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 479, 449));
-        listView = new QListView(scrollAreaWidgetContents);
-        listView->setObjectName(QStringLiteral("listView"));
-        listView->setGeometry(QRect(0, 0, 481, 451));
+        table_view = new QTableView(scrollAreaWidgetContents);
+        table_view->setObjectName(QStringLiteral("table_view"));
+        table_view->setGeometry(QRect(0, 0, 481, 451));
         scrollArea->setWidget(scrollAreaWidgetContents);
-        comboBox = new QComboBox(page);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(110, 530, 441, 26));
+        combo_box = new QComboBox(page);
+        combo_box->setObjectName(QStringLiteral("combo_box"));
+        combo_box->setGeometry(QRect(110, 530, 441, 26));
         pushButton = new QPushButton(page);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(580, 530, 51, 32));
@@ -87,6 +89,16 @@ public:
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(30, 520, 71, 41));
         label_2->setWordWrap(true);
+        label_3 = new QLabel(page);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(250, 560, 91, 41));
+        label_3->setWordWrap(true);
+        pushButton_2 = new QPushButton(page);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(330, 560, 61, 51));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/prefix1/document.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_2->setIcon(icon);
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -114,9 +126,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        label->setText(QApplication::translate("MainWindow", "TextLabel", 0));
         pushButton->setText(QApplication::translate("MainWindow", "Go", 0));
         label_2->setText(QApplication::translate("MainWindow", "Manage Student...", 0));
+        label_3->setText(QApplication::translate("MainWindow", "View Class Progress...", 0));
+        pushButton_2->setText(QString());
     } // retranslateUi
 
 };

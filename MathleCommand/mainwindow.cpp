@@ -3,6 +3,7 @@
 #include "equationgenerator.h"
 #include "dialog.h"
 #include <QDebug>
+#include <QString>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -51,7 +52,13 @@ MainWindow::~MainWindow()
  */
 void MainWindow::displayTeacherAccount()
 {
-
+    // TODO: Define user text
+    std::string user_name = "Jane Smith";
+    QString name = QString::fromStdString(user_name);
+    QString str = name + "'s Class";
+    //QString Class = "'s Class";
+    //Class.prepend(user_name);
+    ui->name_label->setText(str);
 }
 
 /*

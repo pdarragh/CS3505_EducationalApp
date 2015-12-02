@@ -182,6 +182,7 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../Qt/5.5/clang_64/mkspecs/features/spec_post.prf \
+		../MathleCommand/.qmake.stash \
 		../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -370,6 +371,7 @@ Makefile: ../MathleCommand/MathleCommand.pro ../../Qt/5.5/clang_64/mkspecs/macx-
 		../../Qt/5.5/clang_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../Qt/5.5/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -517,6 +519,7 @@ Makefile: ../MathleCommand/MathleCommand.pro ../../Qt/5.5/clang_64/mkspecs/macx-
 ../../Qt/5.5/clang_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../Qt/5.5/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -602,7 +605,8 @@ compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../MathleCommand/resources.qrc \
-		../MathleCommand/missile.png
+		../MathleCommand/missile.png \
+		../MathleCommand/document.png
 	/Users/Aurora/Qt/5.5/clang_64/bin/rcc -name resources ../MathleCommand/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog.cpp
