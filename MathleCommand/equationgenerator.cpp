@@ -1,6 +1,7 @@
 #include "equationgenerator.h"
 #include <qglobal.h>
 #include <QDebug>
+#include <QTime>
 
 EquationGenerator::EquationGenerator()
 {
@@ -10,6 +11,8 @@ EquationGenerator::EquationGenerator()
 QString EquationGenerator::generateEquations(EquationType type)
 {
     QString equation = "";
+    QTime now = QTime::currentTime();
+    qsrand(now.msec());
     int lhs = (qrand() % 10);
     int rhs = (qrand() % 10);
 

@@ -108,10 +108,10 @@ public:
         page_3->setObjectName(QStringLiteral("page_3"));
         answerButton = new QPushButton(page_3);
         answerButton->setObjectName(QStringLiteral("answerButton"));
-        answerButton->setGeometry(QRect(370, 490, 115, 41));
+        answerButton->setGeometry(QRect(360, 490, 115, 31));
         equation = new QLabel(page_3);
         equation->setObjectName(QStringLiteral("equation"));
-        equation->setGeometry(QRect(198, 500, 91, 20));
+        equation->setGeometry(QRect(220, 489, 61, 31));
         QFont font1;
         font1.setPointSize(20);
         equation->setFont(font1);
