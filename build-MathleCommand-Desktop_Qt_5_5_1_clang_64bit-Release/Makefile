@@ -606,7 +606,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../MathleCommand/resources.qrc \
 		../MathleCommand/missile.png \
-		../MathleCommand/document.png
+		../MathleCommand/document.png \
+		../MathleCommand/student_account.png
 	/Users/Aurora/Qt/5.5/clang_64/bin/rcc -name resources ../MathleCommand/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog.cpp
@@ -665,7 +666,11 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QStandardItemModel \
+		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
+		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QIcon \
+		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../MathleCommand/mainwindow.cpp
 
 equationgenerator.o: ../MathleCommand/equationgenerator.cpp ../MathleCommand/equationgenerator.h \

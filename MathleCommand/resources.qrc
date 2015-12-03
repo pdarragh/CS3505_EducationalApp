@@ -2,5 +2,6 @@
     <qresource prefix="/new/prefix1">
         <file>missile.png</file>
         <file>document.png</file>
+        <file>student_account.png</file>
     </qresource>
 </RCC>

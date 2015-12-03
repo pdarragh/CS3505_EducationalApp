@@ -39,10 +39,10 @@ public:
     QWidget *scrollAreaWidgetContents;
     QTableView *table_view;
     QComboBox *combo_box;
-    QPushButton *pushButton;
+    QPushButton *manage_button;
     QLabel *label_2;
     QLabel *label_3;
-    QPushButton *pushButton_2;
+    QPushButton *report_button;
     QWidget *page_2;
     QWidget *page_3;
     QMenuBar *menuBar;
@@ -82,9 +82,9 @@ public:
         combo_box = new QComboBox(page);
         combo_box->setObjectName(QStringLiteral("combo_box"));
         combo_box->setGeometry(QRect(110, 530, 441, 26));
-        pushButton = new QPushButton(page);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(580, 530, 51, 32));
+        manage_button = new QPushButton(page);
+        manage_button->setObjectName(QStringLiteral("manage_button"));
+        manage_button->setGeometry(QRect(580, 530, 51, 32));
         label_2 = new QLabel(page);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(30, 520, 71, 41));
@@ -93,12 +93,12 @@ public:
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(250, 560, 91, 41));
         label_3->setWordWrap(true);
-        pushButton_2 = new QPushButton(page);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(330, 560, 61, 51));
+        report_button = new QPushButton(page);
+        report_button->setObjectName(QStringLiteral("report_button"));
+        report_button->setGeometry(QRect(330, 560, 61, 51));
         QIcon icon;
         icon.addFile(QStringLiteral(":/new/prefix1/document.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon);
+        report_button->setIcon(icon);
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -126,10 +126,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Go", 0));
+        manage_button->setText(QApplication::translate("MainWindow", "Go", 0));
         label_2->setText(QApplication::translate("MainWindow", "Manage Student...", 0));
         label_3->setText(QApplication::translate("MainWindow", "View Class Progress...", 0));
-        pushButton_2->setText(QString());
+        report_button->setText(QString());
     } // retranslateUi
 
 };
