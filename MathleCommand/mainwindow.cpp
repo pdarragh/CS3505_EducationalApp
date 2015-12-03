@@ -30,12 +30,12 @@ MainWindow::MainWindow(QWidget *parent) :
    if (teacher)
    {
        //displayTeacherAccount();
-       ui->stackedWidget->setCurrentIndex(1);
+       ui->stackedWidget->setCurrentIndex(0);
    }
    else
    {
        //displayStudentAccount();
-       ui->stackedWidget->setCurrentIndex(0);
+       ui->stackedWidget->setCurrentIndex(1);
    }
 }
 
