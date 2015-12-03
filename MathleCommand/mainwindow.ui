@@ -23,7 +23,141 @@
       <height>700</height>
      </rect>
     </property>
-    <widget class="QWidget" name="page"/>
+    <widget class="QWidget" name="page">
+     <widget class="QLabel" name="studentNameLabel">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>150</y>
+        <width>241</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 26pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Student Name</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="level1Button">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>120</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Level 1</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="level2Button">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>160</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Level 2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="level3Button">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>200</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Level 3</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goToScoreBoardButton">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>320</y>
+        <width>131</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Go To Scoreboard</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="logOutButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Log Out</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="highScoreLabel">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>80</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>High Score</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="level1Score">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>120</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="level2Score">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>160</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="level3Score">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>210</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="page_2"/>
     <widget class="QWidget" name="page_3"/>
    </widget>
@@ -34,7 +168,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
