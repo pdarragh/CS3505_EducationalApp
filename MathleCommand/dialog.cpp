@@ -1,6 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QDebug>
+#include "socket.h"
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -22,12 +23,21 @@ Dialog::~Dialog()
 
 void Dialog::on_pushButton_clicked()
 {
-   qDebug() << "Clicking Login";
    username =  ui->lineEdit->text();
    password =  ui->lineEdit_2->text();
 
-   qDebug() << "username: " <<  ui->lineEdit->text();
-   qDebug() << "password: " <<   ui->lineEdit_2->text();
+   Socket socket;
+   socket.connect();
+   bool valid = socket.verifyUserLogin(username, password);
 
-   this->accept();
+   if(valid)
+   {
+       this->accept();
+   }
+   else
+   {
+       QPalette Pal(palette());
+       Pal.setColor(QPalette::Background, Qt::red);
+       this->setPalette(Pal);
+   }
 }
