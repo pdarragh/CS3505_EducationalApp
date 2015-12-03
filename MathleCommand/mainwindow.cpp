@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "dialog.h"
 #include <QDebug>
-
+#include "Box2D/Box2D.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

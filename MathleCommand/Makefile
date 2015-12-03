@@ -15,7 +15,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I../../Qt/5.5/clang_64/lib/QtGui.framework/Headers -I../../Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../Qt/5.5/clang_64/mkspecs/macx-clang -F/Users/mariajenkins/Qt/5.5/clang_64/lib
+INCPATH       = -I. -Ilibs/Box2D -I../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I../../Qt/5.5/clang_64/lib/QtGui.framework/Headers -I../../Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../Qt/5.5/clang_64/mkspecs/macx-clang -F/Users/mariajenkins/Qt/5.5/clang_64/lib
 QMAKE         = /Users/mariajenkins/Qt/5.5/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = MathleCommand1.0.0
 DISTDIR = /Users/mariajenkins/MathleCommand/MathleCommand/.tmp/MathleCommand1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wl,-rpath,/Users/mariajenkins/Qt/5.5/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/mariajenkins/Qt/5.5/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/mariajenkins/Qt/5.5/clang_64/lib -L/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D/ -lBox2D -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -178,6 +178,7 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../Qt/5.5/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -241,7 +242,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_dialog.h $(OBJECTS)  
+$(TARGET): /Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D/libBox2D.a ui_mainwindow.h ui_dialog.h $(OBJECTS)  
 	@test -d MathleCommand.app/Contents/MacOS/ || mkdir -p MathleCommand.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -362,6 +363,7 @@ Makefile: MathleCommand.pro ../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf 
 		../../Qt/5.5/clang_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../Qt/5.5/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
@@ -505,6 +507,7 @@ Makefile: MathleCommand.pro ../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf 
 ../../Qt/5.5/clang_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../Qt/5.5/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf:
@@ -599,15 +602,17 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog.cpp
 moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		mainwindow.h
-	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
+	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
 moc_dialog.cpp: ../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		dialog.h
-	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib dialog.h -o moc_dialog.cpp
+	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib dialog.h -o moc_dialog.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -635,6 +640,8 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 main.o: main.cpp mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -642,11 +649,11 @@ main.o: main.cpp mainwindow.h \
 mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h \
 		equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		ui_mainwindow.h \
 		dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
@@ -654,9 +661,12 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 equationgenerator.o: equationgenerator.cpp equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qglobal.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTime \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o equationgenerator.o equationgenerator.cpp
 
 dialog.o: dialog.cpp dialog.h \

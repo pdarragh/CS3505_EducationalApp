@@ -11,8 +11,11 @@ EquationGenerator::EquationGenerator()
 QString EquationGenerator::generateEquations(EquationType type)
 {
     QString equation = "";
+
+    //have to have this to be truly random
     QTime now = QTime::currentTime();
     qsrand(now.msec());
+
     int lhs = (qrand() % 10);
     int rhs = (qrand() % 10);
 
