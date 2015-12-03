@@ -1,8 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "equationgenerator.h"
 #include "dialog.h"
 #include <QDebug>
-#include "Box2D/Box2D.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,35 +17,26 @@ MainWindow::MainWindow(QWidget *parent) :
 
         qDebug() << login->username;
         //return;
-        displayGameWindow();
-    }
-    else
-    {
-        qDebug() << "F YOU";
     }
 
-   equations = new EquationGenerator;
-   ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
+   EquationGenerator* equations = new EquationGenerator;
+   equations->generateAddition();
+   equations->generateSubtraction();
 
    // TODO: Check if user is student or teacher
-   teacher = true;
-
-   // In future this will be triggered by a button in the student account window
-
+   teacher = false;
 
    // Creates the appropriate account display type for the user
-   /*if (teacher)
+   if (teacher)
    {
        //displayTeacherAccount();
        ui->stackedWidget->setCurrentIndex(0);
-       displayTeacherAccount();
    }
    else
    {
        //displayStudentAccount();
        ui->stackedWidget->setCurrentIndex(1);
-       displayStudentAccount();
-   }*/
+   }
 }
 
 MainWindow::~MainWindow()
@@ -57,8 +49,8 @@ MainWindow::~MainWindow()
  *
  * Causes the display for a teacher to appear
  */
-void MainWindow::displayTeacherAccount()
-{
+//displayTeacherAccount()
+//{
 
 //}
 
@@ -69,31 +61,10 @@ void MainWindow::displayTeacherAccount()
  * levels and a display of that level's current high score; a large display area for the student's
  * name; a main menu button that opens the game in a new tab; and a button linking to the scoreboard.
  */
-void MainWindow::displayStudentAccount()
-{
+//displayStudentAccount()
+//{
 //   QPushButton main_menu("Main Menu", this);
 //   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
 
 
-}
-
-void MainWindow::displayGameWindow()
-{
-    ui->stackedWidget->setCurrentIndex(2);
-}
-
-void MainWindow::on_answerButton_clicked()
-{
-    if(ui->answerBox->text() == QString::number(equations->answer))
-    {
-        QPalette pal = ui->answerBox->palette();
-        pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
-        ui->answerBox->setPalette(pal);
-    }
-    else
-    {
-        QPalette pal = ui->answerBox->palette();
-        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
-        ui->answerBox->setPalette(pal);
-    }
 //}

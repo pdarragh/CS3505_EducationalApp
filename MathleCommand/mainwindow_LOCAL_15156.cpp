@@ -16,11 +16,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
         qDebug() << login->username;
         //return;
-        displayGameWindow();
-    }
-    else
-    {
-        qDebug() << "F YOU";
     }
 
    equations = new EquationGenerator;
@@ -30,18 +25,16 @@ MainWindow::MainWindow(QWidget *parent) :
    teacher = true;
 
    // In future this will be triggered by a button in the student account window
-
+   displayGameWindow();
 
    // Creates the appropriate account display type for the user
    /*if (teacher)
    {
-       //displayTeacherAccount();
        ui->stackedWidget->setCurrentIndex(0);
        displayTeacherAccount();
    }
    else
    {
-       //displayStudentAccount();
        ui->stackedWidget->setCurrentIndex(1);
        displayStudentAccount();
    }*/
@@ -60,7 +53,7 @@ MainWindow::~MainWindow()
 void MainWindow::displayTeacherAccount()
 {
 
-//}
+}
 
 /*
  * displayStudentAccount()
@@ -71,8 +64,6 @@ void MainWindow::displayTeacherAccount()
  */
 void MainWindow::displayStudentAccount()
 {
-//   QPushButton main_menu("Main Menu", this);
-//   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
 
 
 }
@@ -96,4 +87,4 @@ void MainWindow::on_answerButton_clicked()
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
         ui->answerBox->setPalette(pal);
     }
-//}
+}

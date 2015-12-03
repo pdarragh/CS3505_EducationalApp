@@ -1,21 +1,18 @@
 #include "equationgenerator.h"
 #include <qglobal.h>
 #include <QDebug>
+<<<<<<< .merge_file_DoMc1F
 #include <QTime>
+=======
+>>>>>>> .merge_file_N7pUoF
 
 EquationGenerator::EquationGenerator()
 {
 
 }
 
+<<<<<<< .merge_file_DoMc1F
 QString EquationGenerator::generateEquations(EquationType type)
-{
-        int lhs = (qrand() % 10);
-        int rhs = (qrand() % 10);
-        int answer = lhs + rhs;
-        qDebug() << lhs << " + " << rhs << " =" << answer;
-}
-void EquationGenerator::generateSubtraction()
 {
     QString equation = "";
 
@@ -25,7 +22,6 @@ void EquationGenerator::generateSubtraction()
 
     int lhs = (qrand() % 10);
     int rhs = (qrand() % 10);
-    int answer = lhs - rhs;
 
     switch (type) {
     case EquationType::Addition:
@@ -61,3 +57,21 @@ void EquationGenerator::generateSubtraction()
         return equation;
 }
 
+=======
+void EquationGenerator::generateAddition()
+{
+        int lhs = (qrand() % 10);
+        int rhs = (qrand() % 10);
+        int answer = lhs + rhs;
+        qDebug() << lhs << " + " << rhs << " =" << answer;
+}
+void EquationGenerator::generateSubtraction()
+{
+    int lhs = (qrand() % 10);
+    int rhs = (qrand() % 10);
+    int answer = lhs - rhs;
+
+   qDebug() << lhs << " + " << rhs << " =" << answer;
+
+}
+>>>>>>> .merge_file_N7pUoF
