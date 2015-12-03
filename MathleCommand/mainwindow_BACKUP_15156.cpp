@@ -30,16 +30,25 @@ MainWindow::MainWindow(QWidget *parent) :
    // Creates the appropriate account display type for the user
    /*if (teacher)
    {
-       //displayTeacherAccount();
+<<<<<<< HEAD
        ui->stackedWidget->setCurrentIndex(0);
        displayTeacherAccount();
    }
    else
    {
-       //displayStudentAccount();
        ui->stackedWidget->setCurrentIndex(1);
        displayStudentAccount();
    }*/
+=======
+       //displayTeacherAccount();
+       ui->stackedWidget->setCurrentIndex(0);
+   }
+   else
+   {
+       //displayStudentAccount();
+       ui->stackedWidget->setCurrentIndex(1);
+   }
+>>>>>>> feature/5
 }
 
 MainWindow::~MainWindow()
@@ -52,8 +61,13 @@ MainWindow::~MainWindow()
  *
  * Causes the display for a teacher to appear
  */
+<<<<<<< HEAD
 void MainWindow::displayTeacherAccount()
 {
+=======
+//displayTeacherAccount()
+//{
+>>>>>>> feature/5
 
 //}
 
@@ -64,10 +78,9 @@ void MainWindow::displayTeacherAccount()
  * levels and a display of that level's current high score; a large display area for the student's
  * name; a main menu button that opens the game in a new tab; and a button linking to the scoreboard.
  */
+<<<<<<< HEAD
 void MainWindow::displayStudentAccount()
 {
-//   QPushButton main_menu("Main Menu", this);
-//   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
 
 
 }
@@ -91,4 +104,13 @@ void MainWindow::on_answerButton_clicked()
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
         ui->answerBox->setPalette(pal);
     }
+}
+=======
+//displayStudentAccount()
+//{
+//   QPushButton main_menu("Main Menu", this);
+//   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
+
+
 //}
+>>>>>>> feature/5

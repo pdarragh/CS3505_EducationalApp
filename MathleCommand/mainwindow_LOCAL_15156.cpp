@@ -30,13 +30,11 @@ MainWindow::MainWindow(QWidget *parent) :
    // Creates the appropriate account display type for the user
    /*if (teacher)
    {
-       //displayTeacherAccount();
        ui->stackedWidget->setCurrentIndex(0);
        displayTeacherAccount();
    }
    else
    {
-       //displayStudentAccount();
        ui->stackedWidget->setCurrentIndex(1);
        displayStudentAccount();
    }*/
@@ -55,7 +53,7 @@ MainWindow::~MainWindow()
 void MainWindow::displayTeacherAccount()
 {
 
-//}
+}
 
 /*
  * displayStudentAccount()
@@ -66,8 +64,6 @@ void MainWindow::displayTeacherAccount()
  */
 void MainWindow::displayStudentAccount()
 {
-//   QPushButton main_menu("Main Menu", this);
-//   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
 
 
 }
@@ -91,4 +87,4 @@ void MainWindow::on_answerButton_clicked()
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
         ui->answerBox->setPalette(pal);
     }
-//}
+}
