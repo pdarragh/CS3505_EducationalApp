@@ -10,16 +10,20 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = MathleCommand
 TEMPLATE = app
+INCLUDEPATH+=/usr/local/mysql/include
+LIBS+=-L/usr/local/mysql/lib -lmysqlclient_r
 
 
 SOURCES += main.cpp\
         mainwindow.cpp \
     equationgenerator.cpp \
-    dialog.cpp
+    dialog.cpp \
+    socket.cpp
 
 HEADERS  += mainwindow.h \
     equationgenerator.h \
-    dialog.h
+    dialog.h \
+    socket.h
 
 FORMS    += mainwindow.ui \
     dialog.ui
