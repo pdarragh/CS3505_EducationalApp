@@ -13,15 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
     Dialog* login = new Dialog;
     if( login->exec() == QDialog::Accepted)
     {
-
         qDebug() << login->username;
-        //return;
-        displayGameWindow();
     }
     else
     {
         qDebug() << "F YOU";
     }
+
+    displayGameWindow();
 
    equations = new EquationGenerator;
    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));

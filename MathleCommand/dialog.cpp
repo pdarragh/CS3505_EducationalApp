@@ -30,14 +30,18 @@ void Dialog::on_pushButton_clicked()
    socket.connect();
    bool valid = socket.verifyUserLogin(username, password);
 
-   if(valid)
-   {
-       this->accept();
-   }
-   else
+   if(!valid)
    {
        QPalette Pal(palette());
        Pal.setColor(QPalette::Background, Qt::red);
        this->setPalette(Pal);
    }
+   /* Need this later
+   else
+   {
+       this->accept();
+   }
+   */
+
+   this->accept();
 }
