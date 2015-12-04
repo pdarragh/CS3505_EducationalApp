@@ -10,6 +10,7 @@ public:
     EquationGenerator();
     int answer;
     QString generateEquations(EquationType type);
+    void generateSubtraction();
 
 };
 

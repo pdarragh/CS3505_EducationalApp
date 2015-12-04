@@ -15,6 +15,7 @@ QString EquationGenerator::generateEquations(EquationType type)
         int answer = lhs + rhs;
         qDebug() << lhs << " + " << rhs << " =" << answer;
 }
+
 void EquationGenerator::generateSubtraction()
 {
     QString equation = "";

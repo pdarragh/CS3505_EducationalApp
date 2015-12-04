@@ -60,7 +60,7 @@ MainWindow::~MainWindow()
 void MainWindow::displayTeacherAccount()
 {
 
-//}
+}
 
 /*
  * displayStudentAccount()
@@ -96,4 +96,4 @@ void MainWindow::on_answerButton_clicked()
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
         ui->answerBox->setPalette(pal);
     }
-//}
+}
