@@ -25,6 +25,8 @@ public:
 private slots:
     void on_answerButton_clicked();
 
+    void on_page_3_destroyed();
+
 private:
     Ui::MainWindow *ui;
 };

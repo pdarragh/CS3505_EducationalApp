@@ -159,7 +159,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_3"/>
+    <widget class="GameWidget" name="page_3"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -183,6 +183,14 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GameWidget</class>
+   <extends>QWidget</extends>
+   <header>GameWidget/gamewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
