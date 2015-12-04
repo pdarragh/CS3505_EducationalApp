@@ -1,5 +1,5 @@
-SOURCES += gamewidget.cpp
+SOURCES += GameWidget/gamewidget.cpp
 
-HEADERS  += gamewidget.h
+HEADERS  += GameWidget/gamewidget.h
 
-FORMS    += gamewidget.ui
+FORMS    += GameWidget/gamewidget.ui
