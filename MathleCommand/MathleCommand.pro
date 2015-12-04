@@ -13,6 +13,7 @@ TEMPLATE = app
 INCLUDEPATH+=/usr/local/mysql/include
 LIBS+=-L/usr/local/mysql/lib -lmysqlclient_r
 
+include(GameWidget/GameWidget.pri)
 
 SOURCES += main.cpp\
         mainwindow.cpp \
