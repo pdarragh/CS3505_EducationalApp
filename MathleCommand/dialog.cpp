@@ -26,7 +26,7 @@ void Dialog::on_pushButton_clicked()
    username =  ui->lineEdit->text();
    password =  ui->lineEdit_2->text();
 
-
+   /*
    Socket socket;
    socket.connect();
    bool valid = socket.verifyUserLogin(username, password);
@@ -41,7 +41,7 @@ void Dialog::on_pushButton_clicked()
    {
        this->accept();
    }
-
+   */
 
    this->accept();
 }

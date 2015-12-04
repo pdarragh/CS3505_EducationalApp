@@ -1,1 +1,1 @@
-/usr/local/mysql/lib/libmysqlclient.dylib
+../../../mysql/lib/libmysqlclient.dylib
