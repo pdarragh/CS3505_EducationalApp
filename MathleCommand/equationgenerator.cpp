@@ -10,14 +10,6 @@ EquationGenerator::EquationGenerator()
 
 QString EquationGenerator::generateEquations(EquationType type)
 {
-        int lhs = (qrand() % 10);
-        int rhs = (qrand() % 10);
-        int answer = lhs + rhs;
-        qDebug() << lhs << " + " << rhs << " =" << answer;
-}
-
-void EquationGenerator::generateSubtraction()
-{
     QString equation = "";
 
     //have to have this to be truly random
@@ -26,7 +18,6 @@ void EquationGenerator::generateSubtraction()
 
     int lhs = (qrand() % 10);
     int rhs = (qrand() % 10);
-    int answer = lhs - rhs;
 
     switch (type) {
     case EquationType::Addition:
@@ -61,4 +52,3 @@ void EquationGenerator::generateSubtraction()
 
         return equation;
 }
-
