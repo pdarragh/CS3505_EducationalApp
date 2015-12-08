@@ -30,19 +30,6 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     resources.qrc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lBox2D
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lBox2D
-else:unix: LIBS += -L$$PWD/libs/ -lBox2D
-
-INCLUDEPATH += $$PWD/libs/Box2D
-DEPENDPATH += $$PWD/libs/Box2D
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libs/release/libBox2D.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libs/debug/libBox2D.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libs/release/Box2D.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libs/debug/Box2D.lib
-else:unix: PRE_TARGETDEPS += $$PWD/libs/libBox2D.a
-
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/release/ -lmysqlclient_r
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/debug/ -lmysqlclient_r
 else:unix: LIBS += -L$$PWD/libs/ -lmysqlclient_r

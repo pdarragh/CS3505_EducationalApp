@@ -3,11 +3,6 @@
 
 #include "mysql.h"
 #include <QString>
-//#include <QtSql>
-//#include <QtSql/QMYSQLDriver>
-//#include <QSqlDatabase>
-//#include <QSqlQuery>
-//#include <QSqlRecord>
 
 class Socket
 {
