@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "equationgenerator.h"
 #include <QTimer>
+#include <QGraphicsScene>
 
 namespace Ui {
 class MainWindow;
@@ -18,16 +19,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     EquationGenerator* equations;
+    QGraphicsScene* scene;
      QTimer *timer;
+     int posx;
+     int posy;
     void displayTeacherAccount();
     void displayStudentAccount();
     void displayGameWindow();
+    int getEditorCanvasSize();
     bool teacher;
 
 private slots:
     void on_answerButton_clicked();
 
-    void on_page_3_destroyed();
+    //void on_page_3_destroyed();
     void update();
 
 private:

@@ -2,7 +2,8 @@
 #include "ui_mainwindow.h"
 #include "dialog.h"
 #include <QDebug>
-#include "Box2D/Box2D.h"
+#include <QGraphicsRectItem>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +25,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
    equations = new EquationGenerator;
    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
+
+   //create the graphcis scene for the graphics view
+    scene = new QGraphicsScene;
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->setSceneRect(0, 0, getEditorCanvasSize(), getEditorCanvasSize());
+
 
    timer = new QTimer(this);
    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -113,7 +120,6 @@ void MainWindow::update()
     {
         qDebug() << "fuf me";
         scene->items().first()->setPos(posx, posy++);
-        count+=1;
     }
     else
     {
@@ -122,3 +128,10 @@ void MainWindow::update()
 
 
 }
+
+int MainWindow::getEditorCanvasSize()
+{
+    QRect rcontent = ui->graphicsView->contentsRect();
+    return std::min(rcontent.width(), rcontent.height());
+}
+
