@@ -25,6 +25,13 @@ MainWindow::MainWindow(QWidget *parent) :
    equations = new EquationGenerator;
    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
 
+   timer = new QTimer(this);
+   connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+   timer->start(100);
+    scene->addRect(posx, posy, 10, 10,
+        QPen(), QBrush(Qt::SolidPattern));
+  update();
+
    // TODO: Check if user is student or teacher
    teacher = true;
 
@@ -88,6 +95,8 @@ void MainWindow::on_answerButton_clicked()
         QPalette pal = ui->answerBox->palette();
         pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
         ui->answerBox->setPalette(pal);
+        timer->stop();
+        ui->score->setText("10");
     }
     else
     {
@@ -95,4 +104,21 @@ void MainWindow::on_answerButton_clicked()
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
         ui->answerBox->setPalette(pal);
     }
+}
+
+void MainWindow::update()
+{
+
+    if(scene->items().first()->pos().y() < ui->graphicsView->contentsRect().height())
+    {
+        qDebug() << "fuf me";
+        scene->items().first()->setPos(posx, posy++);
+        count+=1;
+    }
+    else
+    {
+        qDebug() << "OVER";
+    }
+
+
 }
