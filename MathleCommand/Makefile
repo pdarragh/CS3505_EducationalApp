@@ -15,7 +15,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -Ilibs/Box2D -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql-include -I../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I../../Qt/5.5/clang_64/lib/QtGui.framework/Headers -I../../Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../Qt/5.5/clang_64/mkspecs/macx-clang -F/Users/mariajenkins/Qt/5.5/clang_64/lib
+INCPATH       = -I. -Ilibs/Box2D -Ilibs/mysql-include -I../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I../../Qt/5.5/clang_64/lib/QtGui.framework/Headers -I../../Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../Qt/5.5/clang_64/mkspecs/macx-clang -F/Users/mariajenkins/Qt/5.5/clang_64/lib
 QMAKE         = /Users/mariajenkins/Qt/5.5/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -622,6 +622,10 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		mainwindow.h
 	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql-include -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
@@ -672,6 +676,10 @@ main.o: main.cpp mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
@@ -681,13 +689,19 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		ui_mainwindow.h \
 		dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsRectItem \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 equationgenerator.o: equationgenerator.cpp equationgenerator.h \
@@ -707,10 +721,36 @@ dialog.o: dialog.cpp dialog.h \
 		ui_dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		socket.h
+		socket.h \
+		libs/mysql-include/mysql.h \
+		libs/mysql-include/mysql_version.h \
+		libs/mysql-include/mysql_com.h \
+		libs/mysql-include/binary_log_types.h \
+		libs/mysql-include/my_command.h \
+		libs/mysql-include/mysql_time.h \
+		libs/mysql-include/my_list.h \
+		libs/mysql-include/mysql/client_plugin.h \
+		libs/mysql-include/mysql/plugin_auth_common.h \
+		libs/mysql-include/typelib.h \
+		libs/mysql-include/my_alloc.h \
+		libs/mysql-include/mysql/psi/psi_memory.h \
+		libs/mysql-include/mysql/psi/psi_base.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o dialog.cpp
 
 socket.o: socket.cpp socket.h \
+		libs/mysql-include/mysql.h \
+		libs/mysql-include/mysql_version.h \
+		libs/mysql-include/mysql_com.h \
+		libs/mysql-include/binary_log_types.h \
+		libs/mysql-include/my_command.h \
+		libs/mysql-include/mysql_time.h \
+		libs/mysql-include/my_list.h \
+		libs/mysql-include/mysql/client_plugin.h \
+		libs/mysql-include/mysql/plugin_auth_common.h \
+		libs/mysql-include/typelib.h \
+		libs/mysql-include/my_alloc.h \
+		libs/mysql-include/mysql/psi/psi_memory.h \
+		libs/mysql-include/mysql/psi/psi_base.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
