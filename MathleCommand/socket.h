@@ -2,17 +2,15 @@
 #define SOCKET
 
 #include "mysql.h"
+#include "studentresults.h"
 #include <QString>
-//#include <QtSql>
-//#include <QtSql/QMYSQLDriver>
-//#include <QSqlDatabase>
-//#include <QSqlQuery>
-//#include <QSqlRecord>
 
 class Socket
 {
 
 public:
+    enum AccountType { Invalid=0, Teacher, Student };
+
     //Constructors
     Socket();
     ~Socket();
@@ -21,6 +19,10 @@ public:
     void connect();
     void disconnect();
     bool verifyUserLogin(QString username, QString password);
+    bool createUser(QString username, QString password, bool isStudent);
+    StudentResults getStudentResults(QString username);
+    std::vector<StudentResults> getAllStudentResults();
+    void recordStudentResult(QString username, int level, int score, int misses);
 
 private:
     MYSQL *connection;
