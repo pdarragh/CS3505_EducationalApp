@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "equationgenerator.h"
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     EquationGenerator* equations;
+     QTimer *timer;
     void displayTeacherAccount();
     void displayStudentAccount();
     void displayGameWindow();
@@ -26,6 +28,7 @@ private slots:
     void on_answerButton_clicked();
 
     void on_page_3_destroyed();
+    void update();
 
 private:
     Ui::MainWindow *ui;

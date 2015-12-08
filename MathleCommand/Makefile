@@ -15,7 +15,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -Ilibs/Box2D -I../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I../../Qt/5.5/clang_64/lib/QtGui.framework/Headers -I../../Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../Qt/5.5/clang_64/mkspecs/macx-clang -F/Users/mariajenkins/Qt/5.5/clang_64/lib
+INCPATH       = -I. -Ilibs/Box2D -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql-include -I../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I../../Qt/5.5/clang_64/lib/QtGui.framework/Headers -I../../Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../Qt/5.5/clang_64/mkspecs/macx-clang -F/Users/mariajenkins/Qt/5.5/clang_64/lib
 QMAKE         = /Users/mariajenkins/Qt/5.5/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = MathleCommand1.0.0
 DISTDIR = /Users/mariajenkins/MathleCommand/MathleCommand/.tmp/MathleCommand1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wl,-rpath,/Users/mariajenkins/Qt/5.5/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/mariajenkins/Qt/5.5/clang_64/lib -L/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D/ -lBox2D -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/mariajenkins/Qt/5.5/clang_64/lib -L/Users/mariajenkins/MathleCommand/MathleCommand/libs/ -lBox2D -lmysqlclient_r -L/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -48,17 +48,23 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp \
+SOURCES       = GameWidget/gamewidget.cpp \
+		main.cpp \
 		mainwindow.cpp \
 		equationgenerator.cpp \
-		dialog.cpp qrc_resources.cpp \
+		dialog.cpp \
+		socket.cpp qrc_resources.cpp \
+		moc_gamewidget.cpp \
 		moc_mainwindow.cpp \
 		moc_dialog.cpp
-OBJECTS       = main.o \
+OBJECTS       = gamewidget.o \
+		main.o \
 		mainwindow.o \
 		equationgenerator.o \
 		dialog.o \
+		socket.o \
 		qrc_resources.o \
+		moc_gamewidget.o \
 		moc_mainwindow.o \
 		moc_dialog.o
 DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
@@ -182,6 +188,7 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
+		GameWidget/GameWidget.pri \
 		../../Qt/5.5/clang_64/mkspecs/features/resolve_config.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_post.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/sdk.prf \
@@ -199,12 +206,16 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/exceptions.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/yacc.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/lex.prf \
-		MathleCommand.pro mainwindow.h \
+		MathleCommand.pro GameWidget/gamewidget.h \
+		mainwindow.h \
 		equationgenerator.h \
-		dialog.h main.cpp \
+		dialog.h \
+		socket.h GameWidget/gamewidget.cpp \
+		main.cpp \
 		mainwindow.cpp \
 		equationgenerator.cpp \
-		dialog.cpp
+		dialog.cpp \
+		socket.cpp
 QMAKE_TARGET  = MathleCommand
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = MathleCommand.app/Contents/MacOS/MathleCommand
@@ -242,7 +253,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): /Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D/libBox2D.a ui_mainwindow.h ui_dialog.h $(OBJECTS)  
+$(TARGET): /Users/mariajenkins/MathleCommand/MathleCommand/libs/libBox2D.a /Users/mariajenkins/MathleCommand/MathleCommand/libs/libmysqlclient_r.a ui_gamewidget.h ui_mainwindow.h ui_dialog.h $(OBJECTS)  
 	@test -d MathleCommand.app/Contents/MacOS/ || mkdir -p MathleCommand.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -367,6 +378,7 @@ Makefile: MathleCommand.pro ../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf 
 		../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf \
+		GameWidget/GameWidget.pri \
 		../../Qt/5.5/clang_64/mkspecs/features/resolve_config.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/default_post.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/mac/sdk.prf \
@@ -511,6 +523,7 @@ Makefile: MathleCommand.pro ../../Qt/5.5/clang_64/mkspecs/macx-clang/qmake.conf 
 ../../Qt/5.5/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/default_pre.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/mac/default_pre.prf:
+GameWidget/GameWidget.pri:
 ../../Qt/5.5/clang_64/mkspecs/features/resolve_config.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/default_post.prf:
 ../../Qt/5.5/clang_64/mkspecs/features/mac/sdk.prf:
@@ -563,9 +576,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h equationgenerator.h dialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp equationgenerator.cpp dialog.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui dialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents GameWidget/gamewidget.h mainwindow.h equationgenerator.h dialog.h socket.h $(DISTDIR)/
+	$(COPY_FILE) --parents GameWidget/gamewidget.cpp main.cpp mainwindow.cpp equationgenerator.cpp dialog.cpp socket.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents GameWidget/gamewidget.ui mainwindow.ui dialog.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -597,29 +610,40 @@ qrc_resources.cpp: resources.qrc \
 		document.png
 	/Users/mariajenkins/Qt/5.5/clang_64/bin/rcc -name resources resources.qrc -o qrc_resources.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog.cpp
+compiler_moc_header_make_all: moc_gamewidget.cpp moc_mainwindow.cpp moc_dialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog.cpp
+	-$(DEL_FILE) moc_gamewidget.cpp moc_mainwindow.cpp moc_dialog.cpp
+moc_gamewidget.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		GameWidget/gamewidget.h
+	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql-include -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib GameWidget/gamewidget.h -o moc_gamewidget.cpp
+
 moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		mainwindow.h
-	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
+	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql-include -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
 moc_dialog.cpp: ../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		dialog.h
-	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib dialog.h -o moc_dialog.cpp
+	/Users/mariajenkins/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/mariajenkins/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/mariajenkins/MathleCommand/MathleCommand -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/Box2D -I/Users/mariajenkins/MathleCommand/MathleCommand/libs/mysql-include -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/mariajenkins/Qt/5.5/clang_64/lib/QtCore.framework/Headers -F/Users/mariajenkins/Qt/5.5/clang_64/lib dialog.h -o moc_dialog.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_dialog.h
+compiler_uic_make_all: ui_gamewidget.h ui_mainwindow.h ui_dialog.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_dialog.h
-ui_mainwindow.h: mainwindow.ui
+	-$(DEL_FILE) ui_gamewidget.h ui_mainwindow.h ui_dialog.h
+ui_gamewidget.h: GameWidget/gamewidget.ui
+	/Users/mariajenkins/Qt/5.5/clang_64/bin/uic GameWidget/gamewidget.ui -o ui_gamewidget.h
+
+ui_mainwindow.h: mainwindow.ui \
+		GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h
 	/Users/mariajenkins/Qt/5.5/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
 
 ui_dialog.h: dialog.ui
@@ -636,6 +660,12 @@ compiler_lex_clean:
 compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+gamewidget.o: GameWidget/gamewidget.cpp GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		ui_gamewidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewidget.o GameWidget/gamewidget.cpp
 
 main.o: main.cpp mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -676,11 +706,22 @@ dialog.o: dialog.cpp dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		ui_dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		socket.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o dialog.cpp
+
+socket.o: socket.cpp socket.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o socket.o socket.cpp
 
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
+
+moc_gamewidget.o: moc_gamewidget.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gamewidget.o moc_gamewidget.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
