@@ -2,6 +2,9 @@
 #define GAMEWIDGET_H
 
 #include <QWidget>
+#include "equationgenerator.h"
+#include <QTimer>
+#include <QGraphicsScene>
 
 namespace Ui {
 class GameWidget;
@@ -14,9 +17,17 @@ class GameWidget : public QWidget
 public:
     explicit GameWidget(QWidget *parent = 0);
     ~GameWidget();
+    EquationGenerator* equations;
+    QGraphicsScene* scene;
+    QTimer *timer;
+    int posx;
+    int posy;
+    int getEditorCanvasSize();
 
 private:
     Ui::GameWidget *ui;
+    void on_answerButton_clicked();
+    void update();
 };
 
 #endif // GAMEWIDGET_H
