@@ -26,6 +26,7 @@ public:
 
 private:
     Ui::GameWidget *ui;
+private slots:
     void on_answerButton_clicked();
     void update();
 };
