@@ -11,6 +11,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = GameWidget
 TEMPLATE = app
 
-include(GameWidget.pri)
+SOURCES += gamewidget.cpp
+
+HEADERS  += gamewidget.h
+
+FORMS    += gamewidget.ui
+
 
 SOURCES += main.cpp
