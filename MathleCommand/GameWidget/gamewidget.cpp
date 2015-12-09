@@ -9,6 +9,8 @@ GameWidget::GameWidget(QWidget *parent) :
     ui(new Ui::GameWidget)
 {
     ui->setupUi(this);
+    posx = 0;
+    posy = 0;
 
     equations = new EquationGenerator;
     ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -18,14 +20,13 @@ GameWidget::GameWidget(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setSceneRect(0, 0, getEditorCanvasSize(), getEditorCanvasSize());
 
-    connect(ui->answerButton, SIGNAL(pressed()), this, SLOT(on_answerButton_clicked()));
+    connect(ui->answerButton, SIGNAL(clicked()), this, SLOT(on_answerButton_clicked()));
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(100);
-    scene->addRect(posx, posy, 10, 10,
-         QPen(), QBrush(Qt::SolidPattern));
-    update();
+    scene->addRect(posx, posy, 10, 10,QPen(), QBrush(Qt::SolidPattern));
+    GameWidget::update();
 }
 
 GameWidget::~GameWidget()
