@@ -4,6 +4,7 @@
 #include "mysql.h"
 #include "studentresults.h"
 #include <QString>
+#include <vector>
 
 class Socket
 {
@@ -18,7 +19,7 @@ public:
     //Methods
     void connect();
     void disconnect();
-    bool verifyUserLogin(QString username, QString password);
+    int verifyUserLogin(QString username, QString password);
     bool createUser(QString username, QString password, bool isStudent);
     StudentResults getStudentResults(QString username);
     std::vector<StudentResults> getAllStudentResults();

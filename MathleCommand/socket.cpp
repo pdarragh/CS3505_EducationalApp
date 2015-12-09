@@ -123,7 +123,7 @@ bool Socket::createUser(QString username, QString password, bool isStudent)
     insertQuery.append(student);
     insertQuery.append(")");
 
-    std::string insertString = query.toStdString();
+    std::string insertString = insertQuery.toStdString();
     const char* insertCharArray = insertString.c_str();
 
     int state = mysql_query(connection, insertCharArray);
@@ -235,7 +235,7 @@ std::vector<StudentResults> Socket::getAllStudentResults()
 
     mysql_free_result(result);
 
-    return results;
+    return resultVector;
 }
 
 
