@@ -17,12 +17,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     equationgenerator.cpp \
     dialog.cpp \
-    socket.cpp
+    socket.cpp \
+    studentresults.cpp
 
 HEADERS  += mainwindow.h \
     equationgenerator.h \
     dialog.h \
-    socket.h
+    socket.h \
+    studentresults.h
 
 FORMS    += mainwindow.ui \
     dialog.ui
