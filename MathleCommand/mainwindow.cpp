@@ -1,8 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "dialog.h"
+#include "socket.h"
+#include "studentresults.h"
 #include <QDebug>
 #include <QGraphicsRectItem>
+#include <vector>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,6 +13,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // this block is to demonstrate how to use the socket class
+    // as well as test it. It can be deleted. You can uncomment and
+    // run it to see if your sockets work.
+    /*
+    Socket socket;
+    socket.connect();
+    int studentTest = socket.verifyUserLogin("test", "test");
+    int teacherTest = socket.verifyUserLogin("teacher", "teacher");
+    int invalidTest = socket.verifyUserLogin("testy", "testies");
+    bool createUserTest = socket.createUser("actualTest", "actualTest", true);
+    bool createTeacherTest = socket.createUser("actualTeacherTest", "actualTeacherTest", false);
+    bool createFailTest = socket.createUser("test", "test1", false);
+    StudentResults resultsTest = socket.getStudentResults("test");
+    StudentResults resultsTeacherTest = socket.getStudentResults("teacher");
+    std::vector<StudentResults> allResultsTest = socket.getAllStudentResults();
+    socket.recordStudentResult("actualTest", 2, 25, 2);
+    socket.disconnect();
+    */
+
 
     Dialog* login = new Dialog;
     if( login->exec() == QDialog::Accepted)

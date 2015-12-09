@@ -1,5 +1,6 @@
 #include "socket.h"
 #include <QDebug>
+#include <string>
 
 Socket::Socket()
 {
@@ -36,7 +37,7 @@ int Socket::verifyUserLogin(QString username, QString password)
     query.append(username);
     query.append("' AND users.password = '");
     query.append(password);
-    query.append("'");
+    query.append("' GROUP BY users.student");
 
     std::string queryString = query.toStdString();
     const char* charArray = queryString.c_str();
@@ -75,7 +76,7 @@ int Socket::verifyUserLogin(QString username, QString password)
         int student = atoi(row[1]);
         if(student == 0)
         {
-            student = false;
+            isStudent = false;
         }
     }
     else
@@ -115,12 +116,12 @@ bool Socket::createUser(QString username, QString password, bool isStudent)
     }
 
     // now insert into database
-    QString insertQuery("INSERT INTO mathle.users (username, password, student) VALUES(");
+    QString insertQuery("INSERT INTO mathle.users (username, password, student) VALUES ('");
     insertQuery.append(username);
-    insertQuery.append(",");
+    insertQuery.append("','");
     insertQuery.append(password);
-    insertQuery.append(",");
-    insertQuery.append(student);
+    insertQuery.append("',");
+    insertQuery.append(QString::number(student));
     insertQuery.append(")");
 
     std::string insertString = insertQuery.toStdString();
@@ -217,7 +218,7 @@ std::vector<StudentResults> Socket::getAllStudentResults()
     {
         QString name = row[namePos];
 
-        if(name != results.getUserName())
+        if(name != results.getUserName() && results.getUserName() != "")
         {
             resultVector.push_back(results);
             results = StudentResults();
@@ -233,6 +234,8 @@ std::vector<StudentResults> Socket::getAllStudentResults()
         results.setLevelMisses(level, wrong);
     }
 
+    resultVector.push_back(results);
+
     mysql_free_result(result);
 
     return resultVector;
@@ -246,7 +249,7 @@ void Socket::recordStudentResult(QString username, int level, int score, int mis
     int state;
 
     // first let's get the user id
-    QString query("SELECT users.user_id from mathle.users WHERE users.username = '");
+    QString query("SELECT users.id from mathle.users WHERE users.username = '");
     query.append(username);
     query.append("'");
 
@@ -273,19 +276,18 @@ void Socket::recordStudentResult(QString username, int level, int score, int mis
 
     mysql_free_result(result);
 
-
     // now insert into database
-    QString insertQuery("INSERT INTO mathle.results (user_id, level, score, wrong_answers) VALUES(");
-    insertQuery.append(userID);
+    QString insertQuery("INSERT INTO mathle.results (user_id, level, score, wrong_answers) VALUES (");
+    insertQuery.append(QString::number(userID));
     insertQuery.append(",");
-    insertQuery.append(level);
+    insertQuery.append(QString::number(level));
     insertQuery.append(",");
-    insertQuery.append(score);
+    insertQuery.append(QString::number(score));
     insertQuery.append(",");
-    insertQuery.append(misses);
+    insertQuery.append(QString::number(misses));
     insertQuery.append(")");
 
-    std::string insertString = query.toStdString();
+    std::string insertString = insertQuery.toStdString();
     const char* insertCharArray = insertString.c_str();
 
     state = mysql_query(connection, insertCharArray);

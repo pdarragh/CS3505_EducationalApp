@@ -28,7 +28,6 @@ public:
 private:
     MYSQL *connection;
     MYSQL mysql;
-
 };
 
 
