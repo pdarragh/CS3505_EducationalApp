@@ -10,7 +10,8 @@ GameWidget::GameWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     posx = 0;
-    posy = 0;
+    // posy is set to increse
+    posy = 1;
 
     equations = new EquationGenerator;
     ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -58,7 +59,8 @@ void GameWidget::update()
     if(scene->items().first()->pos().y() < ui->graphicsView->contentsRect().height())
     {
         qDebug() << "fuf me";
-        scene->items().first()->setPos(posx, posy++);
+        // Don't ask why, but for some reason posx and posy have to be assigned here.
+        scene->items().first()->setPos(posx, (posy = posy + 2));
     }
     else
     {

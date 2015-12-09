@@ -65,7 +65,7 @@ public:
         graphicsView->setGeometry(QRect(20, 70, 571, 411));
         title = new QLabel(GameWidget);
         title->setObjectName(QStringLiteral("title"));
-        title->setGeometry(QRect(200, 20, 231, 31));
+        title->setGeometry(QRect(200, 20, 281, 31));
         QFont font1;
         font1.setFamily(QStringLiteral("Forza"));
         font1.setPointSize(28);
