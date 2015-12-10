@@ -68,7 +68,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>481</width>
+          <width>480</width>
           <height>451</height>
          </rect>
         </property>
@@ -108,7 +108,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Manage Student...</string>
+       <string>Unenroll Student...</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>

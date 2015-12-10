@@ -606,6 +606,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../MathleCommand/resources.qrc \
 		../MathleCommand/missile.png \
+		../MathleCommand/home.png \
 		../MathleCommand/document.png \
 		../MathleCommand/student_account.png
 	/Users/Aurora/Qt/5.5/clang_64/bin/rcc -name resources ../MathleCommand/resources.qrc -o qrc_resources.cpp

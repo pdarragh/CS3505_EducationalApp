@@ -21,8 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
         //return;
     }
 
-    connect(ui->manage_button, SIGNAL(clicked()), this, SLOT(manageStudent()));
-    connect(ui->report_button, SIGNAL(clicked()), this, SLOT(manageStudent()));
+    connect(ui->manage_button, SIGNAL(clicked()), this, SLOT(deleteStudent()));
+    connect(ui->report_button, SIGNAL(clicked()), this, SLOT(generateStudentReport()));
 
    EquationGenerator* equations = new EquationGenerator;
    equations->generateAddition();
@@ -59,11 +59,27 @@ void MainWindow::displayTeacherAccount()
     // TODO: Store user name from database as a string
     std::string user_name = "Jane Smith";
     QString name = QString::fromStdString(user_name);
-    QString str = name + "'s Class";
+    QString str = name + "'s Students";
 
     ui->name_label->setText(str);
 
+    //retrieveClassInfo();
+    createClassTable();
+    populateComboBox();
+
     // TODO: Server query to retrieve list of class's names and store inside students_list
+}
+
+
+/*
+ *  retrieveClassInfo()
+ *
+ *  Used to fill the students_list vector with the names of students retrieved from the
+ *  mySQL database.
+ */
+void retrieveClassInfo()
+{
+    
 }
 
 /*
@@ -75,24 +91,57 @@ void MainWindow::createClassTable()
 {
     // First part creates the empty table:
     QStandardItemModel *table_model = new QStandardItemModel(10, 2, this);
-    table_model->setHorizontalHeaderItem(0, new QStandardItem(QString("Something 1")));
-    table_model->setHorizontalHeaderItem(1, new QStandardItem(QString("Something 2")));
+    table_model->setHorizontalHeaderItem(0, new QStandardItem(QString("   ")));
+    table_model->setHorizontalHeaderItem(1, new QStandardItem(QString("Student Name")));
     ui->table_view->setModel(table_model);
 
-    // Second part creates the items that will be stored inside the table:
-    //QIcon student_icon = new QIcon();
-    //student_icon->addPixmap(QPixmap(":/new/prefix1/student_account.png"),QIcon::Normal,QIcon::On);
-    //QStandardItem *student_icon = new QStandardItem(student_icon);
+    // To be deleted:
+    students_list.push_back("Ned Stark");
+    students_list.push_back("Sansa Stark");
+    students_list.push_back("Arya Stark");
+    students_list.push_back("Rob Stark");
+    students_list.push_back("Brandon Stark");
+    students_list.push_back("Rickon Stark");
+    students_list.push_back("Catlyn Stark");
+    students_list.push_back("Jon Snow");
+    students_list.push_back("Daenerys Targaryen");
+    students_list.push_back("Viserys Targaryen");
+    students_list.push_back("Khal Drogo");
+    students_list.push_back("Robert Baratheon");
+    students_list.push_back("Stannis Baratheon");
+    students_list.push_back("Renly Baratheon");
+    students_list.push_back("Tywin Lannister");
+    students_list.push_back("Tyrion Lannister");
+    students_list.push_back("Cersei Lannister");
+    students_list.push_back("Jaime Lannister");
+    students_list.push_back("Joffrey Lannister");
+    students_list.push_back("Marcella Lannister");
+    students_list.push_back("Tommen Lannister");
 
-    QStandardItem *student1_name = new QStandardItem(QString("Name1"));
-
-    // Third part adds those items to the table:
-    table_model->setItem(0,1,student1_name);
+    // Second part creates the items that will be stored inside the table and fills with names:
+    for (int i = 0; i < students_list.size(); i++)
+    {
+        QStandardItem *student1_name = new QStandardItem(QString::fromStdString(students_list[i]));
+        table_model->setItem(i, 1, student1_name);
+    }
+    ui->table_view->setColumnWidth(0, 100);
+    ui->table_view->setColumnWidth(1, 380);
+    //self.setColumnWidth(1, width * 0.25) # 25% Width Column
 }
 
-void MainWindow::manageStudent()
+void MainWindow::populateComboBox()
 {
-    std::string student = ui->combo_box->currentText().toStdString();
+    for (int i = 0; i < students_list.size(); i++)
+    {
+        ui->combo_box->addItem(QString::fromStdString(students_list[i]));
+    }
+}
+
+void MainWindow::deleteStudent()
+{
+    ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
+    ui->combo_box->removeItem(ui->combo_box->currentIndex());
+
 
     //TODO: bring up pop-up dialogue to manage student. Only option at this point is to delete.
 }
@@ -100,6 +149,7 @@ void MainWindow::manageStudent()
 void MainWindow::generateStudentReport()
 {
     // TODO: open html report in browser
+
 }
 
 /*
@@ -111,6 +161,5 @@ void MainWindow::generateStudentReport()
  */
 void MainWindow::displayStudentAccount()
 {
-
 
 }

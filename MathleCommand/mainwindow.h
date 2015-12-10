@@ -16,14 +16,15 @@ public:
     ~MainWindow();
     void displayTeacherAccount();
     void displayStudentAccount();
+    void retrieveClassInfo();
     void createClassTable();
-    void manageStudent();
-    void generateStudentReport();
+    void populateComboBox();
     bool teacher;
     std::vector<std::string> students_list;
 
 private slots:
-    void on_pushButton_2_clicked();
+    void deleteStudent();
+    void generateStudentReport();
 
 private:
     Ui::MainWindow *ui;

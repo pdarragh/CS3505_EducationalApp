@@ -3,5 +3,6 @@
         <file>missile.png</file>
         <file>document.png</file>
         <file>student_account.png</file>
+        <file>home.png</file>
     </qresource>
 </RCC>

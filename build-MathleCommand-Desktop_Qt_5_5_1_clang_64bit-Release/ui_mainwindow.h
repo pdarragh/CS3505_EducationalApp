@@ -77,7 +77,7 @@ public:
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 479, 449));
         table_view = new QTableView(scrollAreaWidgetContents);
         table_view->setObjectName(QStringLiteral("table_view"));
-        table_view->setGeometry(QRect(0, 0, 481, 451));
+        table_view->setGeometry(QRect(0, 0, 480, 451));
         scrollArea->setWidget(scrollAreaWidgetContents);
         combo_box = new QComboBox(page);
         combo_box->setObjectName(QStringLiteral("combo_box"));
@@ -127,7 +127,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         manage_button->setText(QApplication::translate("MainWindow", "Go", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Manage Student...", 0));
+        label_2->setText(QApplication::translate("MainWindow", "Unenroll Student...", 0));
         label_3->setText(QApplication::translate("MainWindow", "View Class Progress...", 0));
         report_button->setText(QString());
     } // retranslateUi
