@@ -21,6 +21,7 @@ public:
     QGraphicsScene* scene;
     QTimer *timer;
     double posx;
+    double posxStart;
     double posy;
     int getEditorCanvasSize();
 

@@ -9,7 +9,8 @@ GameWidget::GameWidget(QWidget *parent) :
     ui(new Ui::GameWidget)
 {
     ui->setupUi(this);
-    posx = -40;
+    posx = -30;
+    posxStart = -30;
     posy = 0;
 
     equations = new EquationGenerator;
@@ -24,7 +25,7 @@ GameWidget::GameWidget(QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(40);
+    timer->start(60);
     scene->addRect(posx, posy, 10, 10,QPen(), QBrush(Qt::SolidPattern));
     GameWidget::update();
 }
@@ -60,7 +61,8 @@ void GameWidget::update()
         qDebug() << "fuf me";
         double oldy = posy;
         // Don't ask why, but for some reason posx and posy have to be assigned here.
-        scene->items().first()->setPos(posx++, (posy = pow(((posx+40)-9), 2)/8));
+        // y = (x-offSet)^2 / slowDown;
+        scene->items().first()->setPos(posx++, (posy = pow(posx-posxStart, 2)/8));
 
         qDebug() << posx << " " << posy << posy-oldy;
     }
