@@ -40,7 +40,6 @@ public:
     QTableView *table_view;
     QComboBox *combo_box;
     QPushButton *manage_button;
-    QLabel *label_2;
     QLabel *label_3;
     QPushButton *report_button;
     QWidget *page_2;
@@ -84,11 +83,7 @@ public:
         combo_box->setGeometry(QRect(110, 530, 441, 26));
         manage_button = new QPushButton(page);
         manage_button->setObjectName(QStringLiteral("manage_button"));
-        manage_button->setGeometry(QRect(580, 530, 51, 32));
-        label_2 = new QLabel(page);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(30, 520, 71, 41));
-        label_2->setWordWrap(true);
+        manage_button->setGeometry(QRect(560, 530, 91, 32));
         label_3 = new QLabel(page);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(250, 560, 91, 41));
@@ -126,8 +121,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        manage_button->setText(QApplication::translate("MainWindow", "Go", 0));
-        label_2->setText(QApplication::translate("MainWindow", "Unenroll Student...", 0));
+        manage_button->setText(QApplication::translate("MainWindow", "Unenroll", 0));
         label_3->setText(QApplication::translate("MainWindow", "View Class Progress...", 0));
         report_button->setText(QString());
     } // retranslateUi

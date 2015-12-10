@@ -15,14 +15,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     equationgenerator.cpp \
-    dialog.cpp
+    dialog.cpp \
+    unenrollwarning.cpp
 
 HEADERS  += mainwindow.h \
     equationgenerator.h \
-    dialog.h
+    dialog.h \
+    unenrollwarning.h
 
 FORMS    += mainwindow.ui \
-    dialog.ui
+    dialog.ui \
+    unenrollwarning.ui
 
 RESOURCES += \
     resources.qrc

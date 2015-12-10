@@ -51,16 +51,20 @@ OBJECTS_DIR   = ./
 SOURCES       = ../MathleCommand/main.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/equationgenerator.cpp \
-		../MathleCommand/dialog.cpp qrc_resources.cpp \
+		../MathleCommand/dialog.cpp \
+		../MathleCommand/unenrollwarning.cpp qrc_resources.cpp \
 		moc_mainwindow.cpp \
-		moc_dialog.cpp
+		moc_dialog.cpp \
+		moc_unenrollwarning.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		equationgenerator.o \
 		dialog.o \
+		unenrollwarning.o \
 		qrc_resources.o \
 		moc_mainwindow.o \
-		moc_dialog.o
+		moc_dialog.o \
+		moc_unenrollwarning.o
 DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/qdevice.pri \
 		../../Qt/5.5/clang_64/mkspecs/features/device_config.prf \
@@ -205,10 +209,12 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/lex.prf \
 		../MathleCommand/MathleCommand.pro ../MathleCommand/mainwindow.h \
 		../MathleCommand/equationgenerator.h \
-		../MathleCommand/dialog.h ../MathleCommand/main.cpp \
+		../MathleCommand/dialog.h \
+		../MathleCommand/unenrollwarning.h ../MathleCommand/main.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/equationgenerator.cpp \
-		../MathleCommand/dialog.cpp
+		../MathleCommand/dialog.cpp \
+		../MathleCommand/unenrollwarning.cpp
 QMAKE_TARGET  = MathleCommand
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = MathleCommand.app/Contents/MacOS/MathleCommand
@@ -246,7 +252,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_dialog.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_dialog.h ui_unenrollwarning.h $(OBJECTS)  
 	@test -d MathleCommand.app/Contents/MacOS/ || mkdir -p MathleCommand.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -575,9 +581,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/mainwindow.h ../MathleCommand/equationgenerator.h ../MathleCommand/dialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/main.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/equationgenerator.cpp ../MathleCommand/dialog.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/mainwindow.ui ../MathleCommand/dialog.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/mainwindow.h ../MathleCommand/equationgenerator.h ../MathleCommand/dialog.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/main.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/equationgenerator.cpp ../MathleCommand/dialog.cpp ../MathleCommand/unenrollwarning.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/mainwindow.ui ../MathleCommand/dialog.ui ../MathleCommand/unenrollwarning.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -608,12 +614,14 @@ qrc_resources.cpp: ../MathleCommand/resources.qrc \
 		../MathleCommand/missile.png \
 		../MathleCommand/home.png \
 		../MathleCommand/document.png \
+		../MathleCommand/error_filled.png \
+		../MathleCommand/classroom.png \
 		../MathleCommand/student_account.png
 	/Users/Aurora/Qt/5.5/clang_64/bin/rcc -name resources ../MathleCommand/resources.qrc -o qrc_resources.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_dialog.cpp moc_unenrollwarning.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_dialog.cpp moc_unenrollwarning.cpp
 moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../MathleCommand/mainwindow.h
@@ -626,16 +634,24 @@ moc_dialog.cpp: ../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../MathleCommand/dialog.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/dialog.h -o moc_dialog.cpp
 
+moc_unenrollwarning.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../MathleCommand/unenrollwarning.h
+	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/unenrollwarning.h -o moc_unenrollwarning.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_dialog.h
+compiler_uic_make_all: ui_mainwindow.h ui_dialog.h ui_unenrollwarning.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_dialog.h
+	-$(DEL_FILE) ui_mainwindow.h ui_dialog.h ui_unenrollwarning.h
 ui_mainwindow.h: ../MathleCommand/mainwindow.ui
 	/Users/Aurora/Qt/5.5/clang_64/bin/uic ../MathleCommand/mainwindow.ui -o ui_mainwindow.h
 
 ui_dialog.h: ../MathleCommand/dialog.ui
 	/Users/Aurora/Qt/5.5/clang_64/bin/uic ../MathleCommand/dialog.ui -o ui_dialog.h
+
+ui_unenrollwarning.h: ../MathleCommand/unenrollwarning.ui
+	/Users/Aurora/Qt/5.5/clang_64/bin/uic ../MathleCommand/unenrollwarning.ui -o ui_unenrollwarning.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -690,6 +706,12 @@ dialog.o: ../MathleCommand/dialog.cpp ../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o ../MathleCommand/dialog.cpp
 
+unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrollwarning.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_unenrollwarning.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o unenrollwarning.o ../MathleCommand/unenrollwarning.cpp
+
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
@@ -698,6 +720,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_dialog.o: moc_dialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialog.o moc_dialog.cpp
+
+moc_unenrollwarning.o: moc_unenrollwarning.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_unenrollwarning.o moc_unenrollwarning.cpp
 
 ####### Install
 

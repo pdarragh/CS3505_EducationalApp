@@ -19,6 +19,7 @@ public:
     void retrieveClassInfo();
     void createClassTable();
     void populateComboBox();
+    void setStudentScores(std::string name, int row);
     bool teacher;
     std::vector<std::string> students_list;
 

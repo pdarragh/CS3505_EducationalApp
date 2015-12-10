@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include "equationgenerator.h"
 #include "dialog.h"
+#include "unenrollwarning.h"
+//#include "socket.h"
 #include <QDebug>
 #include <QString>
 #include <QStandardItemModel>
@@ -20,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << login->username;
         //return;
     }
+
+    UnenrollWarning *warning = new UnenrollWarning(this);
+    connect(ui->manage_button, SIGNAL(clicked()), warning, SLOT(show()));
 
     connect(ui->manage_button, SIGNAL(clicked()), this, SLOT(deleteStudent()));
     connect(ui->report_button, SIGNAL(clicked()), this, SLOT(generateStudentReport()));
@@ -91,8 +96,10 @@ void MainWindow::createClassTable()
 {
     // First part creates the empty table:
     QStandardItemModel *table_model = new QStandardItemModel(10, 2, this);
-    table_model->setHorizontalHeaderItem(0, new QStandardItem(QString("   ")));
-    table_model->setHorizontalHeaderItem(1, new QStandardItem(QString("Student Name")));
+    table_model->setHorizontalHeaderItem(0, new QStandardItem(QString("Level 1")));
+    table_model->setHorizontalHeaderItem(1, new QStandardItem(QString("Level 2")));
+    table_model->setHorizontalHeaderItem(2, new QStandardItem(QString("Level 3")));
+    table_model->setHorizontalHeaderItem(3, new QStandardItem(QString("Student Name")));
     ui->table_view->setModel(table_model);
 
     // To be deleted:
@@ -122,11 +129,25 @@ void MainWindow::createClassTable()
     for (int i = 0; i < students_list.size(); i++)
     {
         QStandardItem *student1_name = new QStandardItem(QString::fromStdString(students_list[i]));
-        table_model->setItem(i, 1, student1_name);
+        table_model->setItem(i, 3, student1_name);
+        //setStudentScores(students_list[i], i);
     }
+
     ui->table_view->setColumnWidth(0, 100);
-    ui->table_view->setColumnWidth(1, 380);
-    //self.setColumnWidth(1, width * 0.25) # 25% Width Column
+    ui->table_view->setColumnWidth(1, 100);
+    ui->table_view->setColumnWidth(2, 100);
+    ui->table_view->setColumnWidth(3, 180);
+}
+
+void setStudentScores(std::string name, int row)
+{
+    /*Sockets::StudentResults results getStudentResults(name);
+    QStandardItem *level1_score = new QStandardItem(QString::fromStdString(results.getLevelScore(1));
+    QStandardItem *level2_score = new QStandardItem(QString::fromStdString(results.getLevelScore(2));
+    QStandardItem *level3_score = new QStandardItem(QString::fromStdString(results.getLevelScore(3));
+    table_model->setItem(row, 0, level1_score);
+    table_model->setItem(row, 1, level2_score);
+    table_model->setItem(row, 2, level3_score);*/
 }
 
 void MainWindow::populateComboBox()
@@ -139,8 +160,11 @@ void MainWindow::populateComboBox()
 
 void MainWindow::deleteStudent()
 {
-    ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
-    ui->combo_box->removeItem(ui->combo_box->currentIndex());
+
+
+    /*ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
+    ui->combo_box->removeItem(ui->combo_box->currentIndex());*/
+
 
 
     //TODO: bring up pop-up dialogue to manage student. Only option at this point is to delete.
