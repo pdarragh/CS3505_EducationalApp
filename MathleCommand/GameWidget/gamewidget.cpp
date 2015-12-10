@@ -12,6 +12,7 @@ GameWidget::GameWidget(QWidget *parent) :
     posx = 0;
     posxStart = -30;
     posy = 0;
+    gravity = 90; //Higher number = slower fall
 
     equations = new EquationGenerator;
     ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -62,7 +63,7 @@ void GameWidget::update()
         double oldy = posy;
         // Don't ask why, but for some reason posx and posy have to be assigned here.
         // y = (x-offSet)^2 / slowDown;
-        scene->items().first()->setPos(posx++, (posy = pow(posx-posxStart, 2)/8));
+        scene->items().first()->setPos(posx++, (posy = pow(posx-posxStart, 2)/gravity));
 
         qDebug() << posx << " " << posy << posy-oldy;
     }

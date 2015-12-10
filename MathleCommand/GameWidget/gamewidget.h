@@ -22,6 +22,7 @@ public:
     QTimer *timer;
     double posx;
     double posxStart;
+    double gravity;
     double posy;
     int getEditorCanvasSize();
 
