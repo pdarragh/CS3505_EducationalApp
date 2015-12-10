@@ -9,7 +9,7 @@ GameWidget::GameWidget(QWidget *parent) :
     ui(new Ui::GameWidget)
 {
     ui->setupUi(this);
-    posx = -30;
+    posx = 0;
     posxStart = -30;
     posy = 0;
 

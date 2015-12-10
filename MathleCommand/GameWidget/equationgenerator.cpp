@@ -20,25 +20,25 @@ QString EquationGenerator::generateEquations(EquationType type)
     int rhs = (qrand() % 10);
 
     switch (type) {
-    case EquationType::Addition:
+    case Addition:
         equation.append(QString::number(lhs));
         equation.append("+");
         equation.append(QString::number(rhs));
         answer = lhs + rhs;
         break;
-    case EquationType::Subtraction:
+    case Subtraction:
         equation.append(QString::number(lhs));
         equation.append("-");
         equation.append(QString::number(rhs));
          answer = lhs - rhs;
         break;
-    case EquationType::Multiplication:
+    case Multiplication:
         equation.append(QString::number(lhs));
         equation.append("x");
         equation.append(QString::number(rhs));
          answer = lhs * rhs;
         break;
-    case EquationType::Division:
+    case Division:
         equation.append(QString::number(lhs));
         equation.append("/");
         equation.append(QString::number(rhs));
