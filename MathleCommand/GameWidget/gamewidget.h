@@ -20,8 +20,8 @@ public:
     EquationGenerator* equations;
     QGraphicsScene* scene;
     QTimer *timer;
-    int posx;
-    int posy;
+    double posx;
+    double posy;
     int getEditorCanvasSize();
 
 private:
