@@ -1,6 +1,7 @@
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "equationgenerator.h"
+#include "mathle.h"
 #include <QGraphicsRectItem>
 #include <QDebug>
 
@@ -8,11 +9,8 @@ GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameWidget)
 {
-    ui->setupUi(this);
-    posx = 0;
-    posxStart = -30;
-    posy = 0;
-    gravity = 90; //Higher number = slower fall
+    ui->setupUi(this);\
+    gravity = 1; //Higher number = slower fall, cannot equal 0
 
     equations = new EquationGenerator;
     ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -27,7 +25,11 @@ GameWidget::GameWidget(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(60);
-    scene->addRect(posx, posy, 10, 10,QPen(), QBrush(Qt::SolidPattern));
+
+    //Create a bomb
+    mathle = new Mathle;
+    mathle->makeMathle(0, 0, 0);
+    scene->addRect(mathle->posx, mathle->posy, 10, 10,QPen(), QBrush(Qt::SolidPattern));
     GameWidget::update();
 }
 
@@ -60,12 +62,12 @@ void GameWidget::update()
     if(scene->items().first()->pos().y() < ui->graphicsView->contentsRect().height())
     {
         qDebug() << "fuf me";
-        double oldy = posy;
+        double oldy = mathle->posy;
         // Don't ask why, but for some reason posx and posy have to be assigned here.
         // y = (x-offSet)^2 / slowDown;
-        scene->items().first()->setPos(posx++, (posy = pow(posx-posxStart, 2)/gravity));
+        scene->items().first()->setPos(mathle->posx++, (mathle->posy = pow(mathle->posx-mathle->posxStart, 2)/gravity));
 
-        qDebug() << posx << " " << posy << posy-oldy;
+        qDebug() << mathle->posx << " " << mathle->posy << mathle->posy-oldy;
     }
     else
     {
