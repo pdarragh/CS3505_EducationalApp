@@ -47,7 +47,11 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "F YOU";
     }
 
-    //displayGameWindow();
+    //connect all the buttons
+    UnenrollWarning *warning = new UnenrollWarning(this);
+    connect(ui->manage_button, SIGNAL(clicked()), warning, SLOT(show()));
+    connect(ui->manage_button, SIGNAL(clicked()), this, SLOT(deleteStudent()));
+    connect(ui->report_button, SIGNAL(clicked()), this, SLOT(generateStudentReport()));
 
    equations = new EquationGenerator;
    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -195,14 +199,8 @@ void MainWindow::populateComboBox()
 
 void MainWindow::deleteStudent()
 {
-
-
-    /*ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
-    ui->combo_box->removeItem(ui->combo_box->currentIndex());*/
-
-
-
-    //TODO: bring up pop-up dialogue to manage student. Only option at this point is to delete.
+    ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
+    ui->combo_box->removeItem(ui->combo_box->currentIndex());
 }
 
 void MainWindow::generateStudentReport()
