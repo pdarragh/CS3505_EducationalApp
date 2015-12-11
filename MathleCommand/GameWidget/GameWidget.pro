@@ -12,10 +12,12 @@ TARGET = GameWidget
 TEMPLATE = app
 
 SOURCES += gamewidget.cpp \
-    equationgenerator.cpp
+    equationgenerator.cpp \
+    mathle.cpp
 
 HEADERS += gamewidget.h \
-    equationgenerator.h
+    equationgenerator.h \
+    mathle.h
 
 FORMS   += gamewidget.ui
 

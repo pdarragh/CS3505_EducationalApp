@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "equationgenerator.h"
+#include "mathle.h"
 #include <QTimer>
 #include <QGraphicsScene>
 
@@ -20,10 +21,8 @@ public:
     EquationGenerator* equations;
     QGraphicsScene* scene;
     QTimer *timer;
-    double posx;
-    double posxStart;
+    Mathle* mathle;
     double gravity;
-    double posy;
     int getEditorCanvasSize();
 
 private:
