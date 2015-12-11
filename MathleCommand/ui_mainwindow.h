@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -20,8 +21,10 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 #include "GameWidget/gamewidget.h"
@@ -34,6 +37,14 @@ public:
     QWidget *centralWidget;
     QStackedWidget *stackedWidget;
     QWidget *page;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QTableView *table_view;
+    QLabel *name_label;
+    QLabel *label;
+    QComboBox *combo_box;
+    QPushButton *report_button;
+    QPushButton *manage_button;
     QWidget *page_2;
     QPushButton *logOutButton;
     QLabel *level1Score;
@@ -69,6 +80,43 @@ public:
         stackedWidget->setGeometry(QRect(10, -20, 700, 700));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
+        scrollArea = new QScrollArea(page);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(100, 90, 480, 451));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 478, 449));
+        table_view = new QTableView(scrollAreaWidgetContents);
+        table_view->setObjectName(QStringLiteral("table_view"));
+        table_view->setGeometry(QRect(0, 0, 480, 451));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        name_label = new QLabel(page);
+        name_label->setObjectName(QStringLiteral("name_label"));
+        name_label->setGeometry(QRect(100, 30, 481, 51));
+        name_label->setAlignment(Qt::AlignCenter);
+        label = new QLabel(page);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 30, 71, 51));
+        label->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/classroom.png")));
+        label->setAlignment(Qt::AlignCenter);
+        combo_box = new QComboBox(page);
+        combo_box->setObjectName(QStringLiteral("combo_box"));
+        combo_box->setGeometry(QRect(100, 560, 341, 26));
+        report_button = new QPushButton(page);
+        report_button->setObjectName(QStringLiteral("report_button"));
+        report_button->setGeometry(QRect(460, 550, 50, 50));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/prefix1/document.png"), QSize(), QIcon::Normal, QIcon::Off);
+        report_button->setIcon(icon);
+        report_button->setIconSize(QSize(30, 30));
+        manage_button = new QPushButton(page);
+        manage_button->setObjectName(QStringLiteral("manage_button"));
+        manage_button->setGeometry(QRect(520, 550, 50, 50));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/new/prefix1/delete_filled.png"), QSize(), QIcon::Normal, QIcon::Off);
+        manage_button->setIcon(icon1);
+        manage_button->setIconSize(QSize(30, 30));
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -155,6 +203,16 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        name_label->setText(QString());
+        label->setText(QString());
+#ifndef QT_NO_ACCESSIBILITY
+        report_button->setAccessibleDescription(QApplication::translate("MainWindow", "Generate Report", 0));
+#endif // QT_NO_ACCESSIBILITY
+        report_button->setText(QString());
+#ifndef QT_NO_ACCESSIBILITY
+        manage_button->setAccessibleDescription(QApplication::translate("MainWindow", "Unenroll Student", 0));
+#endif // QT_NO_ACCESSIBILITY
+        manage_button->setText(QString());
         logOutButton->setText(QApplication::translate("MainWindow", "Log Out", 0));
         level1Score->setText(QApplication::translate("MainWindow", "0", 0));
         level2Button->setText(QApplication::translate("MainWindow", "Level 2", 0));
