@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // this block is to demonstrate how to use the socket class
     // as well as test it. It can be deleted. You can uncomment and
     // run it to see if your sockets work.
-    /*
+
     Socket socket;
     socket.connect();
     int studentTest = socket.verifyUserLogin("test", "test");
@@ -31,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
     std::vector<StudentResults> allResultsTest = socket.getAllStudentResults();
     socket.recordStudentResult("actualTest", 2, 25, 2);
     socket.disconnect();
-    */
 
 
     Dialog* login = new Dialog;
@@ -44,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "F YOU";
     }
 
-    displayGameWindow();
+    //displayGameWindow();
 
    equations = new EquationGenerator;
    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -69,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
    // Creates the appropriate account display type for the user
-   /*if (teacher)
+   if (teacher)
    {
        //displayTeacherAccount();
        ui->stackedWidget->setCurrentIndex(0);
@@ -80,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent) :
        //displayStudentAccount();
        ui->stackedWidget->setCurrentIndex(1);
        displayStudentAccount();
-   }*/
+   }
 }
 
 MainWindow::~MainWindow()
