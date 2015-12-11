@@ -7,7 +7,7 @@ UnenrollWarning::UnenrollWarning(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->button
+    //ui->button
 }
 
 UnenrollWarning::~UnenrollWarning()
