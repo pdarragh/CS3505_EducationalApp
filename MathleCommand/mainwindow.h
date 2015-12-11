@@ -23,13 +23,20 @@ public:
      QTimer *timer;
      int posx;
      int posy;
+    std::vector<std::string> students_list;
     void displayTeacherAccount();
+    void retrieveClassInfo();
+    void createClassTable();
+    void setStudentScores();
+    void populateComboBox();
     void displayStudentAccount();
     void displayGameWindow();
     int getEditorCanvasSize();
     bool teacher;
 
 private slots:
+    void deleteStudent();
+    void generateStudentReport();
     void on_answerButton_clicked();
 
     //void on_page_3_destroyed();

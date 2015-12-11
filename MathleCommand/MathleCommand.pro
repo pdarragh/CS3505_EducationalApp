@@ -18,16 +18,19 @@ SOURCES += main.cpp\
     equationgenerator.cpp \
     dialog.cpp \
     socket.cpp \
-    studentresults.cpp
+    studentresults.cpp \
+    unenrollwarning.cpp
 
 HEADERS  += mainwindow.h \
     equationgenerator.h \
     dialog.h \
     socket.h \
-    studentresults.h
+    studentresults.h \
+    unenrollwarning.h
 
 FORMS    += mainwindow.ui \
-    dialog.ui
+    dialog.ui \
+    unenrollwarning.ui
 
 RESOURCES += \
     resources.qrc

@@ -6,5 +6,8 @@
         <file>error_filled.png</file>
         <file>home.png</file>
         <file>student_account.png</file>
+        <file>delete_filled.png</file>
+        <file>remove_user_filled.png</file>
+        <file>cancel_filled.png</file>
     </qresource>
 </RCC>
