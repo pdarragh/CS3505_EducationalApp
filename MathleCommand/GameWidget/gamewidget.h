@@ -29,6 +29,8 @@ private:
 private slots:
     void on_answerButton_clicked();
     void update();
+    void on_answerBox_returnPressed();
+    void on_answerBox_cursorPositionChanged(int arg1, int arg2);
 };
 
 #endif // GAMEWIDGET_H
