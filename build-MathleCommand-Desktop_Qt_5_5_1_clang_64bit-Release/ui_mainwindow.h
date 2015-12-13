@@ -98,7 +98,7 @@ public:
         table_view->setProperty("showDropIndicator", QVariant(false));
         table_view->setDragDropOverwriteMode(false);
         table_view->setSelectionMode(QAbstractItemView::NoSelection);
-        table_view->setShowGrid(false);
+        table_view->setShowGrid(true);
         table_view->setCornerButtonEnabled(false);
         scrollArea->setWidget(scrollAreaWidgetContents);
         name_label = new QLabel(page);

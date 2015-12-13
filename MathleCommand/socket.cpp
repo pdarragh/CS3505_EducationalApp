@@ -229,20 +229,12 @@ std::vector<StudentResults> Socket::getAllStudentResults()
             results = StudentResults();
         }
 
-        QString qstr1 = row[levelPos];
-        std::string str1 = qstr1.toStdString();
+        std::string str1 = row[levelPos];;
         int level = atoi(str1.c_str());
-        QString qstr2 = row[scorePos];
-        std::string str2 = qstr2.toStdString();
+        std::string str2 = row[scorePos];
         int score = atoi(str2.c_str());
-        QString qstr3 = row[wrongPos];
-        std::string str3 = qstr3.toStdString();
+        std::string str3 = row[wrongPos];
         int wrong = atoi(str3.c_str());
-
-        qDebug() << "NAME: " + name + " LEVEL: " + qstr1 + " SCORE: " + qstr2 + " WRONG: " + qstr3;
-        std::cout << "NAME: " + name.toStdString() + " LEVEL: " + str1 + " SCORE: " + str2 + " WRONG: " + str3 << std::endl;
-        std::cout << atoi(str1.c_str()) + atoi(str2.c_str()) + atoi(str3.c_str()) << std::endl;
-
 
         results.setUserName(name);
         results.setLevelComplete(level, true);

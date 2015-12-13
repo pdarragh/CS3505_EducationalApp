@@ -25,21 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // as well as test it. It can be deleted. You can uncomment and
     // run it to see if your sockets work.
 
-    //Socket socket;
-    /*socket.connect();
-    int studentTest = socket.verifyUserLogin("test", "test");
-    int teacherTest = socket.verifyUserLogin("teacher", "teacher");
-    int invalidTest = socket.verifyUserLogin("testy", "testies");
-    bool createUserTest = socket.createUser("actualTest", "actualTest", true);
-    bool createTeacherTest = socket.createUser("actualTeacherTest", "actualTeacherTest", false);
-    bool createFailTest = socket.createUser("test", "test1", false);
-    StudentResults resultsTest = socket.getStudentResults("test");
-    StudentResults resultsTeacherTest = socket.getStudentResults("teacher");
-    std::vector<StudentResults> allResultsTest = socket.getAllStudentResults();
-    socket.recordStudentResult("actualTest", 2, 25, 2);
-    socket.disconnect();*/
-
-
     Dialog* login = new Dialog;
     if( login->exec() == QDialog::Accepted)
     {
@@ -74,9 +59,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
    // TODO: Check if user is student or teacher
    teacher = true;
-
-   // In future this will be triggered by a button in the student account window
-
 
    // Creates the appropriate account display type for the user
    if (teacher)
@@ -159,7 +141,6 @@ void MainWindow::createClassTable()
     // Second part creates the items that will be stored inside the table and fills with names:
     for (int i = 0; i < students_list.size(); i++)
     {
-        //std::cout << students_list[i].getUserName().toStdString() << std::endl;
         QStandardItem *student1_name = new QStandardItem(students_list[i].getUserName());
 
         std::stringstream s1;

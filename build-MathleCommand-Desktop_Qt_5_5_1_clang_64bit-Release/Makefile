@@ -678,6 +678,21 @@ moc_dialog.cpp: ../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../MathleCommand/socket.h \
+		../MathleCommand/libs/mysql-include/mysql.h \
+		../MathleCommand/libs/mysql-include/mysql_version.h \
+		../MathleCommand/libs/mysql-include/mysql_com.h \
+		../MathleCommand/libs/mysql-include/binary_log_types.h \
+		../MathleCommand/libs/mysql-include/my_command.h \
+		../MathleCommand/libs/mysql-include/mysql_time.h \
+		../MathleCommand/libs/mysql-include/my_list.h \
+		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
+		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
+		../MathleCommand/libs/mysql-include/typelib.h \
+		../MathleCommand/libs/mysql-include/my_alloc.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
+		../MathleCommand/studentresults.h \
 		../MathleCommand/dialog.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/MathleCommand/MathleCommand/libs/mysql-include -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/dialog.h -o moc_dialog.cpp
 
@@ -721,7 +736,7 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 gamewidget.o: ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/gamewidget.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../MathleCommand/ui_gamewidget.h
+		ui_gamewidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewidget.o ../MathleCommand/GameWidget/gamewidget.cpp
 
 main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
@@ -778,10 +793,7 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
-		../MathleCommand/ui_mainwindow.h \
-		../MathleCommand/GameWidget/gamewidget.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		ui_mainwindow.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -810,9 +822,6 @@ dialog.o: ../MathleCommand/dialog.cpp ../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../MathleCommand/ui_dialog.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../MathleCommand/socket.h \
 		../MathleCommand/libs/mysql-include/mysql.h \
 		../MathleCommand/libs/mysql-include/mysql_version.h \
@@ -827,7 +836,10 @@ dialog.o: ../MathleCommand/dialog.cpp ../MathleCommand/dialog.h \
 		../MathleCommand/libs/mysql-include/my_alloc.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
-		../MathleCommand/studentresults.h
+		../MathleCommand/studentresults.h \
+		ui_dialog.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o ../MathleCommand/dialog.cpp
 
 socket.o: ../MathleCommand/socket.cpp ../MathleCommand/socket.h \
@@ -859,7 +871,7 @@ studentresults.o: ../MathleCommand/studentresults.cpp ../MathleCommand/studentre
 unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../MathleCommand/ui_unenrollwarning.h
+		ui_unenrollwarning.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o unenrollwarning.o ../MathleCommand/unenrollwarning.cpp
 
 qrc_resources.o: qrc_resources.cpp 

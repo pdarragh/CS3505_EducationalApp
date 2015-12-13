@@ -1,7 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QDebug>
-#include "socket.h"
+#include <QString>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -14,6 +14,10 @@ Dialog::Dialog(QWidget *parent) :
     Pal.setColor(QPalette::Background, Qt::green);
     this->setAutoFillBackground(true);
     this->setPalette(Pal);
+
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->warning_label->hide();
+    connect(ui->login_button, SIGNAL(pressed()), this, SLOT(onLoginPressed()));
 }
 
 Dialog::~Dialog()
@@ -21,27 +25,26 @@ Dialog::~Dialog()
     delete ui;
 }
 
-void Dialog::on_pushButton_clicked()
+void Dialog::onLoginPressed()
 {
    username =  ui->lineEdit->text();
    password =  ui->lineEdit_2->text();
 
-   /*
-   Socket socket;
    socket.connect();
-   bool valid = socket.verifyUserLogin(username, password);
-
-   if(!valid)
-   {
-       QPalette Pal(palette());
-       Pal.setColor(QPalette::Background, Qt::red);
-       this->setPalette(Pal);
-   }
-   else
+   int account_type = socket.verifyUserLogin(username, password);
+   if (account_type != 0)
    {
        this->accept();
    }
-   */
+   else
+   {
+        ui->warning_label->show();
+   }
+   socket.disconnect();
 
-   this->accept();
+}
+
+void Dialog::onCreateAccountPressed()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }

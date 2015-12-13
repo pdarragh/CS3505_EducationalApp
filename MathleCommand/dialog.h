@@ -2,6 +2,7 @@
 #define DIALOG_H
 #include <QString>
 #include <QDialog>
+#include <socket.h>
 
 namespace Ui {
 class Dialog;
@@ -18,10 +19,12 @@ public:
     ~Dialog();
 
 private slots:
-    void on_pushButton_clicked();
+    void onLoginPressed();
+    void onCreateAccountPressed();
 
 private:
     Ui::Dialog *ui;
+    Socket socket;
 };
 
 #endif // DIALOG_H
