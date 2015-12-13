@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `results`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `results` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) unsigned NOT NULL,
-  `level` int(10) unsigned NOT NULL,
-  `score` int(10) unsigned NOT NULL,
-  `wrong_answers` int(10) unsigned NOT NULL DEFAULT '0',
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `level` varchar(45) NOT NULL,
+  `score` varchar(45) NOT NULL,
+  `wrong_answers` varchar(45) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `user_constraint_idx` (`user_id`),
@@ -43,7 +43,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (1,1,1,25,2),(3,1,2,26,1),(9,3,1,27,3),(10,3,2,25,1),(11,3,3,12,3),(12,4,1,10,3),(13,4,2,11,3),(14,4,3,25,1),(15,5,1,25,0),(16,6,1,0,0);
+INSERT INTO `results` VALUES (1,1,'1','25','2'),(3,1,'2','26','1'),(9,3,'1','27','3'),(10,3,'2','25','1'),(11,3,'3','12','3'),(12,4,'1','10','3'),(13,4,'2','11','3'),(14,4,'3','25','1'),(15,5,'1','25','0'),(16,6,'1','0','0');
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,10 +55,10 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `student` int(11) NOT NULL,
+  `student` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)

@@ -651,6 +651,22 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../MathleCommand/equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/socket.h \
+		../MathleCommand/libs/mysql-include/mysql.h \
+		../MathleCommand/libs/mysql-include/mysql_version.h \
+		../MathleCommand/libs/mysql-include/mysql_com.h \
+		../MathleCommand/libs/mysql-include/binary_log_types.h \
+		../MathleCommand/libs/mysql-include/my_command.h \
+		../MathleCommand/libs/mysql-include/mysql_time.h \
+		../MathleCommand/libs/mysql-include/my_list.h \
+		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
+		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
+		../MathleCommand/libs/mysql-include/typelib.h \
+		../MathleCommand/libs/mysql-include/my_alloc.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
+		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -713,31 +729,6 @@ main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../MathleCommand/equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/main.cpp
-
-mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../MathleCommand/equationgenerator.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
-		../MathleCommand/ui_mainwindow.h \
-		../MathleCommand/GameWidget/gamewidget.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../MathleCommand/dialog.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../MathleCommand/socket.h \
 		../MathleCommand/libs/mysql-include/mysql.h \
 		../MathleCommand/libs/mysql-include/mysql_version.h \
@@ -753,6 +744,47 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/main.cpp
+
+mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../MathleCommand/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/socket.h \
+		../MathleCommand/libs/mysql-include/mysql.h \
+		../MathleCommand/libs/mysql-include/mysql_version.h \
+		../MathleCommand/libs/mysql-include/mysql_com.h \
+		../MathleCommand/libs/mysql-include/binary_log_types.h \
+		../MathleCommand/libs/mysql-include/my_command.h \
+		../MathleCommand/libs/mysql-include/mysql_time.h \
+		../MathleCommand/libs/mysql-include/my_list.h \
+		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
+		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
+		../MathleCommand/libs/mysql-include/typelib.h \
+		../MathleCommand/libs/mysql-include/my_alloc.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
+		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../MathleCommand/ui_mainwindow.h \
+		../MathleCommand/GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/dialog.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
@@ -827,7 +859,7 @@ studentresults.o: ../MathleCommand/studentresults.cpp ../MathleCommand/studentre
 unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_unenrollwarning.h
+		../MathleCommand/ui_unenrollwarning.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o unenrollwarning.o ../MathleCommand/unenrollwarning.cpp
 
 qrc_resources.o: qrc_resources.cpp 

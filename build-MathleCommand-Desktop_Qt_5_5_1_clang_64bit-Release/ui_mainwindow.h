@@ -82,7 +82,7 @@ public:
         page->setObjectName(QStringLiteral("page"));
         scrollArea = new QScrollArea(page);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(100, 90, 480, 451));
+        scrollArea->setGeometry(QRect(90, 120, 480, 451));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
@@ -90,29 +90,46 @@ public:
         table_view = new QTableView(scrollAreaWidgetContents);
         table_view->setObjectName(QStringLiteral("table_view"));
         table_view->setGeometry(QRect(0, 0, 480, 451));
+        QFont font;
+        font.setFamily(QStringLiteral("Courier"));
+        table_view->setFont(font);
+        table_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        table_view->setTabKeyNavigation(false);
+        table_view->setProperty("showDropIndicator", QVariant(false));
+        table_view->setDragDropOverwriteMode(false);
+        table_view->setSelectionMode(QAbstractItemView::NoSelection);
+        table_view->setShowGrid(false);
+        table_view->setCornerButtonEnabled(false);
         scrollArea->setWidget(scrollAreaWidgetContents);
         name_label = new QLabel(page);
         name_label->setObjectName(QStringLiteral("name_label"));
-        name_label->setGeometry(QRect(100, 30, 481, 51));
+        name_label->setGeometry(QRect(170, 50, 341, 51));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Chalkboard"));
+        font1.setPointSize(24);
+        font1.setBold(true);
+        font1.setWeight(75);
+        name_label->setFont(font1);
         name_label->setAlignment(Qt::AlignCenter);
         label = new QLabel(page);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 30, 71, 51));
+        label->setGeometry(QRect(100, 50, 71, 51));
         label->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/classroom.png")));
+        label->setScaledContents(false);
         label->setAlignment(Qt::AlignCenter);
         combo_box = new QComboBox(page);
         combo_box->setObjectName(QStringLiteral("combo_box"));
-        combo_box->setGeometry(QRect(100, 560, 341, 26));
+        combo_box->setGeometry(QRect(100, 590, 341, 26));
         report_button = new QPushButton(page);
         report_button->setObjectName(QStringLiteral("report_button"));
-        report_button->setGeometry(QRect(460, 550, 50, 50));
+        report_button->setGeometry(QRect(460, 580, 50, 50));
         QIcon icon;
         icon.addFile(QStringLiteral(":/new/prefix1/document.png"), QSize(), QIcon::Normal, QIcon::Off);
         report_button->setIcon(icon);
         report_button->setIconSize(QSize(30, 30));
         manage_button = new QPushButton(page);
         manage_button->setObjectName(QStringLiteral("manage_button"));
-        manage_button->setGeometry(QRect(520, 550, 50, 50));
+        manage_button->setGeometry(QRect(520, 580, 50, 50));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/new/prefix1/delete_filled.png"), QSize(), QIcon::Normal, QIcon::Off);
         manage_button->setIcon(icon1);
@@ -160,16 +177,16 @@ public:
         title = new QLabel(page_3);
         title->setObjectName(QStringLiteral("title"));
         title->setGeometry(QRect(190, 10, 231, 31));
-        QFont font;
-        font.setFamily(QStringLiteral("Forza"));
-        font.setPointSize(28);
-        title->setFont(font);
+        QFont font2;
+        font2.setFamily(QStringLiteral("Forza"));
+        font2.setPointSize(28);
+        title->setFont(font2);
         equation = new QLabel(page_3);
         equation->setObjectName(QStringLiteral("equation"));
         equation->setGeometry(QRect(90, 500, 121, 41));
-        QFont font1;
-        font1.setPointSize(26);
-        equation->setFont(font1);
+        QFont font3;
+        font3.setPointSize(26);
+        equation->setFont(font3);
         answerBox = new QLineEdit(page_3);
         answerBox->setObjectName(QStringLiteral("answerBox"));
         answerBox->setGeometry(QRect(230, 510, 113, 21));
@@ -205,12 +222,18 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         name_label->setText(QString());
         label->setText(QString());
+#ifndef QT_NO_WHATSTHIS
+        report_button->setWhatsThis(QApplication::translate("MainWindow", "Generate Report", 0));
+#endif // QT_NO_WHATSTHIS
 #ifndef QT_NO_ACCESSIBILITY
-        report_button->setAccessibleDescription(QApplication::translate("MainWindow", "Generate Report", 0));
+        report_button->setAccessibleDescription(QString());
 #endif // QT_NO_ACCESSIBILITY
         report_button->setText(QString());
+#ifndef QT_NO_WHATSTHIS
+        manage_button->setWhatsThis(QApplication::translate("MainWindow", "Unenroll Student", 0));
+#endif // QT_NO_WHATSTHIS
 #ifndef QT_NO_ACCESSIBILITY
-        manage_button->setAccessibleDescription(QApplication::translate("MainWindow", "Unenroll Student", 0));
+        manage_button->setAccessibleDescription(QString());
 #endif // QT_NO_ACCESSIBILITY
         manage_button->setText(QString());
         logOutButton->setText(QApplication::translate("MainWindow", "Log Out", 0));

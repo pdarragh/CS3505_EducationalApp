@@ -54,6 +54,32 @@
           <height>451</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Courier</family>
+         </font>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="tabKeyNavigation">
+         <bool>false</bool>
+        </property>
+        <property name="showDropIndicator" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="dragDropOverwriteMode">
+         <bool>false</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::NoSelection</enum>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="cornerButtonEnabled">
+         <bool>false</bool>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -107,7 +133,7 @@
       <property name="geometry">
        <rect>
         <x>100</x>
-        <y>600</y>
+        <y>590</y>
         <width>341</width>
         <height>26</height>
        </rect>
@@ -122,8 +148,11 @@
         <height>50</height>
        </rect>
       </property>
-      <property name="accessibleDescription">
+      <property name="whatsThis">
        <string>Generate Report</string>
+      </property>
+      <property name="accessibleDescription">
+       <string/>
       </property>
       <property name="text">
        <string/>
@@ -148,8 +177,11 @@
         <height>50</height>
        </rect>
       </property>
-      <property name="accessibleDescription">
+      <property name="whatsThis">
        <string>Unenroll Student</string>
+      </property>
+      <property name="accessibleDescription">
+       <string/>
       </property>
       <property name="text">
        <string/>

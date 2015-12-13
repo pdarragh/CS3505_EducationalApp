@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "equationgenerator.h"
+#include "socket.h"
 #include <QTimer>
 #include <QGraphicsScene>
 
@@ -23,16 +24,16 @@ public:
      QTimer *timer;
      int posx;
      int posy;
-    std::vector<std::string> students_list;
+     std::vector<StudentResults> students_list;
     void displayTeacherAccount();
     void retrieveClassInfo();
     void createClassTable();
-    void setStudentScores();
     void populateComboBox();
     void displayStudentAccount();
     void displayGameWindow();
     int getEditorCanvasSize();
     bool teacher;
+    Socket socket;
 
 private slots:
     void deleteStudent();

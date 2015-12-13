@@ -10,6 +10,9 @@
 #include <QStandardItemModel>
 #include <QIcon>
 #include <vector>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -22,8 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // as well as test it. It can be deleted. You can uncomment and
     // run it to see if your sockets work.
 
-    Socket socket;
-    socket.connect();
+    //Socket socket;
+    /*socket.connect();
     int studentTest = socket.verifyUserLogin("test", "test");
     int teacherTest = socket.verifyUserLogin("teacher", "teacher");
     int invalidTest = socket.verifyUserLogin("testy", "testies");
@@ -34,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     StudentResults resultsTeacherTest = socket.getStudentResults("teacher");
     std::vector<StudentResults> allResultsTest = socket.getAllStudentResults();
     socket.recordStudentResult("actualTest", 2, 25, 2);
-    socket.disconnect();
+    socket.disconnect();*/
 
 
     Dialog* login = new Dialog;
@@ -109,7 +112,6 @@ void MainWindow::displayTeacherAccount()
 
     ui->name_label->setText(str);
 
-    //retrieveClassInfo();
     createClassTable();
     populateComboBox();
 }
@@ -121,9 +123,16 @@ void MainWindow::displayTeacherAccount()
  *  Used to fill the students_list vector with the names of students retrieved from the
  *  mySQL database.
  */
-void retrieveClassInfo()
+void MainWindow::retrieveClassInfo()
 {
+    if (!students_list.empty())
+    {
+        students_list.clear();
+    }
 
+    socket.connect();
+    students_list = socket.getAllStudentResults();
+    socket.disconnect();
 }
 
 /*
@@ -133,6 +142,10 @@ void retrieveClassInfo()
  */
 void MainWindow::createClassTable()
 {
+    // Makes sure nobody can mess around with the table
+    ui->table_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_view->setSelectionMode(QAbstractItemView::NoSelection);
+
     // First part creates the empty table:
     QStandardItemModel *table_model = new QStandardItemModel(10, 2, this);
     table_model->setHorizontalHeaderItem(0, new QStandardItem(QString("Level 1")));
@@ -141,35 +154,30 @@ void MainWindow::createClassTable()
     table_model->setHorizontalHeaderItem(3, new QStandardItem(QString("Student Name")));
     ui->table_view->setModel(table_model);
 
-    // To be deleted:
-    students_list.push_back("Ned Stark");
-    students_list.push_back("Sansa Stark");
-    students_list.push_back("Arya Stark");
-    students_list.push_back("Rob Stark");
-    students_list.push_back("Brandon Stark");
-    students_list.push_back("Rickon Stark");
-    students_list.push_back("Catlyn Stark");
-    students_list.push_back("Jon Snow");
-    students_list.push_back("Daenerys Targaryen");
-    students_list.push_back("Viserys Targaryen");
-    students_list.push_back("Khal Drogo");
-    students_list.push_back("Robert Baratheon");
-    students_list.push_back("Stannis Baratheon");
-    students_list.push_back("Renly Baratheon");
-    students_list.push_back("Tywin Lannister");
-    students_list.push_back("Tyrion Lannister");
-    students_list.push_back("Cersei Lannister");
-    students_list.push_back("Jaime Lannister");
-    students_list.push_back("Joffrey Lannister");
-    students_list.push_back("Marcella Lannister");
-    students_list.push_back("Tommen Lannister");
+    retrieveClassInfo();
 
     // Second part creates the items that will be stored inside the table and fills with names:
     for (int i = 0; i < students_list.size(); i++)
     {
-        QStandardItem *student1_name = new QStandardItem(QString::fromStdString(students_list[i]));
+        //std::cout << students_list[i].getUserName().toStdString() << std::endl;
+        QStandardItem *student1_name = new QStandardItem(students_list[i].getUserName());
+
+        std::stringstream s1;
+        s1 << students_list[i].getLevelScore(1);
+        QStandardItem *level1_score = new QStandardItem(QString::fromStdString(s1.str()));
+
+        std::stringstream s2;
+        s2 << students_list[i].getLevelScore(2);
+        QStandardItem *level2_score = new QStandardItem(QString::fromStdString(s2.str()));
+
+        std::stringstream s3;
+        s3 << students_list[i].getLevelScore(3);
+        QStandardItem *level3_score = new QStandardItem(QString::fromStdString(s3.str()));
+
+        table_model->setItem(i, 0, level1_score);
+        table_model->setItem(i, 1, level2_score);
+        table_model->setItem(i, 2, level3_score);
         table_model->setItem(i, 3, student1_name);
-        //setStudentScores(students_list[i], i);
     }
 
     ui->table_view->setColumnWidth(0, 100);
@@ -178,22 +186,11 @@ void MainWindow::createClassTable()
     ui->table_view->setColumnWidth(3, 180);
 }
 
-void setStudentScores(std::string name, int row)
-{
-    /*Sockets::StudentResults results getStudentResults(name);
-    QStandardItem *level1_score = new QStandardItem(QString::fromStdString(results.getLevelScore(1));
-    QStandardItem *level2_score = new QStandardItem(QString::fromStdString(results.getLevelScore(2));
-    QStandardItem *level3_score = new QStandardItem(QString::fromStdString(results.getLevelScore(3));
-    table_model->setItem(row, 0, level1_score);
-    table_model->setItem(row, 1, level2_score);
-    table_model->setItem(row, 2, level3_score);*/
-}
-
 void MainWindow::populateComboBox()
 {
     for (int i = 0; i < students_list.size(); i++)
     {
-        ui->combo_box->addItem(QString::fromStdString(students_list[i]));
+        ui->combo_box->addItem(students_list[i].getUserName());
     }
 }
 
@@ -252,12 +249,12 @@ void MainWindow::update()
 
     if(scene->items().first()->pos().y() < ui->graphicsView->contentsRect().height())
     {
-        qDebug() << "fuf me";
+        //qDebug() << "fuf me";
         scene->items().first()->setPos(posx, posy++);
     }
     else
     {
-        qDebug() << "OVER";
+        //qDebug() << "OVER";
     }
 
 
