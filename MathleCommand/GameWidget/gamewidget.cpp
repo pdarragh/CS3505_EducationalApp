@@ -4,6 +4,7 @@
 #include "mathle.h"
 #include <QGraphicsRectItem>
 #include <QDebug>
+#include <cmath>
 
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
@@ -81,4 +82,22 @@ int GameWidget::getEditorCanvasSize()
 {
     QRect rcontent = ui->graphicsView->contentsRect();
     return std::min(rcontent.width(), rcontent.height());
+}
+
+void GameWidget::on_answerBox_returnPressed()
+{
+    if(ui->answerBox->text() == QString::number(equations->answer))
+    {
+        QPalette pal = ui->answerBox->palette();
+        pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
+        ui->answerBox->setPalette(pal);
+        timer->stop();
+        ui->score->setText("10");
+    }
+    else
+    {
+        QPalette pal = ui->answerBox->palette();
+        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
+        ui->answerBox->setPalette(pal);
+    }
 }

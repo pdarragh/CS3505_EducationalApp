@@ -30,6 +30,7 @@ private:
 private slots:
     void on_answerButton_clicked();
     void update();
+    void on_answerBox_returnPressed();
 };
 
 #endif // GAMEWIDGET_H
