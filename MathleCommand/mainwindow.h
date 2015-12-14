@@ -25,19 +25,15 @@ public:
     ~MainWindow();
     EquationGenerator* equations;
     QGraphicsScene* scene;
-     QTimer *timer;
-     int posx;
-     int posy;
-     std::vector<StudentResults> students_list;
+    QTimer *timer;
+    int posx;
+    int posy;
     void displayTeacherAccount();
     void retrieveClassInfo();
     void createClassTable();
     void populateComboBox();
     void displayStudentAccount();
     void displayGameWindow();
-    int getEditorCanvasSize();
-    bool teacher;
-    Socket socket;
 
 private slots:
     void generateStudentReport();
@@ -50,6 +46,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
     UnenrollWarning *warning;
+    std::vector<StudentResults> students_list;
+    StudentResults student_high_scores;
+    bool teacher;
+    Socket socket;
+    int getEditorCanvasSize();
 };
 
 #endif // MAINWINDOW_H

@@ -52,9 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
    timer = new QTimer(this);
    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
    timer->start(100);
-    scene->addRect(posx, posy, 10, 10,
-        QPen(), QBrush(Qt::SolidPattern));
-    update();
+   scene->addRect(posx, posy, 10, 10,
+   QPen(), QBrush(Qt::SolidPattern));
+   update();
 
    // Creates the appropriate account display type for the user
    if (!(login->student))
@@ -197,6 +197,20 @@ void MainWindow::displayStudentAccount()
     QString name = login->username;
     QString str = name + "!";
     ui->student_name_label->setText(str);
+
+    // Fills in level high scores
+    socket.connect();
+    student_high_scores = socket.getStudentResults(login->username);
+    socket.disconnect();
+    std::stringstream score1;
+    score1 << student_high_scores.getLevelScore(1);
+    ui->level1Score->setText(QString::fromStdString(score1.str()));
+    std::stringstream score2;
+    score2 << student_high_scores.getLevelScore(2);
+    ui->level2Score->setText(QString::fromStdString(score2.str()));
+    std::stringstream score3;
+    score3 << student_high_scores.getLevelScore(3);
+    ui->level3Score->setText(QString::fromStdString(score3.str()));
 }
 
 
