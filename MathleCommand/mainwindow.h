@@ -32,6 +32,7 @@ public:
     void retrieveClassInfo();
     void createClassTable();
     void populateComboBox();
+    void deleteStudent();
     void displayStudentAccount();
     void displayGameWindow();
     int getEditorCanvasSize();
@@ -39,7 +40,6 @@ public:
     Socket socket;
 
 private slots:
-    void deleteStudent();
     void generateStudentReport();
     void on_answerButton_clicked();
 

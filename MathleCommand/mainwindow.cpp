@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     //connect all the buttons
-    UnenrollWarning *warning = new UnenrollWarning(this);
+    UnenrollWarning *warning = new UnenrollWarning(this, ui->combo_box->currentText());
     connect(ui->manage_button, SIGNAL(clicked()), warning, SLOT(show()));
     connect(ui->manage_button, SIGNAL(clicked()), this, SLOT(deleteStudent()));
     connect(ui->report_button, SIGNAL(clicked()), this, SLOT(generateStudentReport()));

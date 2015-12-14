@@ -139,12 +139,10 @@ bool Socket::createUser(QString username, QString password, bool isStudent)
     return true;
 }
 
-bool Socket::deleteUser(QString username, QString password)
+bool Socket::deleteUser(QString username)
 {
     QString insertQuery("DELETE FROM mathle.users WHERE users.username='");
     insertQuery.append(username);
-    insertQuery.append("' AND users.password='");
-    insertQuery.append(password);
     insertQuery.append("'");
 
     std::string insertString = insertQuery.toStdString();
