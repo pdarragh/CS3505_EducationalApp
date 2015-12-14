@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "equationgenerator.h"
 #include "socket.h"
+#include "dialog.h"
 #include <QTimer>
 #include <QGraphicsScene>
 
@@ -18,6 +19,7 @@ class MainWindow : public QMainWindow
 public:
     //enum EquationType { Addition, Subtraction, Multiplication, Divison };
     explicit MainWindow(QWidget *parent = 0);
+    Dialog* login;
     ~MainWindow();
     EquationGenerator* equations;
     QGraphicsScene* scene;

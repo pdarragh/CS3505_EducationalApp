@@ -16,10 +16,12 @@ public:
     explicit Dialog(QWidget *parent = 0);
     QString username;
     QString password;
+    bool student;
     ~Dialog();
 
 private slots:
     void onLoginPressed();
+    void onNewUserPressed();
     void onCreateAccountPressed();
 
 private:

@@ -23,7 +23,7 @@
     </rect>
    </property>
    <widget class="QWidget" name="page">
-    <widget class="QLineEdit" name="lineEdit_2">
+    <widget class="QLineEdit" name="existing_password">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -78,7 +78,7 @@
       <string>MathleCommand</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="existing_user">
      <property name="geometry">
       <rect>
        <x>130</x>
@@ -151,7 +151,122 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_2"/>
+   <widget class="QWidget" name="page_2">
+    <widget class="QLineEdit" name="new_user">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="new_password">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>110</y>
+       <width>211</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="account_type">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>140</y>
+       <width>151</width>
+       <height>26</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="create_account_button">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>180</y>
+       <width>151</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Create Account</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>20</y>
+       <width>251</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enter your desired username:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>80</y>
+       <width>251</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enter your desired password:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="warning_label2">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>220</y>
+       <width>211</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <italic>true</italic>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Sorry, an account with this username already exists. Please try again.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>150</y>
+       <width>59</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>I am a...</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -18,6 +18,8 @@ Dialog::Dialog(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->warning_label->hide();
     connect(ui->login_button, SIGNAL(pressed()), this, SLOT(onLoginPressed()));
+    connect(ui->new_account_button, SIGNAL(pressed()), this, SLOT(onNewUserPressed()));
+    connect(ui->create_account_button, SIGNAL(pressed()), this, SLOT(onCreateAccountPressed()));
 }
 
 Dialog::~Dialog()
@@ -27,8 +29,8 @@ Dialog::~Dialog()
 
 void Dialog::onLoginPressed()
 {
-   username =  ui->lineEdit->text();
-   password =  ui->lineEdit_2->text();
+   username =  ui->existing_user->text();
+   password =  ui->existing_password->text();
 
    socket.connect();
    int account_type = socket.verifyUserLogin(username, password);
@@ -39,12 +41,48 @@ void Dialog::onLoginPressed()
    else
    {
         ui->warning_label->show();
+        if (account_type == 1)
+        {
+            this->student = false;
+        }
+        else
+        {
+            this->student = true;
+        }
    }
    socket.disconnect();
 
 }
 
+void Dialog::onNewUserPressed()
+{
+    // Switches to create account screen
+    ui->warning_label->hide();
+    ui->warning_label2->hide();
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->account_type->addItem("Student");
+    ui->account_type->addItem("Teacher");
+}
+
 void Dialog::onCreateAccountPressed()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    username =  ui->new_user->text();
+    password =  ui->new_password->text();
+
+    socket.connect();
+    if (ui->account_type->currentText() == QString::fromStdString("Student") && socket.createUser(username, password, true))
+    {
+        this->student = true;
+        this->accept();
+    }
+    else if (ui->account_type->currentText() == QString::fromStdString("Teacher") && socket.createUser(username, password, false))
+    {
+        this->student = false;
+        this->accept();
+    }
+    else
+    {
+        ui->warning_label2->show();
+    }
+    socket.disconnect();
 }

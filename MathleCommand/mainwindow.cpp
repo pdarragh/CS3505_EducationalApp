@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "dialog.h"
 #include "socket.h"
 #include "unenrollwarning.h"
 #include "studentresults.h"
@@ -25,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // as well as test it. It can be deleted. You can uncomment and
     // run it to see if your sockets work.
 
-    Dialog* login = new Dialog;
+    login = new Dialog;
     if( login->exec() == QDialog::Accepted)
     {
         qDebug() << login->username;
@@ -55,13 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
    timer->start(100);
     scene->addRect(posx, posy, 10, 10,
         QPen(), QBrush(Qt::SolidPattern));
-  update();
-
-   // TODO: Check if user is student or teacher
-   teacher = true;
+    update();
 
    // Creates the appropriate account display type for the user
-   if (teacher)
+   if (!(login->student))
    {
        //displayTeacherAccount();
        ui->stackedWidget->setCurrentIndex(0);
@@ -89,7 +85,7 @@ void MainWindow::displayTeacherAccount()
 {
     // TODO: Store user name from database as a string
     std::string user_name = "Jane Smith";
-    QString name = QString::fromStdString(user_name);
+    QString name = login->username;
     QString str = name + "'s Students";
 
     ui->name_label->setText(str);
