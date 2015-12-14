@@ -139,15 +139,15 @@ void MainWindow::createClassTable()
         QStandardItem *student1_name = new QStandardItem(students_list[i].getUserName());
 
         std::stringstream s1;
-        s1 << students_list[i].getLevelScore(1);
+        s1 << students_list[i].getLevelAverageScore(1);
         QStandardItem *level1_score = new QStandardItem(QString::fromStdString(s1.str()));
 
         std::stringstream s2;
-        s2 << students_list[i].getLevelScore(2);
+        s2 << students_list[i].getLevelAverageScore(2);
         QStandardItem *level2_score = new QStandardItem(QString::fromStdString(s2.str()));
 
         std::stringstream s3;
-        s3 << students_list[i].getLevelScore(3);
+        s3 << students_list[i].getLevelAverageScore(3);
         QStandardItem *level3_score = new QStandardItem(QString::fromStdString(s3.str()));
 
         table_model->setItem(i, 0, level1_score);
@@ -203,13 +203,13 @@ void MainWindow::displayStudentAccount()
     student_high_scores = socket.getStudentResults(login->username);
     socket.disconnect();
     std::stringstream score1;
-    score1 << student_high_scores.getLevelScore(1);
+    score1 << student_high_scores.getLevelMaxScore(1);
     ui->level1Score->setText(QString::fromStdString(score1.str()));
     std::stringstream score2;
-    score2 << student_high_scores.getLevelScore(2);
+    score2 << student_high_scores.getLevelMaxScore(2);
     ui->level2Score->setText(QString::fromStdString(score2.str()));
     std::stringstream score3;
-    score3 << student_high_scores.getLevelScore(3);
+    score3 << student_high_scores.getLevelMaxScore(3);
     ui->level3Score->setText(QString::fromStdString(score3.str()));
 }
 

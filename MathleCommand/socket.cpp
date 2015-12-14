@@ -199,8 +199,8 @@ StudentResults Socket::getStudentResults(QString username)
         int wrong = atoi(str3.c_str());
 
         results.setLevelComplete(level, true);
-        results.setLevelScore(level, score);
-        results.setLevelMisses(level, wrong);
+        results.addLevelScore(level, score);
+        results.addLevelMiss(level, wrong);
     }
 
     mysql_free_result(result);
@@ -256,8 +256,8 @@ std::vector<StudentResults> Socket::getAllStudentResults()
 
         results.setUserName(name);
         results.setLevelComplete(level, true);
-        results.setLevelScore(level, score);
-        results.setLevelMisses(level, wrong);
+        results.addLevelScore(level, score);
+        results.addLevelMiss(level, wrong);
     }
 
     resultVector.push_back(results);

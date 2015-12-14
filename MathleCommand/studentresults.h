@@ -2,6 +2,7 @@
 #define STUDENTRESULTS
 
 #include <QString>
+#include <QVector>
 
 /*
  * This is purely a data model used to contain
@@ -18,13 +19,14 @@ public:
     // getters/setters
     void setUserName(QString name);
     void setLevelComplete(int level, bool value);
-    void setLevelScore(int level, int value);
-    void setLevelMisses(int level, int value);
+    void addLevelScore(int level, int value);
+    void addLevelMiss(int level, int value);
 
     QString getUserName();
     bool getHasCompletedLevel(int level);
-    int getLevelScore(int level);
-    int getLevelMisses(int level);
+    float getLevelAverageScore(int level);
+    float getLevelAverageMisses(int level);
+    int getLevelMaxScore(int level);
 
 
 
@@ -33,13 +35,13 @@ private:
     bool levelTwo;
     bool levelThree;
 
-    int levelOneScore;
-    int levelTwoScore;
-    int levelThreeScore;
+    QVector<int> levelOneScores;
+    QVector<int> levelTwoScores;
+    QVector<int> levelThreeScores;
 
-    int levelOneMisses;
-    int levelTwoMisses;
-    int levelThreeMisses;
+    QVector<int> levelOneMisses;
+    QVector<int> levelTwoMisses;
+    QVector<int> levelThreeMisses;
 
     QString username;
 };
