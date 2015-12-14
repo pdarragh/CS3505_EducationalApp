@@ -269,3 +269,9 @@ void MainWindow::on_combo_box_currentTextChanged(const QString &arg1)
      this->warning = new UnenrollWarning(this);
      qDebug() << "INDEX CHANGED TO " + arg1;
 }
+
+void MainWindow::on_level1Button_clicked()
+{
+    myGame = new GameWidget(this);
+    myGame->show();
+}

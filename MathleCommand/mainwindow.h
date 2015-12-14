@@ -5,6 +5,7 @@
 #include "equationgenerator.h"
 #include "socket.h"
 #include "dialog.h"
+#include "GameWidget/gamewidget.h"
 #include "unenrollwarning.h"
 #include <QTimer>
 #include <QString>
@@ -43,9 +44,12 @@ private slots:
     void on_refresh_button_clicked();
     void on_combo_box_currentTextChanged(const QString &arg1);
 
+    void on_level1Button_clicked();
+
 private:
     Ui::MainWindow *ui;
     UnenrollWarning *warning;
+    GameWidget *myGame;
     std::vector<StudentResults> students_list;
     StudentResults student_high_scores;
     bool teacher;
