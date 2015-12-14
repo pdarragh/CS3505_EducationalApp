@@ -38,8 +38,9 @@ private slots:
     void update();
     void on_refresh_button_clicked();
     void on_combo_box_currentTextChanged(const QString &arg1);
-
     void on_level1Button_clicked();
+    void on_level2Button_clicked();
+    void on_level3Button_clicked();
 
 private:
     Ui::MainWindow *ui;

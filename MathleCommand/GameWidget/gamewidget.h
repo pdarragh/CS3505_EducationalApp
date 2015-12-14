@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "equationgenerator.h"
 #include "mathle.h"
+#include "gameengine.h"
+#include "sstream"
 #include <QTimer>
 #include <QGraphicsScene>
 
@@ -18,16 +20,20 @@ class GameWidget : public QWidget
 public:
     explicit GameWidget(QWidget *parent = 0);
     ~GameWidget();
-    EquationGenerator* equations;
+    //EquationGenerator* equations;
     QGraphicsScene* scene;
     QTimer *timer;
     Mathle* mathle;
+    GameEngine* engine;
+    void checkLevelAndSetEquation();
     double gravity;
     int getEditorCanvasSize();
     int score;
+    void setLevel(int level);
 
 private:
     Ui::GameWidget *ui;
+    int current_level;
 private slots:
     void on_answerButton_clicked();
     void update();

@@ -15,8 +15,10 @@ GameWidget::GameWidget(QWidget *parent) :
     ui->setupUi(this);\
     gravity = 10; //Higher number = slower fall, cannot equal 0
 
-    equations = new EquationGenerator;
-    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
+    //equations = new EquationGenerator;
+    //ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
+    engine = new GameEngine();
+    checkLevelAndSetEquation();
 
     //create the graphcis scene for the graphics view
     scene = new QGraphicsScene;
@@ -43,7 +45,7 @@ GameWidget::~GameWidget()
 
 void GameWidget::on_answerButton_clicked()
 {
-    if(ui->answerBox->text() != QString::number(equations->answer))
+    if(ui->answerBox->text() != QString::fromStdString(engine->returnAnswer()))
     {
         QPalette pal = ui->answerBox->palette();
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
@@ -59,7 +61,7 @@ void GameWidget::on_answerButton_clicked()
         score += 10;
         ui->score->setText(QString::number(score));
         ui->answerBox->setText("");
-        ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
+        ui->equation->setText(engine->getEquation());
     }
 }
 
@@ -90,9 +92,36 @@ int GameWidget::getEditorCanvasSize()
     return std::min(rcontent.width(), rcontent.height());
 }
 
+void GameWidget::setLevel(int number)
+{
+    current_level = number;
+    checkLevelAndSetEquation();
+
+}
+
+void GameWidget::checkLevelAndSetEquation()
+{
+    std::stringstream ss;
+    ss << current_level;
+    qDebug() << "Current Level = " + QString::fromStdString(ss.str());
+    switch(current_level)
+    {
+    case 1:
+        engine = new GameEngine(GameEngine::Difficulty::Easy);
+        break;
+    case 2:
+        engine = new GameEngine(GameEngine::Difficulty::Intermediate);
+        break;
+    case 3:
+        engine = new GameEngine(GameEngine::Difficulty::Hard);
+        break;
+    };
+    this->ui->equation->setText(engine->getEquation());
+}
+
 void GameWidget::on_answerBox_returnPressed()
 {
-    if(ui->answerBox->text() != QString::number(equations->answer))
+    if(ui->answerBox->text() != QString::fromStdString(engine->returnAnswer()))
     {
         QPalette pal = ui->answerBox->palette();
         pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
@@ -108,6 +137,6 @@ void GameWidget::on_answerBox_returnPressed()
         score += 10;
         ui->score->setText(QString::number(score));
         ui->answerBox->setText("");
-        ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
+        ui->equation->setText(engine->getEquation());
     }
 }

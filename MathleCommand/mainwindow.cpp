@@ -39,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->report_button, SIGNAL(clicked()), this, SLOT(generateStudentReport()));
     connect(ui->refresh_button, SIGNAL(clicked()), this, SLOT(on_refresh_button_clicked()));
     connect(ui->combo_box, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_box_currentTextChanged(QString)));
+    connect(ui->level1Button, SIGNAL(clicked()), this, SLOT(on_level1Button_clicked()));
+    connect(ui->level2Button, SIGNAL(clicked()), this, SLOT(on_level2Button_clicked()));
+    connect(ui->level3Button, SIGNAL(clicked()), this, SLOT(on_level3Button_clicked()));
 
    //create the graphcis scene for the graphics view
     scene = new QGraphicsScene;
@@ -208,6 +211,9 @@ void MainWindow::displayStudentAccount()
     std::stringstream score3;
     score3 << student_high_scores.getLevelScore(3);
     ui->level3Score->setText(QString::fromStdString(score3.str()));
+
+    // Adds links to learning resources
+    //ui->AS_Resource->setText(QString::);
 }
 
 
@@ -247,5 +253,20 @@ void MainWindow::on_combo_box_currentTextChanged(const QString &arg1)
 void MainWindow::on_level1Button_clicked()
 {
     this->myGame = new GameWidget(this);
+    this->myGame->setLevel(1);
+    this->myGame->show();
+}
+
+void MainWindow::on_level2Button_clicked()
+{
+    this->myGame = new GameWidget(this);
+    this->myGame->setLevel(2);
+    this->myGame->show();
+}
+
+void MainWindow::on_level3Button_clicked()
+{
+    this->myGame = new GameWidget(this);
+    this->myGame->setLevel(3);
     this->myGame->show();
 }

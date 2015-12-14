@@ -51,6 +51,7 @@ OBJECTS_DIR   = ./
 SOURCES       = ../MathleCommand/GameWidget/gamewidget.cpp \
 		../MathleCommand/GameWidget/equationgenerator.cpp \
 		../MathleCommand/GameWidget/mathle.cpp \
+		../MathleCommand/GameWidget/gameengine.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/dialog.cpp \
 		../MathleCommand/socket.cpp \
@@ -64,6 +65,7 @@ SOURCES       = ../MathleCommand/GameWidget/gamewidget.cpp \
 OBJECTS       = gamewidget.o \
 		equationgenerator.o \
 		mathle.o \
+		gameengine.o \
 		mainwindow.o \
 		dialog.o \
 		socket.o \
@@ -221,6 +223,7 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../MathleCommand/MathleCommand.pro ../MathleCommand/GameWidget/gamewidget.h \
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../MathleCommand/mainwindow.h \
 		../MathleCommand/dialog.h \
 		../MathleCommand/socket.h \
@@ -228,6 +231,7 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../MathleCommand/unenrollwarning.h ../MathleCommand/GameWidget/gamewidget.cpp \
 		../MathleCommand/GameWidget/equationgenerator.cpp \
 		../MathleCommand/GameWidget/mathle.cpp \
+		../MathleCommand/GameWidget/gameengine.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/dialog.cpp \
 		../MathleCommand/socket.cpp \
@@ -602,8 +606,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/GameWidget/equationgenerator.h ../MathleCommand/GameWidget/mathle.h ../MathleCommand/mainwindow.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp ../MathleCommand/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/GameWidget/equationgenerator.h ../MathleCommand/GameWidget/mathle.h ../MathleCommand/GameWidget/gameengine.h ../MathleCommand/mainwindow.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/GameWidget/gameengine.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp ../MathleCommand/main.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.ui ../MathleCommand/mainwindow.ui ../MathleCommand/dialog.ui ../MathleCommand/unenrollwarning.ui $(DISTDIR)/
 
 
@@ -809,6 +813,13 @@ mathle.o: ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/GameWidget/mat
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mathle.o ../MathleCommand/GameWidget/mathle.cpp
+
+gameengine.o: ../MathleCommand/GameWidget/gameengine.cpp ../MathleCommand/GameWidget/gameengine.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTime \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gameengine.o ../MathleCommand/GameWidget/gameengine.cpp
 
 mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \

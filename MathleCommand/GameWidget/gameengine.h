@@ -8,10 +8,13 @@ class GameEngine
 {
 public:
     enum Difficulty { Easy=0, Intermediate, Hard, Extreme };
+    Difficulty currentDifficulty;
     GameEngine();
     GameEngine(Difficulty difficulty);
+    EquationGenerator::EquationType getEquationType(Difficulty difficulty);
     QString getEquation();
-    void increaseLevel();
+    void increaseLevel(Difficulty difficulty);
+    std::string returnAnswer();
 private:
     EquationGenerator equation_generator;
     void initialize(Difficulty difficulty);
