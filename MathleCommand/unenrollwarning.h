@@ -1,6 +1,7 @@
 #ifndef UNENROLLWARNING_H
 #define UNENROLLWARNING_H
 
+#include "mainwindow.h"
 #include <QDialog>
 
 namespace Ui {
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::UnenrollWarning *ui;
+
+private slots:
+    void cancelButton();
 };
 
 #endif // UNENROLLWARNING_H

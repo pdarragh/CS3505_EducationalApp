@@ -172,6 +172,12 @@ void MainWindow::populateComboBox()
 
 void MainWindow::deleteStudent()
 {
+    socket.connect();
+    socket.deleteUser(ui->combo_box->currentText());
+    socket.disconnect();
+
+    ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
+    ui->combo_box->removeItem(ui->combo_box->currentIndex());
 }
 
 void MainWindow::generateStudentReport()
