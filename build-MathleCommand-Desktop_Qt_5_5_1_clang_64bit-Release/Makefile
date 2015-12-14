@@ -49,6 +49,9 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../MathleCommand/GameWidget/gamewidget.cpp \
+		../MathleCommand/GameWidget/main.cpp \
+		../MathleCommand/GameWidget/equationgenerator.cpp \
+		../MathleCommand/GameWidget/mathle.cpp \
 		../MathleCommand/main.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/equationgenerator.cpp \
@@ -61,6 +64,9 @@ SOURCES       = ../MathleCommand/GameWidget/gamewidget.cpp \
 		moc_dialog.cpp \
 		moc_unenrollwarning.cpp
 OBJECTS       = gamewidget.o \
+		main.o \
+		equationgenerator.o \
+		mathle.o \
 		main.o \
 		mainwindow.o \
 		equationgenerator.o \
@@ -217,12 +223,17 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/yacc.prf \
 		../../Qt/5.5/clang_64/mkspecs/features/lex.prf \
 		../MathleCommand/MathleCommand.pro ../MathleCommand/GameWidget/gamewidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../MathleCommand/GameWidget/mathle.h \
 		../MathleCommand/mainwindow.h \
 		../MathleCommand/equationgenerator.h \
 		../MathleCommand/dialog.h \
 		../MathleCommand/socket.h \
 		../MathleCommand/studentresults.h \
 		../MathleCommand/unenrollwarning.h ../MathleCommand/GameWidget/gamewidget.cpp \
+		../MathleCommand/GameWidget/main.cpp \
+		../MathleCommand/GameWidget/equationgenerator.cpp \
+		../MathleCommand/GameWidget/mathle.cpp \
 		../MathleCommand/main.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/equationgenerator.cpp \
@@ -598,8 +609,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/mainwindow.h ../MathleCommand/equationgenerator.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/main.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/equationgenerator.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/GameWidget/equationgenerator.h ../MathleCommand/GameWidget/mathle.h ../MathleCommand/mainwindow.h ../MathleCommand/equationgenerator.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/main.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/main.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/equationgenerator.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.ui ../MathleCommand/mainwindow.ui ../MathleCommand/dialog.ui ../MathleCommand/unenrollwarning.ui $(DISTDIR)/
 
 
@@ -646,6 +657,13 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_gamewidget.cpp moc_mainwindow.cpp moc_dialog.cpp moc_unenrollwarning.cpp
 moc_gamewidget.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/GameWidget/mathle.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		../MathleCommand/GameWidget/gamewidget.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/MathleCommand/MathleCommand/libs/mysql-include -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/GameWidget/gamewidget.h -o moc_gamewidget.cpp
 
@@ -672,11 +690,16 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../MathleCommand/unenrollwarning.h \
+		../MathleCommand/GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../MathleCommand/GameWidget/mathle.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../MathleCommand/unenrollwarning.h \
 		../MathleCommand/mainwindow.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/MathleCommand/MathleCommand/libs/mysql-include -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/mainwindow.h -o moc_mainwindow.cpp
 
@@ -735,7 +758,14 @@ ui_gamewidget.h: ../MathleCommand/GameWidget/gamewidget.ui
 ui_mainwindow.h: ../MathleCommand/mainwindow.ui \
 		../MathleCommand/GameWidget/gamewidget.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/GameWidget/mathle.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/uic ../MathleCommand/mainwindow.ui -o ui_mainwindow.h
 
 ui_dialog.h: ../MathleCommand/dialog.ui
@@ -759,8 +789,48 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean
 gamewidget.o: ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/gamewidget.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		ui_gamewidget.h
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/GameWidget/mathle.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		ui_gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsRectItem \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewidget.o ../MathleCommand/GameWidget/gamewidget.cpp
+
+main.o: ../MathleCommand/GameWidget/main.cpp ../MathleCommand/GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/GameWidget/mathle.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/GameWidget/main.cpp
+
+equationgenerator.o: ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/equationgenerator.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTime \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o equationgenerator.o ../MathleCommand/GameWidget/equationgenerator.cpp
+
+mathle.o: ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/GameWidget/mathle.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mathle.o ../MathleCommand/GameWidget/mathle.cpp
 
 main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -786,11 +856,16 @@ main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../MathleCommand/unenrollwarning.h \
+		../MathleCommand/GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../MathleCommand/GameWidget/mathle.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/main.cpp
@@ -819,11 +894,16 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../MathleCommand/unenrollwarning.h \
+		../MathleCommand/GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../MathleCommand/GameWidget/mathle.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../MathleCommand/unenrollwarning.h \
 		ui_mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
