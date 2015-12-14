@@ -22,3 +22,10 @@ HEADERS += gamewidget.h \
 FORMS   += gamewidget.ui
 
 SOURCES += main.cpp
+
+CONFIG += c++11
+
+RESOURCES += \
+    resources.qrc
+
+
