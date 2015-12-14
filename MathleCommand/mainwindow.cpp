@@ -246,6 +246,6 @@ void MainWindow::on_combo_box_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_level1Button_clicked()
 {
-    myGame = new GameWidget(this);
-    myGame->show();
+    this->myGame = new GameWidget(this);
+    this->myGame->show();
 }

@@ -18,7 +18,8 @@ SOURCES +=\
     dialog.cpp \
     socket.cpp \
     studentresults.cpp \
-    unenrollwarning.cpp
+    unenrollwarning.cpp \
+    main.cpp
 
 HEADERS  += mainwindow.h \
     dialog.h \

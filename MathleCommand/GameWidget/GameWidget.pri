@@ -1,5 +1,4 @@
 SOURCES += GameWidget/gamewidget.cpp \
-    $$PWD/main.cpp \
     $$PWD/equationgenerator.cpp \
     $$PWD/mathle.cpp
 

@@ -49,20 +49,19 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../MathleCommand/GameWidget/gamewidget.cpp \
-		../MathleCommand/GameWidget/main.cpp \
 		../MathleCommand/GameWidget/equationgenerator.cpp \
 		../MathleCommand/GameWidget/mathle.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/dialog.cpp \
 		../MathleCommand/socket.cpp \
 		../MathleCommand/studentresults.cpp \
-		../MathleCommand/unenrollwarning.cpp qrc_resources.cpp \
+		../MathleCommand/unenrollwarning.cpp \
+		../MathleCommand/main.cpp qrc_resources.cpp \
 		moc_gamewidget.cpp \
 		moc_mainwindow.cpp \
 		moc_dialog.cpp \
 		moc_unenrollwarning.cpp
 OBJECTS       = gamewidget.o \
-		main.o \
 		equationgenerator.o \
 		mathle.o \
 		mainwindow.o \
@@ -70,6 +69,7 @@ OBJECTS       = gamewidget.o \
 		socket.o \
 		studentresults.o \
 		unenrollwarning.o \
+		main.o \
 		qrc_resources.o \
 		moc_gamewidget.o \
 		moc_mainwindow.o \
@@ -226,14 +226,14 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../MathleCommand/socket.h \
 		../MathleCommand/studentresults.h \
 		../MathleCommand/unenrollwarning.h ../MathleCommand/GameWidget/gamewidget.cpp \
-		../MathleCommand/GameWidget/main.cpp \
 		../MathleCommand/GameWidget/equationgenerator.cpp \
 		../MathleCommand/GameWidget/mathle.cpp \
 		../MathleCommand/mainwindow.cpp \
 		../MathleCommand/dialog.cpp \
 		../MathleCommand/socket.cpp \
 		../MathleCommand/studentresults.cpp \
-		../MathleCommand/unenrollwarning.cpp
+		../MathleCommand/unenrollwarning.cpp \
+		../MathleCommand/main.cpp
 QMAKE_TARGET  = MathleCommand
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = MathleCommand.app/Contents/MacOS/MathleCommand
@@ -603,7 +603,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/GameWidget/equationgenerator.h ../MathleCommand/GameWidget/mathle.h ../MathleCommand/mainwindow.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/main.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp ../MathleCommand/main.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.ui ../MathleCommand/mainwindow.ui ../MathleCommand/dialog.ui ../MathleCommand/unenrollwarning.ui $(DISTDIR)/
 
 
@@ -795,20 +795,6 @@ gamewidget.o: ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWi
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewidget.o ../MathleCommand/GameWidget/gamewidget.cpp
 
-main.o: ../MathleCommand/GameWidget/main.cpp ../MathleCommand/GameWidget/gamewidget.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../MathleCommand/GameWidget/equationgenerator.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../MathleCommand/GameWidget/mathle.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/GameWidget/main.cpp
-
 equationgenerator.o: ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qglobal.h \
@@ -943,6 +929,43 @@ unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrol
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o unenrollwarning.o ../MathleCommand/unenrollwarning.cpp
+
+main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../MathleCommand/socket.h \
+		../MathleCommand/libs/mysql-include/mysql.h \
+		../MathleCommand/libs/mysql-include/mysql_version.h \
+		../MathleCommand/libs/mysql-include/mysql_com.h \
+		../MathleCommand/libs/mysql-include/binary_log_types.h \
+		../MathleCommand/libs/mysql-include/my_command.h \
+		../MathleCommand/libs/mysql-include/mysql_time.h \
+		../MathleCommand/libs/mysql-include/my_list.h \
+		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
+		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
+		../MathleCommand/libs/mysql-include/typelib.h \
+		../MathleCommand/libs/mysql-include/my_alloc.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
+		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../MathleCommand/dialog.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../MathleCommand/GameWidget/gamewidget.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		../MathleCommand/GameWidget/equationgenerator.h \
+		../MathleCommand/GameWidget/mathle.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		../MathleCommand/unenrollwarning.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/main.cpp
 
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
