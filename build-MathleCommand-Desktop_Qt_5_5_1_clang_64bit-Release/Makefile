@@ -52,9 +52,7 @@ SOURCES       = ../MathleCommand/GameWidget/gamewidget.cpp \
 		../MathleCommand/GameWidget/main.cpp \
 		../MathleCommand/GameWidget/equationgenerator.cpp \
 		../MathleCommand/GameWidget/mathle.cpp \
-		../MathleCommand/main.cpp \
 		../MathleCommand/mainwindow.cpp \
-		../MathleCommand/equationgenerator.cpp \
 		../MathleCommand/dialog.cpp \
 		../MathleCommand/socket.cpp \
 		../MathleCommand/studentresults.cpp \
@@ -67,9 +65,7 @@ OBJECTS       = gamewidget.o \
 		main.o \
 		equationgenerator.o \
 		mathle.o \
-		main.o \
 		mainwindow.o \
-		equationgenerator.o \
 		dialog.o \
 		socket.o \
 		studentresults.o \
@@ -226,7 +222,6 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../MathleCommand/GameWidget/mathle.h \
 		../MathleCommand/mainwindow.h \
-		../MathleCommand/equationgenerator.h \
 		../MathleCommand/dialog.h \
 		../MathleCommand/socket.h \
 		../MathleCommand/studentresults.h \
@@ -234,9 +229,7 @@ DIST          = ../../Qt/5.5/clang_64/mkspecs/features/spec_pre.prf \
 		../MathleCommand/GameWidget/main.cpp \
 		../MathleCommand/GameWidget/equationgenerator.cpp \
 		../MathleCommand/GameWidget/mathle.cpp \
-		../MathleCommand/main.cpp \
 		../MathleCommand/mainwindow.cpp \
-		../MathleCommand/equationgenerator.cpp \
 		../MathleCommand/dialog.cpp \
 		../MathleCommand/socket.cpp \
 		../MathleCommand/studentresults.cpp \
@@ -609,8 +602,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/resources.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/GameWidget/equationgenerator.h ../MathleCommand/GameWidget/mathle.h ../MathleCommand/mainwindow.h ../MathleCommand/equationgenerator.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/main.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/main.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/equationgenerator.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.h ../MathleCommand/GameWidget/equationgenerator.h ../MathleCommand/GameWidget/mathle.h ../MathleCommand/mainwindow.h ../MathleCommand/dialog.h ../MathleCommand/socket.h ../MathleCommand/studentresults.h ../MathleCommand/unenrollwarning.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWidget/main.cpp ../MathleCommand/GameWidget/equationgenerator.cpp ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/mainwindow.cpp ../MathleCommand/dialog.cpp ../MathleCommand/socket.cpp ../MathleCommand/studentresults.cpp ../MathleCommand/unenrollwarning.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../MathleCommand/GameWidget/gamewidget.ui ../MathleCommand/mainwindow.ui ../MathleCommand/dialog.ui ../MathleCommand/unenrollwarning.ui $(DISTDIR)/
 
 
@@ -669,8 +662,6 @@ moc_gamewidget.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidge
 
 moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../MathleCommand/equationgenerator.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/socket.h \
 		../MathleCommand/libs/mysql-include/mysql.h \
 		../MathleCommand/libs/mysql-include/mysql_version.h \
@@ -687,6 +678,7 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -832,49 +824,9 @@ mathle.o: ../MathleCommand/GameWidget/mathle.cpp ../MathleCommand/GameWidget/mat
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mathle.o ../MathleCommand/GameWidget/mathle.cpp
 
-main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../MathleCommand/equationgenerator.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../MathleCommand/socket.h \
-		../MathleCommand/libs/mysql-include/mysql.h \
-		../MathleCommand/libs/mysql-include/mysql_version.h \
-		../MathleCommand/libs/mysql-include/mysql_com.h \
-		../MathleCommand/libs/mysql-include/binary_log_types.h \
-		../MathleCommand/libs/mysql-include/my_command.h \
-		../MathleCommand/libs/mysql-include/mysql_time.h \
-		../MathleCommand/libs/mysql-include/my_list.h \
-		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
-		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
-		../MathleCommand/libs/mysql-include/typelib.h \
-		../MathleCommand/libs/mysql-include/my_alloc.h \
-		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
-		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
-		../MathleCommand/studentresults.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
-		../MathleCommand/dialog.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../MathleCommand/GameWidget/gamewidget.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		../MathleCommand/GameWidget/equationgenerator.h \
-		../MathleCommand/GameWidget/mathle.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
-		../MathleCommand/unenrollwarning.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../MathleCommand/main.cpp
-
 mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		../MathleCommand/equationgenerator.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/socket.h \
 		../MathleCommand/libs/mysql-include/mysql.h \
 		../MathleCommand/libs/mysql-include/mysql_version.h \
@@ -891,6 +843,7 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -914,15 +867,6 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QIcon \
 		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../MathleCommand/mainwindow.cpp
-
-equationgenerator.o: ../MathleCommand/equationgenerator.cpp ../MathleCommand/equationgenerator.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qglobal.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTime \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdatetime.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o equationgenerator.o ../MathleCommand/equationgenerator.cpp
 
 dialog.o: ../MathleCommand/dialog.cpp ../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \

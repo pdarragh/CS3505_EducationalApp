@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "equationgenerator.h"
 #include "socket.h"
 #include "dialog.h"
 #include "GameWidget/gamewidget.h"
@@ -20,11 +19,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    //enum EquationType { Addition, Subtraction, Multiplication, Divison };
     explicit MainWindow(QWidget *parent = 0);
     Dialog* login;
     ~MainWindow();
-    EquationGenerator* equations;
     QGraphicsScene* scene;
     QTimer *timer;
     int posx;
@@ -34,11 +31,9 @@ public:
     void createClassTable();
     void populateComboBox();
     void displayStudentAccount();
-    void displayGameWindow();
 
 private slots:
     void generateStudentReport();
-    void on_answerButton_clicked();
     void deleteStudent();
     void update();
     void on_refresh_button_clicked();

@@ -40,9 +40,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->refresh_button, SIGNAL(clicked()), this, SLOT(on_refresh_button_clicked()));
     connect(ui->combo_box, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_box_currentTextChanged(QString)));
 
-   equations = new EquationGenerator;
-   ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
-
    //create the graphcis scene for the graphics view
     scene = new QGraphicsScene;
     ui->graphicsView->setScene(scene);
@@ -219,29 +216,6 @@ void MainWindow::on_refresh_button_clicked()
     createClassTable();
     ui->combo_box->clear();
     populateComboBox();
-}
-
-void MainWindow::displayGameWindow()
-{
-    ui->stackedWidget->setCurrentIndex(2);
-}
-
-void MainWindow::on_answerButton_clicked()
-{
-    if(ui->answerBox->text() == QString::number(equations->answer))
-    {
-        QPalette pal = ui->answerBox->palette();
-        pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
-        ui->answerBox->setPalette(pal);
-        timer->stop();
-        ui->score->setText("10");
-    }
-    else
-    {
-        QPalette pal = ui->answerBox->palette();
-        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
-        ui->answerBox->setPalette(pal);
-    }
 }
 
 void MainWindow::update()

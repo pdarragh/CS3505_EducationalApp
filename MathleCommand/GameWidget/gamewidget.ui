@@ -29,24 +29,110 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>700</width>
-     <height>700</height>
+     <width>701</width>
+     <height>600</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: skyblue;</string>
+    <string notr="true">background-color: lightblue;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="score_label">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>70</y>
+     <width>41</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Score:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="score">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>70</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <zorder>label_2</zorder>
-  <zorder>label</zorder>
+  <widget class="QLabel" name="title">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>615</y>
+     <width>321</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>33</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>MathleCommand</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="answerBox">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>520</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="answerButton">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>510</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Answer</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="equation">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>470</y>
+     <width>291</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

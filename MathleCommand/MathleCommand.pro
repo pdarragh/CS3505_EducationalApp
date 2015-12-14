@@ -13,16 +13,14 @@ TEMPLATE = app
 
 include(GameWidget/GameWidget.pri)
 
-SOURCES += main.cpp\
+SOURCES +=\
         mainwindow.cpp \
-    equationgenerator.cpp \
     dialog.cpp \
     socket.cpp \
     studentresults.cpp \
     unenrollwarning.cpp
 
 HEADERS  += mainwindow.h \
-    equationgenerator.h \
     dialog.h \
     socket.h \
     studentresults.h \
