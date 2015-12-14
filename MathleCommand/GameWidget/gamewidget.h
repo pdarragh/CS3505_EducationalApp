@@ -24,6 +24,7 @@ public:
     Mathle* mathle;
     double gravity;
     int getEditorCanvasSize();
+    int score;
 
 private:
     Ui::GameWidget *ui;

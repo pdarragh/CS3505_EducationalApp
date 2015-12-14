@@ -1,3 +1,4 @@
+
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "equationgenerator.h"
@@ -8,10 +9,11 @@
 
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::GameWidget)
+    ui(new Ui::GameWidget),
+    score(0)
 {
     ui->setupUi(this);\
-    gravity = 1; //Higher number = slower fall, cannot equal 0
+    gravity = 10; //Higher number = slower fall, cannot equal 0
 
     equations = new EquationGenerator;
     ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -41,19 +43,23 @@ GameWidget::~GameWidget()
 
 void GameWidget::on_answerButton_clicked()
 {
-    if(ui->answerBox->text() == QString::number(equations->answer))
+    if(ui->answerBox->text() != QString::number(equations->answer))
+    {
+        QPalette pal = ui->answerBox->palette();
+        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
+        ui->answerBox->setPalette(pal);
+        ui->answerBox->setText("");
+    }
+    else
     {
         QPalette pal = ui->answerBox->palette();
         pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
         ui->answerBox->setPalette(pal);
         timer->stop();
-        ui->score->setText("10");
-    }
-    else
-    {
-        QPalette pal = ui->answerBox->palette();
-        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
-        ui->answerBox->setPalette(pal);
+        score += 10;
+        ui->score->setText(QString::number(score));
+        ui->answerBox->setText("");
+        ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
     }
 }
 
@@ -86,18 +92,22 @@ int GameWidget::getEditorCanvasSize()
 
 void GameWidget::on_answerBox_returnPressed()
 {
-    if(ui->answerBox->text() == QString::number(equations->answer))
+    if(ui->answerBox->text() != QString::number(equations->answer))
+    {
+        QPalette pal = ui->answerBox->palette();
+        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
+        ui->answerBox->setPalette(pal);
+        ui->answerBox->setText("");
+    }
+    else
     {
         QPalette pal = ui->answerBox->palette();
         pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
         ui->answerBox->setPalette(pal);
         timer->stop();
-        ui->score->setText("10");
-    }
-    else
-    {
-        QPalette pal = ui->answerBox->palette();
-        pal.setColor(ui->answerBox->backgroundRole(), Qt::red);
-        ui->answerBox->setPalette(pal);
+        score += 10;
+        ui->score->setText(QString::number(score));
+        ui->answerBox->setText("");
+        ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
     }
 }
