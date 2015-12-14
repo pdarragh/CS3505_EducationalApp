@@ -51,6 +51,7 @@ private:
     bool teacher;
     Socket socket;
     int getEditorCanvasSize();
+    QString html_helper(int indentation, QString text);
 };
 
 #endif // MAINWINDOW_H

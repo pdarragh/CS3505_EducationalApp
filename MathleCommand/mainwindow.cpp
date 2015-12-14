@@ -6,6 +6,9 @@
 #include <QGraphicsRectItem>
 #include <QStandardItemModel>
 #include <QIcon>
+#include <QFile>
+#include <QFileInfo>
+#include <QString>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -139,15 +142,15 @@ void MainWindow::createClassTable()
         QStandardItem *student1_name = new QStandardItem(students_list[i].getUserName());
 
         std::stringstream s1;
-        s1 << students_list[i].getLevelScore(1);
+        s1 << students_list[i].getLevelAverageScore(1);
         QStandardItem *level1_score = new QStandardItem(QString::fromStdString(s1.str()));
 
         std::stringstream s2;
-        s2 << students_list[i].getLevelScore(2);
+        s2 << students_list[i].getLevelAverageScore(2);
         QStandardItem *level2_score = new QStandardItem(QString::fromStdString(s2.str()));
 
         std::stringstream s3;
-        s3 << students_list[i].getLevelScore(3);
+        s3 << students_list[i].getLevelAverageScore(3);
         QStandardItem *level3_score = new QStandardItem(QString::fromStdString(s3.str()));
 
         table_model->setItem(i, 0, level1_score);
@@ -180,8 +183,94 @@ void MainWindow::deleteStudent()
 
 void MainWindow::generateStudentReport()
 {
+    // Update class info
+    retrieveClassInfo();
     // TODO: open html report in browser
 
+    QFile file("./report.html");
+    QFileInfo fileinfo(file.fileName());
+    QString filepath(fileinfo.fileName());
+    qDebug() << "filepath: " << filepath << "";
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "error: failed to open file for writing";
+        return;
+    }
+
+    QTextStream report(&file);
+
+    // HTML head
+    report << html_helper(0, "<!DOCTYPE html>");
+    report << html_helper(0, "<html>");
+    report << html_helper(0, "<head>");
+    report << html_helper(1, "<style>");
+    // Styling from http://tablestyler.com/
+    report << html_helper(2, ".datagrid table { border-collapse: collapse; text-align: right; width: 100%; } .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #991821; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }.datagrid table td, .datagrid table th { padding: 3px 10px; }.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');background-color:#991821; color:#FFFFFF; font-size: 15px; font-weight: bold; border-left: 1px solid #B01C26; text-align: center; } .datagrid table thead th:first-child { border: none; }.datagrid table tbody td { color: #80141C; border-left: 1px solid #F7CDCD;font-size: 12px;font-weight: normal; }.datagrid table tbody .alt td { background: #F7CDCD; color: #80141C; }.datagrid table tbody td:first-child { border-left: none; }.datagrid table tbody tr:last-child td { border-bottom: none; }.datagrid table tfoot td div { border-top: 1px solid #991821;background: #F7CDCD;} .datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #991821;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #991821), color-stop(1, #80141C) );background:-moz-linear-gradient( center top, #991821 5%, #80141C 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#991821', endColorstr='#80141C');background-color:#991821; }.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #80141C; color: #FFFFFF; background: none; background-color:#991821;}div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }");
+    report << html_helper(1, "</style>");
+    report << html_helper(0, "</head>");
+
+    // HTML body
+    report << html_helper(0, "<body>");
+    // Begin table
+    report << html_helper(1, "<div class=\"datagrid\"><table>");
+
+    // Table head
+    report << html_helper(2, "<thead>");
+    report << html_helper(3, "<tr>");
+    report << html_helper(4, "<th><!-- Space for student name/level marker --></th>");
+    report << html_helper(4, "<th>Attempts</th>");
+    report << html_helper(4, "<th>Average Score</th>");
+    report << html_helper(4, "<th>Average Misses/Attempt</th>");
+    report << html_helper(3, "</tr>");
+    report << html_helper(2, "</thead>");
+
+    // Table body
+    report << html_helper(2, "<tbody>");
+    // Each student
+    for (const StudentResults &student : students_list)
+    {
+        // Aggregate totals
+        report << html_helper(3, "<tr class=\"alt\">");
+        report << html_helper(4, "<td>" + student.getUserName() + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getTotalAttempts()) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getTotalAverageScore()) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getTotalAverageMisses()) + "</td>");
+        report << html_helper(3, "</tr>");
+        // Level 1
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>Level 1</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAttempts(1)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageScore(1)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageMisses(1)) + "</td>");
+        report << html_helper(3, "</tr>");
+        // Level 2
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>Level 2</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAttempts(2)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageScore(2)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageMisses(2)) + "</td>");
+        report << html_helper(3, "</tr>");
+        // Level 3
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>Level 3</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAttempts(3)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageScore(3)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageMisses(3)) + "</td>");
+        report << html_helper(3, "</tr>");
+    }
+    report << html_helper(2, "</tbody>");
+
+    // Finish table
+    report << html_helper(1, "</table></div>");
+
+    // Finish the document
+    report << html_helper(0, "</body>");
+    report << html_helper(0, "</html>");
+}
+
+QString MainWindow::html_helper(int indentation, QString text)
+{
+    return QString(indentation * 4, ' ') + text + QString("\n");
 }
 
 /*
@@ -203,13 +292,13 @@ void MainWindow::displayStudentAccount()
     student_high_scores = socket.getStudentResults(login->username);
     socket.disconnect();
     std::stringstream score1;
-    score1 << student_high_scores.getLevelScore(1);
+    score1 << student_high_scores.getLevelMaxScore(1);
     ui->level1Score->setText(QString::fromStdString(score1.str()));
     std::stringstream score2;
-    score2 << student_high_scores.getLevelScore(2);
+    score2 << student_high_scores.getLevelMaxScore(2);
     ui->level2Score->setText(QString::fromStdString(score2.str()));
     std::stringstream score3;
-    score3 << student_high_scores.getLevelScore(3);
+    score3 << student_high_scores.getLevelMaxScore(3);
     ui->level3Score->setText(QString::fromStdString(score3.str()));
 
     // Adds links to learning resources
