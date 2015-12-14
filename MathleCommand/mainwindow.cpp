@@ -5,7 +5,6 @@
 #include "studentresults.h"
 #include <QDebug>
 #include <QGraphicsRectItem>
-#include <QString>
 #include <QStandardItemModel>
 #include <QIcon>
 #include <vector>
@@ -173,8 +172,6 @@ void MainWindow::populateComboBox()
 
 void MainWindow::deleteStudent()
 {
-    ui->table_view->model()->removeRow(ui->combo_box->currentIndex());
-    ui->combo_box->removeItem(ui->combo_box->currentIndex());
 }
 
 void MainWindow::generateStudentReport()

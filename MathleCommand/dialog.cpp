@@ -37,18 +37,18 @@ void Dialog::onLoginPressed()
    if (account_type != 0)
    {
        this->accept();
+       if (account_type == 1)
+       {
+           this->student = false;
+       }
+       else
+       {
+           this->student = true;
+       }
    }
    else
    {
         ui->warning_label->show();
-        if (account_type == 1)
-        {
-            this->student = false;
-        }
-        else
-        {
-            this->student = true;
-        }
    }
    socket.disconnect();
 

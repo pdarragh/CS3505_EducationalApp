@@ -21,6 +21,7 @@ public:
     void disconnect();
     int verifyUserLogin(QString username, QString password);
     bool createUser(QString username, QString password, bool isStudent);
+    bool deleteUser(QString username, QString password);
     StudentResults getStudentResults(QString username);
     std::vector<StudentResults> getAllStudentResults();
     void recordStudentResult(QString username, int level, int score, int misses);

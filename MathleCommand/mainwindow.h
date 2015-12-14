@@ -6,6 +6,7 @@
 #include "socket.h"
 #include "dialog.h"
 #include <QTimer>
+#include <QString>
 #include <QGraphicsScene>
 
 namespace Ui {
