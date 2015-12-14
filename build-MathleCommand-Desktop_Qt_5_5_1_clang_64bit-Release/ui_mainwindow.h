@@ -45,6 +45,7 @@ public:
     QComboBox *combo_box;
     QPushButton *report_button;
     QPushButton *manage_button;
+    QPushButton *refresh_button;
     QWidget *page_2;
     QPushButton *logOutButton;
     QLabel *level1Score;
@@ -134,6 +135,13 @@ public:
         icon1.addFile(QStringLiteral(":/new/prefix1/delete_filled.png"), QSize(), QIcon::Normal, QIcon::Off);
         manage_button->setIcon(icon1);
         manage_button->setIconSize(QSize(30, 30));
+        refresh_button = new QPushButton(page);
+        refresh_button->setObjectName(QStringLiteral("refresh_button"));
+        refresh_button->setGeometry(QRect(580, 580, 50, 50));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/new/prefix1/refresh.png"), QSize(), QIcon::Normal, QIcon::Off);
+        refresh_button->setIcon(icon2);
+        refresh_button->setIconSize(QSize(30, 30));
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
@@ -236,6 +244,13 @@ public:
         manage_button->setAccessibleDescription(QString());
 #endif // QT_NO_ACCESSIBILITY
         manage_button->setText(QString());
+#ifndef QT_NO_WHATSTHIS
+        refresh_button->setWhatsThis(QApplication::translate("MainWindow", "Unenroll Student", 0));
+#endif // QT_NO_WHATSTHIS
+#ifndef QT_NO_ACCESSIBILITY
+        refresh_button->setAccessibleDescription(QString());
+#endif // QT_NO_ACCESSIBILITY
+        refresh_button->setText(QString());
         logOutButton->setText(QApplication::translate("MainWindow", "Log Out", 0));
         level1Score->setText(QApplication::translate("MainWindow", "0", 0));
         level2Button->setText(QApplication::translate("MainWindow", "Level 2", 0));

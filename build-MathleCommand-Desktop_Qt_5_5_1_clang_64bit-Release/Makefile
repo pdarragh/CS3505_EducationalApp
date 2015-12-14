@@ -636,7 +636,8 @@ qrc_resources.cpp: ../MathleCommand/resources.qrc \
 		../MathleCommand/error_filled.png \
 		../MathleCommand/classroom.png \
 		../MathleCommand/student_account.png \
-		../MathleCommand/delete_filled.png
+		../MathleCommand/delete_filled.png \
+		../MathleCommand/refresh.png
 	/Users/Aurora/Qt/5.5/clang_64/bin/rcc -name resources ../MathleCommand/resources.qrc -o qrc_resources.cpp
 
 compiler_moc_header_make_all: moc_gamewidget.cpp moc_mainwindow.cpp moc_dialog.cpp moc_unenrollwarning.cpp
@@ -667,6 +668,9 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../MathleCommand/dialog.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -696,7 +700,24 @@ moc_dialog.cpp: ../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../MathleCommand/dialog.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/MathleCommand/MathleCommand/libs/mysql-include -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/dialog.h -o moc_dialog.cpp
 
-moc_unenrollwarning.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+moc_unenrollwarning.cpp: ../MathleCommand/socket.h \
+		../MathleCommand/libs/mysql-include/mysql.h \
+		../MathleCommand/libs/mysql-include/mysql_version.h \
+		../MathleCommand/libs/mysql-include/mysql_com.h \
+		../MathleCommand/libs/mysql-include/binary_log_types.h \
+		../MathleCommand/libs/mysql-include/my_command.h \
+		../MathleCommand/libs/mysql-include/mysql_time.h \
+		../MathleCommand/libs/mysql-include/my_list.h \
+		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
+		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
+		../MathleCommand/libs/mysql-include/typelib.h \
+		../MathleCommand/libs/mysql-include/my_alloc.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
+		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../MathleCommand/unenrollwarning.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/MathleCommand/MathleCommand/libs/mysql-include -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/unenrollwarning.h -o moc_unenrollwarning.cpp
@@ -760,6 +781,9 @@ main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../MathleCommand/dialog.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -789,14 +813,14 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../MathleCommand/dialog.h \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		ui_mainwindow.h \
-		../MathleCommand/dialog.h \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
@@ -869,6 +893,23 @@ studentresults.o: ../MathleCommand/studentresults.cpp ../MathleCommand/studentre
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o studentresults.o ../MathleCommand/studentresults.cpp
 
 unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrollwarning.h \
+		../MathleCommand/socket.h \
+		../MathleCommand/libs/mysql-include/mysql.h \
+		../MathleCommand/libs/mysql-include/mysql_version.h \
+		../MathleCommand/libs/mysql-include/mysql_com.h \
+		../MathleCommand/libs/mysql-include/binary_log_types.h \
+		../MathleCommand/libs/mysql-include/my_command.h \
+		../MathleCommand/libs/mysql-include/mysql_time.h \
+		../MathleCommand/libs/mysql-include/my_list.h \
+		../MathleCommand/libs/mysql-include/mysql/client_plugin.h \
+		../MathleCommand/libs/mysql-include/mysql/plugin_auth_common.h \
+		../MathleCommand/libs/mysql-include/typelib.h \
+		../MathleCommand/libs/mysql-include/my_alloc.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
+		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
+		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		ui_unenrollwarning.h

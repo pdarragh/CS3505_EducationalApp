@@ -141,7 +141,7 @@ bool Socket::createUser(QString username, QString password, bool isStudent)
 
 bool Socket::deleteUser(QString username)
 {
-    QString insertQuery("DELETE FROM mathle.users WHERE users.username='");
+    QString insertQuery("DELETE mathle.users, mathle.results FROM mathle.users INNER JOIN mathle.results WHERE users.id = results.user_id AND users.username='");
     insertQuery.append(username);
     insertQuery.append("'");
 

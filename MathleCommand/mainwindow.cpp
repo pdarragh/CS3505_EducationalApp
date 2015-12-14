@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "socket.h"
-#include "unenrollwarning.h"
 #include "studentresults.h"
 #include <QDebug>
 #include <QGraphicsRectItem>
@@ -34,10 +33,12 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     //connect all the buttons
-    UnenrollWarning *warning = new UnenrollWarning(this, ui->combo_box->currentText());
+    this->warning = new UnenrollWarning(this);
+    this->warning->hide();
     connect(ui->manage_button, SIGNAL(clicked()), warning, SLOT(show()));
-    connect(ui->manage_button, SIGNAL(clicked()), this, SLOT(deleteStudent()));
     connect(ui->report_button, SIGNAL(clicked()), this, SLOT(generateStudentReport()));
+    connect(ui->refresh_button, SIGNAL(clicked()), this, SLOT(on_refresh_button_clicked()));
+    connect(ui->combo_box, SIGNAL(currentTextChanged(QString)), this, SLOT(on_combo_box_currentTextChanged(QString)));
 
    equations = new EquationGenerator;
    ui->equation->setText(equations->generateEquations(EquationGenerator::Addition));
@@ -172,6 +173,10 @@ void MainWindow::populateComboBox()
 
 void MainWindow::deleteStudent()
 {
+    qDebug() << "Deleting " + ui->combo_box->currentText() + " FOREVER";
+    socket.connect();
+    socket.deleteUser(ui->combo_box->currentText());
+    socket.disconnect();
 }
 
 void MainWindow::generateStudentReport()
@@ -193,6 +198,14 @@ void MainWindow::displayStudentAccount()
 //   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
 
 
+}
+
+
+void MainWindow::on_refresh_button_clicked()
+{
+    createClassTable();
+    ui->combo_box->clear();
+    populateComboBox();
 }
 
 void MainWindow::displayGameWindow()
@@ -230,8 +243,6 @@ void MainWindow::update()
     {
         //qDebug() << "OVER";
     }
-
-
 }
 
 int MainWindow::getEditorCanvasSize()
@@ -240,3 +251,8 @@ int MainWindow::getEditorCanvasSize()
     return std::min(rcontent.width(), rcontent.height());
 }
 
+void MainWindow::on_combo_box_currentTextChanged(const QString &arg1)
+{
+     this->warning = new UnenrollWarning(this);
+     qDebug() << "INDEX CHANGED TO " + arg1;
+}

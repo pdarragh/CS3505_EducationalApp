@@ -5,6 +5,7 @@
 #include "equationgenerator.h"
 #include "socket.h"
 #include "dialog.h"
+#include "unenrollwarning.h"
 #include <QTimer>
 #include <QString>
 #include <QGraphicsScene>
@@ -32,7 +33,6 @@ public:
     void retrieveClassInfo();
     void createClassTable();
     void populateComboBox();
-    void deleteStudent();
     void displayStudentAccount();
     void displayGameWindow();
     int getEditorCanvasSize();
@@ -42,12 +42,14 @@ public:
 private slots:
     void generateStudentReport();
     void on_answerButton_clicked();
-
-    //void on_page_3_destroyed();
+    void deleteStudent();
     void update();
+    void on_refresh_button_clicked();
+    void on_combo_box_currentTextChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
+    UnenrollWarning *warning;
 };
 
 #endif // MAINWINDOW_H

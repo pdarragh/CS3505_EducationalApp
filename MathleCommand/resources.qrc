@@ -9,5 +9,6 @@
         <file>delete_filled.png</file>
         <file>remove_user_filled.png</file>
         <file>cancel_filled.png</file>
+        <file>refresh.png</file>
     </qresource>
 </RCC>
