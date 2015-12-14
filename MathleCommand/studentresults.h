@@ -22,11 +22,15 @@ public:
     void addLevelScore(int level, int value);
     void addLevelMiss(int level, int value);
 
-    QString getUserName();
-    bool getHasCompletedLevel(int level);
-    float getLevelAverageScore(int level);
-    float getLevelAverageMisses(int level);
-    int getLevelMaxScore(int level);
+    QString getUserName() const;
+    bool getHasCompletedLevel(int level) const;
+    float getLevelAverageScore(int level) const;
+    float getLevelAverageMisses(int level) const;
+    int getLevelMaxScore(int level) const;
+    int getLevelAttempts(int level) const;
+    int getTotalAttempts() const;
+    float getTotalAverageScore() const;
+    float getTotalAverageMisses() const;
 
 
 

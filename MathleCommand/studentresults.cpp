@@ -74,12 +74,12 @@ void StudentResults::addLevelMiss(int level, int value)
     }
 }
 
-QString StudentResults::getUserName()
+QString StudentResults::getUserName() const
 {
     return username;
 }
 
-bool StudentResults::getHasCompletedLevel(int level)
+bool StudentResults::getHasCompletedLevel(int level) const
 {
     switch(level)
     {
@@ -95,28 +95,25 @@ bool StudentResults::getHasCompletedLevel(int level)
     }
 }
 
-float StudentResults::getLevelAverageScore(int level)
+float StudentResults::getLevelAverageScore(int level) const
 {
     int average = 0;
-    int entries = 0;
+    int entries = getLevelAttempts(level);
     switch(level)
     {
     case 1:
-        entries = levelOneScores.size();
         for (const int &value : levelOneScores)
         {
             average += value;
         }
         break;
     case 2:
-        entries = levelTwoScores.size();
         for (const int &value : levelTwoScores)
         {
             average += value;
         }
         break;
     case 3:
-        entries = levelThreeScores.size();
         for (const int &value : levelThreeScores)
         {
             average += value;
@@ -127,7 +124,83 @@ float StudentResults::getLevelAverageScore(int level)
     return (entries != 0) ? float(average) / float(entries) : 0;
 }
 
-float StudentResults::getLevelAverageMisses(int level)
+int StudentResults::getLevelAttempts(int level) const
+{
+    switch(level)
+    {
+    case 1:
+        return levelOneScores.size();
+        break;
+    case 2:
+        return levelTwoScores.size();
+        break;
+    case 3:
+        return levelThreeScores.size();
+        break;
+    }
+}
+
+int StudentResults::getTotalAttempts() const
+{
+    return getLevelAttempts(1) + getLevelAttempts(2) + getLevelAttempts(3);
+}
+
+float StudentResults::getTotalAverageScore() const
+{
+    int average = 0;
+    int entries = getTotalAttempts();
+
+    // Level 1
+    for (const int &value : levelOneScores)
+    {
+        average += value;
+    }
+
+    // Level 2
+    for (const int &value : levelTwoScores)
+    {
+        average += value;
+    }
+
+    // Level 3
+    for (const int &value : levelThreeScores)
+    {
+        average += value;
+    }
+
+    return (entries != 0) ? float(average) / float(entries) : 0;
+}
+
+float StudentResults::getTotalAverageMisses() const
+{
+    int average = 0;
+    int entries = 0;
+
+    // Level 1
+    entries += levelOneMisses.size();
+    for (const int &value : levelOneMisses)
+    {
+        average += value;
+    }
+
+    // Level 2
+    entries += levelTwoMisses.size();
+    for (const int &value : levelTwoMisses)
+    {
+        average += value;
+    }
+
+    // Level 3
+    entries += levelThreeMisses.size();
+    for (const int &value : levelThreeMisses)
+    {
+        average += value;
+    }
+
+    return (entries != 0) ? float(average) / float(entries) : 0;
+}
+
+float StudentResults::getLevelAverageMisses(int level) const
 {
     int average = 0;
     int entries = 0;
@@ -159,7 +232,7 @@ float StudentResults::getLevelAverageMisses(int level)
     return (entries != 0) ? float(average) / float(entries) : 0;
 }
 
-int StudentResults::getLevelMaxScore(int level)
+int StudentResults::getLevelMaxScore(int level) const
 {
     int max = 0;
     switch(level)

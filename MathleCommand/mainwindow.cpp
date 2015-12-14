@@ -6,6 +6,9 @@
 #include <QGraphicsRectItem>
 #include <QStandardItemModel>
 #include <QIcon>
+#include <QFile>
+#include <QFileInfo>
+#include <QString>
 #include <vector>
 #include <iostream>
 #include <sstream>
@@ -180,8 +183,85 @@ void MainWindow::deleteStudent()
 
 void MainWindow::generateStudentReport()
 {
+    // Update class info
+    retrieveClassInfo();
     // TODO: open html report in browser
 
+    QFile file("./report.html");
+    QFileInfo fileinfo(file.fileName());
+    QString filepath(fileinfo.fileName());
+    qDebug() << "filepath: " << filepath << "";
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "error: failed to open file for writing";
+        return;
+    }
+
+    QTextStream report(&file);
+
+    // HTML head
+    report << html_helper(0, "<!DOCTYPE html>");
+    report << html_helper(0, "<html>");
+
+    // Begin table
+    report << html_helper(1, "<table>");
+
+    // Table head
+    report << html_helper(2, "<thead>");
+    report << html_helper(3, "<tr>");
+    report << html_helper(4, "<th><!-- Space for student name/level marker --></th>");
+    report << html_helper(4, "<th>Attempts</th>");
+    report << html_helper(4, "<th>Average Score</th>");
+    report << html_helper(4, "<th>Average Misses/Attempt</th>");
+    report << html_helper(3, "</tr>");
+    report << html_helper(2, "</thead>");
+
+    // Table body
+    report << html_helper(2, "<tbody>");
+    // Each student
+    for (const StudentResults &student : students_list)
+    {
+        // Aggregate totals
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>" + student.getUserName() + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getTotalAttempts()) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getTotalAverageScore()) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getTotalAverageMisses()) + "</td>");
+        report << html_helper(3, "</tr>");
+        // Level 1
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>Level 1</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAttempts(1)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageScore(1)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageMisses(1)) + "</td>");
+        report << html_helper(3, "</tr>");
+        // Level 2
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>Level 2</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAttempts(2)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageScore(2)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageMisses(2)) + "</td>");
+        report << html_helper(3, "</tr>");
+        // Level 3
+        report << html_helper(3, "<tr>");
+        report << html_helper(4, "<td>Level 3</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAttempts(3)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageScore(3)) + "</td>");
+        report << html_helper(4, "<td>" + QString::number(student.getLevelAverageMisses(3)) + "</td>");
+        report << html_helper(3, "</tr>");
+    }
+    report << html_helper(2, "</tbody>");
+
+    // Finish table
+    report << html_helper(1, "</table>");
+
+    // Finish the document
+    report << html_helper(0, "</html>");
+}
+
+QString MainWindow::html_helper(int indentation, QString text)
+{
+    return QString(indentation * 4, ' ') + text + QString("\n");
 }
 
 /*
