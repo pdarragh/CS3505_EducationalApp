@@ -628,6 +628,7 @@ compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../MathleCommand/resources.qrc \
+		../MathleCommand/christmas_star_filled.png \
 		../MathleCommand/missile.png \
 		../MathleCommand/home.png \
 		../MathleCommand/document.png \
@@ -671,6 +672,7 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -784,6 +786,7 @@ main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -816,12 +819,12 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		ui_mainwindow.h \
-		../MathleCommand/unenrollwarning.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsRectItem \
@@ -912,7 +915,9 @@ unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrol
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		ui_unenrollwarning.h
+		ui_unenrollwarning.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o unenrollwarning.o ../MathleCommand/unenrollwarning.cpp
 
 qrc_resources.o: qrc_resources.cpp 

@@ -83,13 +83,12 @@ MainWindow::~MainWindow()
  */
 void MainWindow::displayTeacherAccount()
 {
-    // TODO: Store user name from database as a string
-    std::string user_name = "Jane Smith";
+    // Displays user name
     QString name = login->username;
     QString str = name + "'s Students";
-
     ui->name_label->setText(str);
 
+    // Fills in the table of students and combo box to select a student
     createClassTable();
     populateComboBox();
 }
@@ -194,10 +193,10 @@ void MainWindow::generateStudentReport()
  */
 void MainWindow::displayStudentAccount()
 {
-//   QPushButton main_menu("Main Menu", this);
-//   main_menu->setGeometry(QRect(QPoint(100, 150), QSize(100, 100)));
-
-
+    // Displays user name
+    QString name = login->username;
+    QString str = name + "!";
+    ui->student_name_label->setText(str);
 }
 
 
