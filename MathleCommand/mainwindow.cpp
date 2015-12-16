@@ -302,7 +302,8 @@ void MainWindow::displayStudentAccount()
     ui->level3Score->setText(QString::fromStdString(score3.str()));
 
     // Adds links to learning resources
-    //ui->AS_Resource->setText(QString::);
+    ui->AS_Resource->setText("<a href=\"https://www.khanacademy.org/math/arithmetic/addition-subtraction\">Videos explaining addition & subtraction</a>");
+    ui->MD_Resource->setText("<a href=\"https://www.khanacademy.org/math/arithmetic/multiplication-division\">Videos explaining multiplication & division</a>");
 }
 
 
