@@ -21,7 +21,10 @@ public:
     EquationGenerator* equations;
     QGraphicsScene* scene;
     QTimer *timer;
-    Mathle* mathle;
+    Mathle* mathle1;
+    Mathle* mathle2;
+    Mathle* mathle3;
+    Mathle* mathle4;
     double gravity;
     int getEditorCanvasSize();
     int score;
