@@ -343,20 +343,26 @@ void MainWindow::on_combo_box_currentTextChanged(const QString &arg1)
 void MainWindow::on_level1Button_clicked()
 {
     this->myGame = new GameWidget(this);
+    this->myGame->setUsername(login->username);
     this->myGame->setLevel(1);
+    this->myGame->startGame();
     this->myGame->show();
 }
 
 void MainWindow::on_level2Button_clicked()
 {
     this->myGame = new GameWidget(this);
+    this->myGame->setUsername(login->username);
     this->myGame->setLevel(2);
+    this->myGame->startGame();
     this->myGame->show();
 }
 
 void MainWindow::on_level3Button_clicked()
 {
     this->myGame = new GameWidget(this);
+    this->myGame->setUsername(login->username);
     this->myGame->setLevel(3);
+    this->myGame->startGame();
     this->myGame->show();
 }

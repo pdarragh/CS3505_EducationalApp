@@ -270,9 +270,18 @@ std::vector<StudentResults> Socket::getAllStudentResults()
 
 void Socket::recordStudentResult(QString username, int level, int score, int misses)
 {
+    qDebug() << "THIS IS WORKING";
     MYSQL_RES *result;
     MYSQL_ROW row;
     int state;
+
+    // Convert ints to strings
+    std::stringstream ss_level;
+    ss_level << level;
+    std::stringstream ss_score;
+    ss_score << score;
+    std::stringstream ss_misses;
+    ss_misses << misses;
 
     // first let's get the user id
     QString query("SELECT users.id from mathle.users WHERE users.username = '");
@@ -306,11 +315,11 @@ void Socket::recordStudentResult(QString username, int level, int score, int mis
     QString insertQuery("INSERT INTO mathle.results (user_id, level, score, wrong_answers) VALUES (");
     insertQuery.append(QString::number(userID));
     insertQuery.append(",");
-    insertQuery.append(QString::number(level));
+    insertQuery.append(ss_level.str().c_str());
     insertQuery.append(",");
-    insertQuery.append(QString::number(score));
+    insertQuery.append(ss_score.str().c_str());
     insertQuery.append(",");
-    insertQuery.append(QString::number(misses));
+    insertQuery.append(ss_misses.str().c_str());
     insertQuery.append(")");
 
     std::string insertString = insertQuery.toStdString();
@@ -322,5 +331,6 @@ void Socket::recordStudentResult(QString username, int level, int score, int mis
     {
         qDebug() << mysql_error(connection);
     }
-}
 
+    qDebug() << "SAVING";
+}

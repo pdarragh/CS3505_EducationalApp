@@ -5,7 +5,7 @@
 #include "equationgenerator.h"
 #include "mathle.h"
 #include "gameengine.h"
-#include "sstream"
+#include "socket.h"
 #include <QTimer>
 #include <QGraphicsScene>
 
@@ -30,14 +30,22 @@ public:
     int getEditorCanvasSize();
     int score;
     void setLevel(int level);
+    void startGame();
+    QTimer* restartTimer;
+    void setUsername(QString h);
+    QString username;
 
 private:
     Ui::GameWidget *ui;
     int current_level;
+    int missed;
+    int correct;
+    Socket socket;
 private slots:
-    void on_answerButton_clicked();
     void update();
     void on_answerBox_returnPressed();
+    void restart();
+    void saveClicked();
 };
 
 #endif // GAMEWIDGET_H

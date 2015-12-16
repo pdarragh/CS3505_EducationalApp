@@ -644,6 +644,7 @@ qrc_resources.cpp: ../MathleCommand/resources.qrc \
 		../MathleCommand/remove_user_filled.png \
 		../MathleCommand/error_filled.png \
 		../MathleCommand/classroom.png \
+		../MathleCommand/explosion.png \
 		../MathleCommand/student_account.png \
 		../MathleCommand/delete_filled.png \
 		../MathleCommand/refresh.png
@@ -657,6 +658,7 @@ moc_gamewidget.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QWidge
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -683,6 +685,8 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -691,6 +695,7 @@ moc_mainwindow.cpp: ../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QMainW
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -718,6 +723,8 @@ moc_dialog.cpp: ../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../MathleCommand/dialog.h
 	/Users/Aurora/Qt/5.5/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Users/Aurora/Qt/5.5/clang_64/mkspecs/macx-clang -I/Users/Aurora/MathleCommand/MathleCommand -I/Users/Aurora/MathleCommand/MathleCommand/libs/mysql-include -I/Users/Aurora/Qt/5.5/clang_64/lib/QtWidgets.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtGui.framework/Headers -I/Users/Aurora/Qt/5.5/clang_64/lib/QtCore.framework/Headers -I. -F/Users/Aurora/Qt/5.5/clang_64/lib ../MathleCommand/dialog.h -o moc_dialog.cpp
 
@@ -738,6 +745,8 @@ moc_unenrollwarning.cpp: ../MathleCommand/socket.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		../MathleCommand/unenrollwarning.h
@@ -758,6 +767,7 @@ ui_mainwindow.h: ../MathleCommand/mainwindow.ui \
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -788,6 +798,7 @@ gamewidget.o: ../MathleCommand/GameWidget/gamewidget.cpp ../MathleCommand/GameWi
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -841,6 +852,8 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -849,6 +862,7 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -862,7 +876,11 @@ mainwindow.o: ../MathleCommand/mainwindow.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QStandardItemModel \
 		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
 		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/QIcon \
-		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qicon.h
+		../../Qt/5.5/clang_64/lib/QtGui.framework/Headers/qicon.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QFile \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QFileInfo \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../MathleCommand/mainwindow.cpp
 
 dialog.o: ../MathleCommand/dialog.cpp ../MathleCommand/dialog.h \
@@ -885,6 +903,8 @@ dialog.o: ../MathleCommand/dialog.cpp ../MathleCommand/dialog.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_memory.h \
 		../MathleCommand/libs/mysql-include/mysql/psi/psi_base.h \
 		../MathleCommand/studentresults.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		ui_dialog.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
@@ -907,13 +927,17 @@ socket.o: ../MathleCommand/socket.cpp ../MathleCommand/socket.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o socket.o ../MathleCommand/socket.cpp
 
 studentresults.o: ../MathleCommand/studentresults.cpp ../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
-		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o studentresults.o ../MathleCommand/studentresults.cpp
 
 unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrollwarning.h \
@@ -934,6 +958,8 @@ unenrollwarning.o: ../MathleCommand/unenrollwarning.cpp ../MathleCommand/unenrol
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		ui_unenrollwarning.h \
@@ -961,6 +987,8 @@ main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../MathleCommand/studentresults.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QVector \
+		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		../MathleCommand/dialog.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -969,6 +997,7 @@ main.o: ../MathleCommand/main.cpp ../MathleCommand/mainwindow.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../MathleCommand/GameWidget/equationgenerator.h \
 		../MathleCommand/GameWidget/mathle.h \
+		../MathleCommand/GameWidget/gameengine.h \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/QTimer \
 		../../Qt/5.5/clang_64/lib/QtCore.framework/Headers/qtimer.h \
 		../../Qt/5.5/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \

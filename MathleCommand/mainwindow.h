@@ -42,6 +42,8 @@ private slots:
     void on_level2Button_clicked();
     void on_level3Button_clicked();
 
+public slots:
+
 private:
     Ui::MainWindow *ui;
     UnenrollWarning *warning;

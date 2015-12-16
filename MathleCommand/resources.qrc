@@ -11,5 +11,6 @@
         <file>cancel_filled.png</file>
         <file>refresh.png</file>
         <file>christmas_star_filled.png</file>
+        <file>explosion.png</file>
     </qresource>
 </RCC>

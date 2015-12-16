@@ -31,8 +31,10 @@ public:
     QLabel *score;
     QLabel *title;
     QLineEdit *answerBox;
-    QPushButton *answerButton;
     QLabel *equation;
+    QLabel *explosion;
+    QLabel *level_label;
+    QPushButton *save_button;
 
     void setupUi(QWidget *GameWidget)
     {
@@ -49,30 +51,50 @@ public:
         graphicsView->setStyleSheet(QStringLiteral("background-color: lightblue;"));
         score_label = new QLabel(GameWidget);
         score_label->setObjectName(QStringLiteral("score_label"));
-        score_label->setGeometry(QRect(570, 70, 41, 16));
+        score_label->setGeometry(QRect(560, 70, 51, 20));
+        QFont font;
+        font.setFamily(QStringLiteral("Chalkboard"));
+        font.setPointSize(18);
+        score_label->setFont(font);
         score = new QLabel(GameWidget);
         score->setObjectName(QStringLiteral("score"));
         score->setGeometry(QRect(620, 70, 51, 16));
+        score->setFont(font);
         title = new QLabel(GameWidget);
         title->setObjectName(QStringLiteral("title"));
         title->setGeometry(QRect(200, 615, 321, 41));
-        QFont font;
-        font.setPointSize(33);
-        title->setFont(font);
+        QFont font1;
+        font1.setPointSize(33);
+        title->setFont(font1);
         title->setAlignment(Qt::AlignCenter);
         answerBox = new QLineEdit(GameWidget);
         answerBox->setObjectName(QStringLiteral("answerBox"));
         answerBox->setGeometry(QRect(210, 520, 113, 21));
-        answerButton = new QPushButton(GameWidget);
-        answerButton->setObjectName(QStringLiteral("answerButton"));
-        answerButton->setGeometry(QRect(360, 510, 121, 41));
         equation = new QLabel(GameWidget);
         equation->setObjectName(QStringLiteral("equation"));
         equation->setGeometry(QRect(200, 470, 291, 31));
-        QFont font1;
-        font1.setPointSize(22);
-        equation->setFont(font1);
+        QFont font2;
+        font2.setPointSize(22);
+        equation->setFont(font2);
         equation->setAlignment(Qt::AlignCenter);
+        explosion = new QLabel(GameWidget);
+        explosion->setObjectName(QStringLiteral("explosion"));
+        explosion->setGeometry(QRect(400, 390, 281, 191));
+        explosion->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/explosion.png")));
+        level_label = new QLabel(GameWidget);
+        level_label->setObjectName(QStringLiteral("level_label"));
+        level_label->setGeometry(QRect(160, 190, 361, 81));
+        QFont font3;
+        font3.setFamily(QStringLiteral("Chalkboard"));
+        font3.setPointSize(47);
+        level_label->setFont(font3);
+        level_label->setAlignment(Qt::AlignCenter);
+        save_button = new QPushButton(GameWidget);
+        save_button->setObjectName(QStringLiteral("save_button"));
+        save_button->setGeometry(QRect(550, 100, 113, 32));
+        QFont font4;
+        font4.setFamily(QStringLiteral("Chalkboard SE"));
+        save_button->setFont(font4);
 
         retranslateUi(GameWidget);
 
@@ -86,8 +108,10 @@ public:
         score_label->setText(QApplication::translate("GameWidget", "Score:", 0));
         score->setText(QString());
         title->setText(QApplication::translate("GameWidget", "MathleCommand", 0));
-        answerButton->setText(QApplication::translate("GameWidget", "Answer", 0));
         equation->setText(QString());
+        explosion->setText(QString());
+        level_label->setText(QString());
+        save_button->setText(QApplication::translate("GameWidget", "Save Progress", 0));
     } // retranslateUi
 
 };

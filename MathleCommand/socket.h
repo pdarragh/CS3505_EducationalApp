@@ -3,6 +3,7 @@
 
 #include "mysql.h"
 #include "studentresults.h"
+#include "sstream"
 #include <QString>
 #include <vector>
 
