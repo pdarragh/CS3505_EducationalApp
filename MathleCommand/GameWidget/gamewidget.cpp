@@ -1,8 +1,10 @@
-
+#include <stdlib.h>
 #include "gamewidget.h"
 #include "ui_gamewidget.h"
 #include "equationgenerator.h"
 #include "mathle.h"
+#include <QList>
+#include <QGraphicsItem>
 #include <QGraphicsRectItem>
 #include <QDebug>
 #include <cmath>
@@ -12,9 +14,13 @@
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GameWidget),
-    score(0)
+    score(0),
+    lives(3),
+    count(10),
+    mathleQueue(QQueue<Mathle*>()),
+    sceneQueue(QQueue<QGraphicsRectItem*>())
 {
-    ui->setupUi(this);\
+    ui->setupUi(this);
     gravity = 100; //Higher number = slower fall, cannot equal 0
 
     equations = new EquationGenerator;
@@ -29,29 +35,11 @@ GameWidget::GameWidget(QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(60);
+    timer->start(100);
 
-    //Create a bomb
-    // 0,0,0    x,0,x               0,0,x
-    // Regular  Regular with shift  Upward arc
-    mathle1 = new Mathle;
-    mathle1->makeMathle(0, 0, 5);
-    mathle2 = new Mathle;
-    mathle2->makeMathle(0, 0, 30);
-    mathle3 = new Mathle;
-    mathle3->makeMathle(120, 0, 125);
-    mathle4 = new Mathle;
-    mathle4->makeMathle(255, 0, 250);
-    // Can only add one at the start
-    scene->addRect(mathle1->posx, mathle1->posy, 10, 10,QPen(Qt::red), QBrush(Qt::SolidPattern));
-    scene->addRect(mathle2->posx, mathle2->posy, 10, 10,QPen(Qt::green), QBrush(Qt::SolidPattern));
-    scene->addRect(mathle3->posx, mathle3->posy, 10, 10,QPen(Qt::yellow), QBrush(Qt::SolidPattern));
-    scene->addRect(mathle4->posx, mathle4->posy, 10, 10,QPen(), QBrush(Qt::SolidPattern));
-    //    for(int i = 0; i<100; i=i+10){
-    //        scene->addRect(i, 0, 10, 10,QPen(), QBrush(Qt::SolidPattern));
-    //    }
-    scene->addPixmap(QPixmap(":/new/prefix1/amissile.png"));
-    scene->items().first()->setPos(mathle1->posx,mathle1->posy);
+
+    //scene->addPixmap(QPixmap(":/new/prefix1/amissile.png"));
+    //sceneQueue.head()->setPos(mathle1->posx,mathle1->posy);
     GameWidget::update();
 }
 
@@ -75,9 +63,10 @@ void GameWidget::on_answerButton_clicked()
         pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
         ui->answerBox->setPalette(pal);
         //timer->stop();
-        if (scene->items().size() > 0)
+        if (!sceneQueue.isEmpty())
         {
-            scene->removeItem(scene->items().first());
+            sceneQueue.dequeue();
+            mathleQueue.dequeue();
         }
         score += 10;
         ui->score->setText(QString::number(score));
@@ -88,95 +77,81 @@ void GameWidget::on_answerButton_clicked()
 
 void GameWidget::update()
 {
+    if (count >= 10) {
+        count = 0;
+        //Create a bomb
+        // 0,0,0    x,0,x               0,0,x
+        // Regular  Regular with shift  Upward arc
+        int x = rand() % ui->graphicsView->contentsRect().width();
+        mathleQueue.enqueue(new Mathle(x, 0, x+2));
+        sceneQueue.enqueue(scene->addRect(mathleQueue.last()->posx, mathleQueue.last()->posy, 10, 10,QPen(Qt::red), QBrush(Qt::SolidPattern)));
+    }
+    else count++;
     int highestMathley = 0;
     //TODO: use iterator instead of for-loop
-    for(int i=0; i<scene->items().length(); i++){
-        if(scene->items()[i]->pos().y()>highestMathley)
-            highestMathley = scene->items()[i]->pos().y();
+    for(int i=0; i<sceneQueue.length(); i++){
+        if(sceneQueue[i]->pos().y()>highestMathley)
+            highestMathley = mathleQueue[i]->posy;
     }
     // If a mathle has NOT hit the ground.
     if(highestMathley < ui->graphicsView->contentsRect().height()-10)
     {
         qDebug() << "fuf me";
-        double oldy = mathle1->posy;
+        //double oldy = mathle1->posy;
         // Don't ask why, but for some reason posx and posy have to be assigned here.
         // y = (x-offSet)^2 / slowDown;
         // THEY ARE PUT IN AT THE TOP FIRST
         // If offset and x > 250, send it left
-        scene->items()[3]->setPos(mathle1->posx++, (mathle1->posy = pow(mathle1->posx-mathle1->posxStart, 2)/gravity));
-        scene->items()[2]->setPos(mathle2->posx++, (mathle2->posy = pow(mathle2->posx-mathle2->posxStart, 2)/gravity));
-        scene->items()[1]->setPos(mathle3->posx--, (mathle3->posy = pow(mathle3->posx-mathle3->posxStart, 2)/gravity));
-        scene->items()[0]->setPos(mathle4->posx--, (mathle4->posy = pow(mathle4->posx-mathle4->posxStart, 2)/gravity));
-        //        scene->items()[3]->setPos(mathle5->posx--, (mathle5->posy = pow(mathle5->posx-mathle5->posxStart, 2)/gravity));
+        for (size_t i = 0; i < sceneQueue.size(); i++) {
+            mathleQueue[i]->posy = pow(mathleQueue[i]->posx - mathleQueue[i]->posxStart, 2)/gravity;
+            sceneQueue[i]->setPos(mathleQueue[i]->posx, mathleQueue[i]->posy);
+        }
 
-        qDebug() << mathle1->posx << mathle1->posy << mathle1->posy-oldy;
-        qDebug() << mathle2->posx << mathle2->posy << mathle2->posxStart;
-        qDebug() << mathle3->posx << mathle3->posy;
-        qDebug() << mathle4->posx << mathle4->posy;
+//        qDebug() << mathle1->posx << mathle1->posy << mathle1->posy-oldy;
+//        qDebug() << mathle2->posx << mathle2->posy << mathle2->posxStart;
+//        qDebug() << mathle3->posx << mathle3->posy;
+//        qDebug() << mathle4->posx << mathle4->posy;
 
     }
     // Mathle hit the ground
     else
     {
         qDebug() << "OVER";
-        if(scene->items().size() >0)
-        {
-            if(scene->items().first()->pos().y() < ui->graphicsView->contentsRect().height())
-            {
-                qDebug() << "fuf me";
-                double oldy = mathle1->posy;
-                // Don't ask why, but for some reason posx and posy have to be assigned here.
-                // y = (x-offSet)^2 / slowDown;
-                scene->items().first()->setPos(mathle1->posx++, (mathle1->posy = pow(mathle1->posx-mathle1->posxStart, 2)/gravity));
+/*
+        //scene->addRect(0,0, 10, 10,QPen(), QBrush(Qt::SolidPattern));
+        QGraphicsPixmapItem *q=new QGraphicsPixmapItem(QPixmap(":/new/prefix1/amissile.png"));
 
-                qDebug() << mathle1->posx << " " << mathle1->posy << mathle1->posy-oldy;
+        q->setPos(mathleQueue.head()->pos().x(),mathleQueue.head()->pos().y()-500);
+        mathleQueue.enqueue(q);
+        q->setPos(0,0);
+        //q->update();
+        qDebug() << mathleQueue.size();
 
+        QPixmap px(":/new/prefix1/amissile.png");
+        QGraphicsPixmapItem *q1=new QGraphicsPixmapItem(px);
 
-            }
-            else
-            {
-                qDebug() << "OVER";
-                mathle1->posx = 0;
-                mathle1->posy = 0;
+        mathleQueue.enqueue(q1);
+        q1->setPos(mathleQueue.head()->pos().x(),mathleQueue.head()->pos().y()+650);
 
-                //scene->addRect(0,0, 10, 10,QPen(), QBrush(Qt::SolidPattern));
-                QGraphicsPixmapItem *q=new QGraphicsPixmapItem(QPixmap(":/new/prefix1/amissile.png"));
+        QLabel *myLabel = new QLabel(this); // sets parent of label to main window
+        myLabel->setPixmap(QPixmap(":/new/prefix1/anexplosion.png"));
+        myLabel->move(mathleQueue.head()->pos().x(),mathleQueue.head()->pos().y()-100);
+        myLabel->show();
 
-                q->setPos(scene->items().first()->pos().x(),scene->items().first()->pos().y()-500);
-                scene->addItem(q);
-                q->setPos(0,0);
-                //q->update();
-                qDebug() << scene->items().size();
+        // create a timer to delete the label after a time
+        QTimer* pShowTimer = new QTimer;
+        pShowTimer->setSingleShot(true);
 
-                QPixmap px(":/new/prefix1/amissile.png");
-                QGraphicsPixmapItem *q1=new QGraphicsPixmapItem(px);
+        connect(pShowTimer, &QTimer::timeout, [=](){
+            delete myLabel;
+        });
 
-                scene->addItem(q1);
-                q1->setPos(scene->items().first()->pos().x(),scene->items().first()->pos().y()+650);
-
-                QLabel *myLabel = new QLabel(this); // sets parent of label to main window
-                myLabel->setPixmap(QPixmap(":/new/prefix1/anexplosion.png"));
-                myLabel->move(scene->items().first()->pos().x(),scene->items().first()->pos().y()-100);
-                myLabel->show();
-
-                // create a timer to delete the label after a time
-                QTimer* pShowTimer = new QTimer;
-                pShowTimer->setSingleShot(true);
-
-                connect(pShowTimer, &QTimer::timeout, [=](){
-                    delete myLabel;
-                });
-
-                pShowTimer->start(1000 * 1); // 1 second
+        pShowTimer->start(1000 * 1); // 1 second
 
 
-                scene->removeItem(scene->items().first());
-                qDebug() << scene->items().size();
-
-            }
-        }
-
-
+        scene->removeItem(mathleQueue.head());
+        qDebug() << mathleQueue.size();
+*/
     }
 }
 
@@ -201,9 +176,10 @@ void GameWidget::update()
             pal.setColor(ui->answerBox->backgroundRole(), Qt::green);
             ui->answerBox->setPalette(pal);
             //timer->stop();
-            if (scene->items().size() > 0)
+            if (!sceneQueue.isEmpty())
             {
-                scene->removeItem(scene->items().first());
+                delete(sceneQueue.dequeue());
+                delete(mathleQueue.dequeue());
             }
             score += 10;
             ui->score->setText(QString::number(score));

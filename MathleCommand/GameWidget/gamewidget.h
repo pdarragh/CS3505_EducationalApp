@@ -2,10 +2,12 @@
 #define GAMEWIDGET_H
 
 #include <QWidget>
+#include <QQueue>
 #include "equationgenerator.h"
 #include "mathle.h"
 #include <QTimer>
 #include <QGraphicsScene>
+#include <QGraphicsRectItem>
 
 namespace Ui {
 class GameWidget;
@@ -21,16 +23,16 @@ public:
     EquationGenerator* equations;
     QGraphicsScene* scene;
     QTimer *timer;
-    Mathle* mathle1;
-    Mathle* mathle2;
-    Mathle* mathle3;
-    Mathle* mathle4;
     double gravity;
+    int lives;
+    int count;
     int getEditorCanvasSize();
     int score;
 
 private:
     Ui::GameWidget *ui;
+    QQueue<Mathle*> mathleQueue;
+    QQueue<QGraphicsRectItem*> sceneQueue;
 private slots:
     void on_answerButton_clicked();
     void update();

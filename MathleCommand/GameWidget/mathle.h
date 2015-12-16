@@ -4,11 +4,10 @@
 class Mathle
 {
 public:
-    Mathle();
+    Mathle(int posx, int posy, int posxStart);
     int posx;
     int posy;
     int posxStart;
-    void makeMathle(int posx, int posy, int posxStart);
 };
 
 #endif // BOMB_H
